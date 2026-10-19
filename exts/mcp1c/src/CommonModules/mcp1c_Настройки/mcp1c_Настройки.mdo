@@ -6,5 +6,6 @@
     <value>MCP: настройки</value>
   </synonym>
   <server>true</server>
+  <externalConnection>true</externalConnection>
   <privileged>true</privileged>
 </mdclass:CommonModule>

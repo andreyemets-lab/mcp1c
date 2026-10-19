@@ -6,4 +6,5 @@
     <value>MCP: инструменты</value>
   </synonym>
   <server>true</server>
+  <externalConnection>true</externalConnection>
 </mdclass:CommonModule>
