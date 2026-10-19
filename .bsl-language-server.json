@@ -1,0 +1,12 @@
+{
+  "language": "ru",
+  "diagnostics": {
+    "computeTrigger": "onSave",
+    "ordinaryAppSupport": false,
+    "parameters": {
+      "LineLength": {
+        "maxLineLength": 150
+      }
+    }
+  }
+}
