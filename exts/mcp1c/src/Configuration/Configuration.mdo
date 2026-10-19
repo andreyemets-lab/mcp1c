@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" xmlns:mdclassExtension="http://g5.1c.ru/v8/dt/metadata/mdclass/extension" uuid="10b9feae-9204-4842-9213-3c23e1f6c4bb">
+  <name>mcp1c</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP-сервер 1С</value>
+  </synonym>
+  <comment>MCP-сервер (Model Context Protocol) для подключения AI-клиентов к данным информационной базы</comment>
+  <objectBelonging>Adopted</objectBelonging>
+  <extension xsi:type="mdclassExtension:ConfigurationExtension"/>
+  <containedObjects classId="9cd510cd-abfc-11d4-9434-004095e12fc7" objectId="372466c1-c320-42b7-bc54-bee920e1ba53"/>
+  <containedObjects classId="9fcd25a0-4822-11d4-9414-008048da11f9" objectId="ca648421-5f3a-42cc-b0ab-33384261e94c"/>
+  <containedObjects classId="e3687481-0a87-462c-a166-9f34594f9bba" objectId="cd4aa79b-ba50-4ef5-be0d-af7a8f4500c1"/>
+  <containedObjects classId="9de14907-ec23-4a07-96f0-85521cb6b53b" objectId="8cb79d07-da2d-421d-9eb3-bf9503bbb650"/>
+  <containedObjects classId="51f2d5d8-ea4d-4064-8892-82951750031e" objectId="5a0b0694-051e-4916-905f-da1308174a9d"/>
+  <containedObjects classId="e68182ea-4237-4383-967f-90c1e3370bc7" objectId="ea90e622-e3b0-4a8a-bf88-60a421880e32"/>
+  <containedObjects classId="fb282519-d103-4dd3-bc12-cb271d631dfc" objectId="6e0f6bfc-6094-45cd-b073-630ee600fd9b"/>
+  <keepMappingToExtendedConfigurationObjectsByIDs>false</keepMappingToExtendedConfigurationObjectsByIDs>
+  <namePrefix>mcp1c_</namePrefix>
+  <configurationExtensionCompatibilityMode>8.3.10</configurationExtensionCompatibilityMode>
+  <configurationExtensionPurpose>AddOn</configurationExtensionPurpose>
+  <scriptVariant>Russian</scriptVariant>
+  <version>0.1.0</version>
+  <languages uuid="2d8968da-e83c-409b-8523-783a5f15adf1">
+    <name>Русский</name>
+    <objectBelonging>Adopted</objectBelonging>
+    <extension xsi:type="mdclassExtension:LanguageExtension">
+      <languageCode>Checked</languageCode>
+    </extension>
+    <languageCode>ru</languageCode>
+  </languages>
+  <roles>Role.mcp1c_Администратор</roles>
+  <roles>Role.mcp1c_Сервис</roles>
+  <commonModules>CommonModule.mcp1c_Администрирование</commonModules>
+  <commonModules>CommonModule.mcp1c_Аудит</commonModules>
+  <commonModules>CommonModule.mcp1c_Аутентификация</commonModules>
+  <commonModules>CommonModule.mcp1c_Инструменты</commonModules>
+  <commonModules>CommonModule.mcp1c_Метаданные</commonModules>
+  <commonModules>CommonModule.mcp1c_Настройки</commonModules>
+  <commonModules>CommonModule.mcp1c_Протокол</commonModules>
+  <commonModules>CommonModule.mcp1c_Сериализация</commonModules>
+  <commonModules>CommonModule.mcp1c_Служебный</commonModules>
+  <httpServices>HTTPService.mcp1c_Сервер</httpServices>
+  <constants>Constant.mcp1c_НастройкиСервера</constants>
+</mdclass:Configuration>

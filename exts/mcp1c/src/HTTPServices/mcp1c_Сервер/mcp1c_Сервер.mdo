@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:HTTPService xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="b7998e77-cdec-4bd6-97c6-6b5173775df7">
+  <name>mcp1c_Сервер</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP-сервер</value>
+  </synonym>
+  <comment>Конечная точка MCP (Streamable HTTP). Все методы обрабатывает mcp1c_Протокол.ОбработатьHTTPЗапрос.</comment>
+  <rootURL>mcp1c</rootURL>
+  <sessionMaxAge>20</sessionMaxAge>
+  <urlTemplates uuid="a8b426fb-9d10-46ea-b2b4-d949080f5011">
+    <name>Корень</name>
+    <synonym>
+      <key>ru</key>
+      <value>Корень</value>
+    </synonym>
+    <template>/*</template>
+    <methods uuid="466d27c0-3174-436c-a197-516a322e1870">
+      <name>POST</name>
+      <synonym>
+        <key>ru</key>
+        <value>POST</value>
+      </synonym>
+      <httpMethod>POST</httpMethod>
+      <handler>КореньPOST</handler>
+    </methods>
+    <methods uuid="a2dbae7b-e4c4-4f56-a82d-5d623a6e64f3">
+      <name>GET</name>
+      <synonym>
+        <key>ru</key>
+        <value>GET</value>
+      </synonym>
+      <handler>КореньGET</handler>
+    </methods>
+    <methods uuid="9d4b3ac2-42cb-49d9-9076-c882cb7c8287">
+      <name>DELETE</name>
+      <synonym>
+        <key>ru</key>
+        <value>DELETE</value>
+      </synonym>
+      <httpMethod>DELETE</httpMethod>
+      <handler>КореньDELETE</handler>
+    </methods>
+    <methods uuid="7a718339-62e9-4ddd-872a-49c10a97aa55">
+      <name>PUT</name>
+      <synonym>
+        <key>ru</key>
+        <value>PUT</value>
+      </synonym>
+      <httpMethod>PUT</httpMethod>
+      <handler>КореньPUT</handler>
+    </methods>
+    <methods uuid="62a2ae4c-9587-4c01-ba71-b82368860501">
+      <name>PATCH</name>
+      <synonym>
+        <key>ru</key>
+        <value>PATCH</value>
+      </synonym>
+      <httpMethod>PATCH</httpMethod>
+      <handler>КореньPATCH</handler>
+    </methods>
+    <methods uuid="1af20b4e-e333-4690-962b-a8c912a16679">
+      <name>OPTIONS</name>
+      <synonym>
+        <key>ru</key>
+        <value>OPTIONS</value>
+      </synonym>
+      <httpMethod>OPTIONS</httpMethod>
+      <handler>КореньOPTIONS</handler>
+    </methods>
+  </urlTemplates>
+</mdclass:HTTPService>

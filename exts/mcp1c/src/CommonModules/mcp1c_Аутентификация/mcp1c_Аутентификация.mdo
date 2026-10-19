@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="c828aa70-e477-455c-b3b1-c7d84d44a12c">
+  <name>mcp1c_Аутентификация</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: аутентификация</value>
+  </synonym>
+  <server>true</server>
+  <privileged>true</privileged>
+</mdclass:CommonModule>

@@ -1,0 +1,12 @@
+{
+  "name": "mcp1c-bsl-syntax",
+  "private": true,
+  "description": "Синтаксична перевірка модулів BSL граматикою 1c-syntax (Lezer) без платформи 1С",
+  "type": "module",
+  "scripts": {
+    "check": "node check.mjs ../../exts/mcp1c/src"
+  },
+  "dependencies": {
+    "@1c-syntax/codemirror-lang-bsl": "0.3.2"
+  }
+}

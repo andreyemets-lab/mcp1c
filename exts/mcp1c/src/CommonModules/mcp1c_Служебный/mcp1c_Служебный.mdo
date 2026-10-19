@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="16cf15be-eac3-41f6-8b63-ae2ca50abde1">
+  <name>mcp1c_Служебный</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: служебные функции</value>
+  </synonym>
+  <server>true</server>
+</mdclass:CommonModule>

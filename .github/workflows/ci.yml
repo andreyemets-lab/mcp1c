@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static-checks:
+    name: Перевірки без платформи 1С
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Метадані EDT і зв'язки між модулями
+        run: python tools/check_metadata.py exts/mcp1c
+
+      - name: Скрипти Python компілюються
+        run: python -m py_compile tools/check_metadata.py tools/mcp_smoke_test.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: tools/bsl-syntax/package-lock.json
+
+      - name: Синтаксис модулів BSL
+        working-directory: tools/bsl-syntax
+        run: |
+          npm ci --no-audit --no-fund
+          node check.mjs ../../exts/mcp1c/src
