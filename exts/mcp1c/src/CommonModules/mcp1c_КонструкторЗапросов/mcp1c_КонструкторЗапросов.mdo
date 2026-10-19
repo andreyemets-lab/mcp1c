@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="12ca7d38-db8c-4bfd-8153-c3b6dff91958">
+  <name>mcp1c_КонструкторЗапросов</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: конструктор запросов</value>
+  </synonym>
+  <comment>Чистая логика без обращений к данным; покрыта тестами OneScript</comment>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

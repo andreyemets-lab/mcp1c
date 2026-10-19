@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="a6598ed2-9c90-4c0a-b346-efc1fcd2befe">
+  <name>mcp1c_Сеть</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: IP-адреса и подсети</value>
+  </synonym>
+  <comment>Чистая логика без обращений к данным; покрыта тестами OneScript</comment>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

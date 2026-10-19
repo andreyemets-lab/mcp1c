@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="11a82c5e-53c9-4c68-a079-e70d467df372">
+  <name>mcp1c_MCPСервер</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP-сервер</value>
+  </synonym>
+  <includeInCommandInterface>true</includeInCommandInterface>
+  <explanation>
+    <key>ru</key>
+    <value>Клиенты, профили и токены доступа AI-клиентов, журнал вызовов</value>
+  </explanation>
+  <content>Catalog.mcp1c_КлиентыДоступа</content>
+  <content>Catalog.mcp1c_ПрофилиДоступа</content>
+  <content>Catalog.mcp1c_ТокеныДоступа</content>
+  <content>InformationRegister.mcp1c_ЖурналВызовов</content>
+  <content>InformationRegister.mcp1c_Блокировки</content>
+  <content>CommonCommand.mcp1c_СостояниеСервера</content>
+</mdclass:Subsystem>

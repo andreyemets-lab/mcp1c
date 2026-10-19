@@ -29,17 +29,46 @@
     </extension>
     <languageCode>ru</languageCode>
   </languages>
+  <subsystems>Subsystem.mcp1c_MCPСервер</subsystems>
   <roles>Role.mcp1c_Администратор</roles>
+  <roles>Role.mcp1c_Аудитор</roles>
   <roles>Role.mcp1c_Сервис</roles>
   <commonModules>CommonModule.mcp1c_Администрирование</commonModules>
+  <commonModules>CommonModule.mcp1c_АдминистрированиеВызовСервера</commonModules>
+  <commonModules>CommonModule.mcp1c_АдминистрированиеКлиент</commonModules>
   <commonModules>CommonModule.mcp1c_Аудит</commonModules>
   <commonModules>CommonModule.mcp1c_Аутентификация</commonModules>
+  <commonModules>CommonModule.mcp1c_ВыполнениеЗапросов</commonModules>
+  <commonModules>CommonModule.mcp1c_Значения</commonModules>
   <commonModules>CommonModule.mcp1c_Инструменты</commonModules>
+  <commonModules>CommonModule.mcp1c_ИнструментыДанных</commonModules>
+  <commonModules>CommonModule.mcp1c_КонструкторЗапросов</commonModules>
+  <commonModules>CommonModule.mcp1c_Курсор</commonModules>
+  <commonModules>CommonModule.mcp1c_Лимиты</commonModules>
   <commonModules>CommonModule.mcp1c_Метаданные</commonModules>
   <commonModules>CommonModule.mcp1c_Настройки</commonModules>
+  <commonModules>CommonModule.mcp1c_Политики</commonModules>
+  <commonModules>CommonModule.mcp1c_ПравилаДоступа</commonModules>
   <commonModules>CommonModule.mcp1c_Протокол</commonModules>
+  <commonModules>CommonModule.mcp1c_ПутиПолей</commonModules>
   <commonModules>CommonModule.mcp1c_Сериализация</commonModules>
+  <commonModules>CommonModule.mcp1c_Сеть</commonModules>
   <commonModules>CommonModule.mcp1c_Служебный</commonModules>
+  <commonModules>CommonModule.mcp1c_СхемаJSON</commonModules>
   <httpServices>HTTPService.mcp1c_Сервер</httpServices>
+  <commonCommands>CommonCommand.mcp1c_ВыпуститьТокен</commonCommands>
+  <commonCommands>CommonCommand.mcp1c_ОтозватьТокен</commonCommands>
+  <commonCommands>CommonCommand.mcp1c_СостояниеСервера</commonCommands>
   <constants>Constant.mcp1c_НастройкиСервера</constants>
+  <catalogs>Catalog.mcp1c_КлиентыДоступа</catalogs>
+  <catalogs>Catalog.mcp1c_ПрофилиДоступа</catalogs>
+  <catalogs>Catalog.mcp1c_ТокеныДоступа</catalogs>
+  <enums>Enum.mcp1c_ВидыСравнения</enums>
+  <enums>Enum.mcp1c_ДействияСПолями</enums>
+  <enums>Enum.mcp1c_ПолитикиПолей</enums>
+  <enums>Enum.mcp1c_РежимыДоступаКОбъектам</enums>
+  <enums>Enum.mcp1c_РезультатыВызовов</enums>
+  <enums>Enum.mcp1c_ТипыКлиентов</enums>
+  <informationRegisters>InformationRegister.mcp1c_Блокировки</informationRegisters>
+  <informationRegisters>InformationRegister.mcp1c_ЖурналВызовов</informationRegisters>
 </mdclass:Configuration>

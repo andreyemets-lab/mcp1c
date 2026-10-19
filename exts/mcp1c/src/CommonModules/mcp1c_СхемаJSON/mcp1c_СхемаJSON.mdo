@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="0d5019f7-93c3-46ad-a6f8-b9eeb533d63e">
+  <name>mcp1c_СхемаJSON</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: проверка JSON Schema</value>
+  </synonym>
+  <comment>Чистая логика без обращений к данным; покрыта тестами OneScript</comment>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="cc329791-929d-4997-bb55-f2b1e723a7bf">
+  <producedTypes>
+    <refType typeId="aa977b81-2a47-4e50-bf52-0135a78a42ea" valueTypeId="c682b48e-0259-4055-93fa-35e1c27141e4"/>
+    <listType typeId="bcea06e3-931b-4efe-a761-119790cb89ac" valueTypeId="64705a8e-69a4-4bc9-8fad-f9b8ef5ecf21"/>
+    <managerType typeId="1d948138-d366-4d20-a6df-79f7369d625a" valueTypeId="a96bdea3-7f47-44c8-9e58-4879d576f998"/>
+  </producedTypes>
+  <name>mcp1c_ВидыСравнения</name>
+  <synonym>
+    <key>ru</key>
+    <value>Виды сравнения (MCP)</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <enumValues uuid="0b2d57cb-1d00-4f53-b70a-b3af8c00c036">
+    <name>Равно</name>
+    <synonym>
+      <key>ru</key>
+      <value>Равно</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="cfc4195a-fde0-4da0-ad1a-0188ab1373b1">
+    <name>НеРавно</name>
+    <synonym>
+      <key>ru</key>
+      <value>Не равно</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="98bed4eb-b26d-46bc-a937-f0fd282a0135">
+    <name>ВИерархии</name>
+    <synonym>
+      <key>ru</key>
+      <value>В иерархии</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

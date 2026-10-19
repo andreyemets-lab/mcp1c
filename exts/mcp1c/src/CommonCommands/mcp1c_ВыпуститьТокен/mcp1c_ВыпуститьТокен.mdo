@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonCommand xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="9f3044a8-81c1-4624-bba2-3161c930fcb6">
+  <name>mcp1c_ВыпуститьТокен</name>
+  <synonym>
+    <key>ru</key>
+    <value>Выпустить токен MCP</value>
+  </synonym>
+  <group>FormCommandBarImportant</group>
+  <commandParameterType>
+    <types>CatalogRef.mcp1c_КлиентыДоступа</types>
+  </commandParameterType>
+  <parameterUseMode>Single</parameterUseMode>
+  <representation>Auto</representation>
+  <toolTip>
+    <key>ru</key>
+    <value>Выпустить персональный токен доступа для клиента</value>
+  </toolTip>
+</mdclass:CommonCommand>

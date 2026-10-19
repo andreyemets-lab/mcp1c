@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="ee0a586b-f957-4907-b017-10d2f2046f9d">
+  <producedTypes>
+    <refType typeId="1b9bfe16-b1cf-46a5-962b-b0844cd735be" valueTypeId="b0652750-6dcd-414c-859d-ae8d58388f19"/>
+    <listType typeId="59c4622a-178f-4e41-8e87-e9aed8df3b55" valueTypeId="7ea6f1ef-856b-4ed7-8966-1e83549c05fa"/>
+    <managerType typeId="e5972bf2-7449-4c4c-8ddf-f539622be30c" valueTypeId="3ffffb5c-011f-45f3-913d-f1ec811ca87e"/>
+  </producedTypes>
+  <name>mcp1c_ДействияСПолями</name>
+  <synonym>
+    <key>ru</key>
+    <value>Действия с полями (MCP)</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <enumValues uuid="83588b90-d8f2-4b3c-8a39-f6f434dbfd7a">
+    <name>Разрешить</name>
+    <synonym>
+      <key>ru</key>
+      <value>Разрешить</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="40ad2453-2671-4925-bd27-98b78ac3e7f1">
+    <name>Запретить</name>
+    <synonym>
+      <key>ru</key>
+      <value>Запретить</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>
