@@ -1,0 +1,29 @@
+* text=auto
+
+# Файли проєкту 1C:EDT зберігаються з CRLF, як їх пише EDT у Windows.
+*.bsl     text eol=crlf
+*.mdo     text eol=crlf
+*.rights  text eol=crlf
+*.form    text eol=crlf
+*.dcs     text eol=crlf
+*.mxlx    text eol=crlf
+*.schedule text eol=crlf
+*.PMF     text eol=crlf
+*.prefs   text eol=crlf
+
+# Скрипти й документація - LF.
+*.py      text eol=lf
+*.mjs     text eol=lf
+*.json    text eol=lf
+*.md      text eol=lf
+*.yml     text eol=lf
+*.sh      text eol=lf
+
+# Двійкові артефакти 1С.
+*.cfe     binary
+*.cf      binary
+*.epf     binary
+*.erf     binary
+*.1CD     binary
+*.bin     binary
+*.png     binary

@@ -1,0 +1,29 @@
+# Збірки та бази 1С
+*.cfe
+*.cf
+*.cfu
+*.epf
+*.erf
+*.1CD
+*.cfl
+*.lgd
+build/
+out/
+
+# EDT / Eclipse
+.metadata/
+*/.settings/com._1c.g5.v8.dt.platform.services.core.prefs
+*/.settings/EnvLaunchModeIndex.prefs
+**/src/Configuration/ConfigDumpInfo.xml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node
+node_modules/
+
+# Локальні налаштування і секрети
+.env
+*.token
