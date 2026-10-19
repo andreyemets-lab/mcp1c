@@ -1,0 +1,20 @@
+{
+  "$schema": "https://1c-syntax.github.io/bsl-language-server/configuration/schema.json",
+  "language": "ru",
+  "diagnostics": {
+    "computeTrigger": "onSave",
+    "ordinaryAppSupport": false,
+    "parameters": {
+      "LineLength": {
+        "maxLineLength": 150
+      },
+      "CommonModuleNameFullAccess": false,
+      "DuplicateStringLiteral": false,
+      "IfElseIfEndsWithElse": false,
+      "MagicNumber": false,
+      "NestedFunctionInParameters": false,
+      "PrivilegedModuleMethodCall": false,
+      "Typo": false
+    }
+  }
+}

@@ -1,0 +1,112 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static-checks:
+    name: Перевірки без платформи 1С
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Метадані EDT і зв'язки між модулями
+        run: python tools/check_metadata.py exts/mcp1c
+
+      - name: Скрипти Python компілюються
+        run: python -m py_compile tools/check_metadata.py tools/mcp_smoke_test.py tools/bsl_ls_report.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: tools/bsl-syntax/package-lock.json
+
+      - name: Синтаксис модулів BSL
+        working-directory: tools/bsl-syntax
+        run: |
+          npm ci --no-audit --no-fund
+          node check.mjs ../../exts/mcp1c/src
+
+  bsl-language-server:
+    name: BSL Language Server
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      BSL_LS_VERSION: v1.0.7
+      REPORT_DIR: build/bsl-ls
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Завантажити BSL Language Server
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download "$BSL_LS_VERSION" --repo 1c-syntax/bsl-language-server \
+            --pattern '*-exec.jar' --output bsl-language-server.jar
+
+      - name: Аналіз модулів
+        run: |
+          set -o pipefail
+          mkdir -p "$REPORT_DIR"
+          java -jar bsl-language-server.jar --analyze --srcDir exts/mcp1c/src \
+            --configuration .bsl-language-server.json --reporter json --outputDir "$REPORT_DIR" \
+            2>&1 | tee "$REPORT_DIR/analyze.log"
+
+      - name: Звіт (падає на помилках)
+        if: always()
+        run: |
+          python tools/bsl_ls_report.py "$REPORT_DIR/bsl-json.json" \
+            --markdown "$REPORT_DIR/report.md" --title "BSL Language Server $BSL_LS_VERSION"
+
+      - name: Коментар у PR
+        if: always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          marker='<!-- bsl-ls-report -->'
+          {
+            echo "$marker"
+            if [ -f "$REPORT_DIR/report.md" ]; then
+              cat "$REPORT_DIR/report.md"
+            else
+              echo "### BSL Language Server $BSL_LS_VERSION"
+              echo
+              echo "Звіт не сформовано. Кінець журналу аналізу:"
+              echo
+              echo '```'
+              tail -n 60 "$REPORT_DIR/analyze.log" 2>/dev/null || echo "журнал відсутній"
+              echo '```'
+            fi
+            echo
+            echo "_Коміт ${HEAD_SHA::7}_"
+          } > "$REPORT_DIR/comment.md"
+          id=$(gh api "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments" --paginate \
+            --jq ".[] | select(.body | startswith(\"$marker\")) | .id" | head -n 1)
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$id" -F body=@"$REPORT_DIR/comment.md" > /dev/null
+          else
+            gh api -X POST "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments" -F body=@"$REPORT_DIR/comment.md" > /dev/null
+          fi

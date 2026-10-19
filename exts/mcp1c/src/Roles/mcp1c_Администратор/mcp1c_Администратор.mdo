@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Role xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="846d886f-92a1-479c-ad84-3a99461e2325">
+  <name>mcp1c_Администратор</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: администратор сервера</value>
+  </synonym>
+  <comment>Разрешает вызывать программный интерфейс mcp1c_Администрирование (выпуск и отзыв токенов, настройки сервера). Прав на объекты не дает.</comment>
+</mdclass:Role>
