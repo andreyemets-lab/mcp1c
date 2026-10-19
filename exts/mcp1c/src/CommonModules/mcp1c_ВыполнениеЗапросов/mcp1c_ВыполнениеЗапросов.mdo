@@ -8,4 +8,5 @@
   <comment>Не привилегированный: привилегированный режим включается только на время запроса</comment>
   <server>true</server>
   <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
 </mdclass:CommonModule>

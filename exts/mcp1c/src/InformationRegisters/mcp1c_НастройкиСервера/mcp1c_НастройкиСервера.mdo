@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="242734bb-61b7-4332-9c61-4611c9925755">
+  <producedTypes>
+    <selectionType typeId="d659a6e0-0c9a-4998-8066-d1c0cd2aebf0" valueTypeId="0a71a32a-26e3-4a5a-90e3-b89ab7c40c8b"/>
+    <listType typeId="ac4070c0-2a87-47d2-9210-de8da807bc56" valueTypeId="12133311-3b06-4633-bc70-34975f0a387f"/>
+    <managerType typeId="8de07304-c74a-4904-99a3-b70e5b62f665" valueTypeId="64c519da-cba8-4387-82b9-40fac6a7ced6"/>
+    <recordSetType typeId="41329709-4de9-40bd-8fb4-5ed9247ad8ae" valueTypeId="e92677b0-a27a-4888-b075-8534c6c2c54c"/>
+    <recordKeyType typeId="af6011d5-3d5a-47d8-b051-5988bd5cff97" valueTypeId="4f7d5411-58e8-4f15-a241-79d7c1a6055c"/>
+    <recordType typeId="dabd24f2-cf4b-49b4-8525-7d92de2a786f" valueTypeId="6cac8064-32e4-4c7a-9bb9-4d34d218759d"/>
+    <recordManagerType typeId="913a9b0c-7282-404c-b26c-bd59ef540f17" valueTypeId="3544a47d-52d9-4daf-b687-a8e76f7eee48"/>
+  </producedTypes>
+  <name>mcp1c_НастройкиСервера</name>
+  <synonym>
+    <key>ru</key>
+    <value>Настройки MCP-сервера</value>
+  </synonym>
+  <comment>JSON с настройками сервера (ключ server). Константы в расширениях недоступны в режиме совместимости ниже 8.3.16</comment>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <recordPresentation>
+    <key>ru</key>
+    <value>Настройки MCP-сервера</value>
+  </recordPresentation>
+  <resources uuid="d7d59c68-3ff9-4ad2-b257-a2633cf6e45d">
+    <name>Значение</name>
+    <synonym>
+      <key>ru</key>
+      <value>Значение</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </resources>
+  <dimensions uuid="f8bb97ef-cd14-442d-b4fc-8b501766fc3e">
+    <name>Ключ</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ключ</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>50</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

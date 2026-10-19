@@ -8,4 +8,5 @@
   <comment>Чистая логика без обращений к данным; покрыта тестами OneScript</comment>
   <server>true</server>
   <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
 </mdclass:CommonModule>

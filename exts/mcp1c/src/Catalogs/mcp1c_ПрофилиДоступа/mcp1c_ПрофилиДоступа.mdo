@@ -476,22 +476,15 @@
         <value>Значение</value>
       </synonym>
       <type>
-        <types>AnyRef</types>
         <types>String</types>
-        <types>Number</types>
-        <types>Date</types>
-        <types>Boolean</types>
         <stringQualifiers>
-          <length>150</length>
+          <length>1000</length>
         </stringQualifiers>
-        <numberQualifiers>
-          <precision>15</precision>
-          <scale>2</scale>
-        </numberQualifiers>
-        <dateQualifiers>
-          <dateFractions>DateTime</dateFractions>
-        </dateQualifiers>
       </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Значение в формате JSON, как в аргументах инструментов: {"type": "Справочник.Организации", "ref": "&lt;uuid&gt;"}, "ИмяЗначенияПеречисления", число, строка в кавычках</value>
+      </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
       <fillValue xsi:type="core:UndefinedValue"/>
