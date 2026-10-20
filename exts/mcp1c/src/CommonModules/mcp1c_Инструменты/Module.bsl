@@ -15,7 +15,8 @@
 //  Политика - см. mcp1c_ПравилаДоступа.НоваяПолитика
 //
 // Возвращаемое значение:
-//  Массив из Соответствие из КлючИЗначение - name, title, description, inputSchema, outputSchema, annotations.
+//  Массив из Произвольный - описания (Соответствие): name, title, description, inputSchema, outputSchema,
+//    annotations.
 //
 Функция ОписанияИнструментов(Политика) Экспорт
 
