@@ -38,6 +38,7 @@
   <commonModules>CommonModule.mcp1c_Аудит</commonModules>
   <commonModules>CommonModule.mcp1c_Аутентификация</commonModules>
   <commonModules>CommonModule.mcp1c_ВыполнениеЗапросов</commonModules>
+  <commonModules>CommonModule.mcp1c_ЗапросыДанных</commonModules>
   <commonModules>CommonModule.mcp1c_Значения</commonModules>
   <commonModules>CommonModule.mcp1c_Инструменты</commonModules>
   <commonModules>CommonModule.mcp1c_ИнструментыДанных</commonModules>
@@ -46,6 +47,7 @@
   <commonModules>CommonModule.mcp1c_Лимиты</commonModules>
   <commonModules>CommonModule.mcp1c_Метаданные</commonModules>
   <commonModules>CommonModule.mcp1c_Настройки</commonModules>
+  <commonModules>CommonModule.mcp1c_ОписанияИнструментов</commonModules>
   <commonModules>CommonModule.mcp1c_Политики</commonModules>
   <commonModules>CommonModule.mcp1c_ПравилаДоступа</commonModules>
   <commonModules>CommonModule.mcp1c_Протокол</commonModules>
