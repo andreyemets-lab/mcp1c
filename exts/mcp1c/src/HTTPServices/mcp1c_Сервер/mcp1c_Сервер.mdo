@@ -7,6 +7,7 @@
   </synonym>
   <comment>Конечная точка MCP (Streamable HTTP). Все методы обрабатывает mcp1c_Протокол.ОбработатьЗапросHTTP.</comment>
   <rootURL>mcp1c</rootURL>
+  <reuseSessions>AutoUse</reuseSessions>
   <sessionMaxAge>20</sessionMaxAge>
   <urlTemplates uuid="a8b426fb-9d10-46ea-b2b4-d949080f5011">
     <name>Корень</name>
