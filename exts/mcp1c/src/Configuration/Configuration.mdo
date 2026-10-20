@@ -16,7 +16,7 @@
   <containedObjects classId="e68182ea-4237-4383-967f-90c1e3370bc7" objectId="ea90e622-e3b0-4a8a-bf88-60a421880e32"/>
   <containedObjects classId="fb282519-d103-4dd3-bc12-cb271d631dfc" objectId="6e0f6bfc-6094-45cd-b073-630ee600fd9b"/>
   <namePrefix>mcp1c_</namePrefix>
-  <configurationExtensionCompatibilityMode>8.3.10</configurationExtensionCompatibilityMode>
+  <configurationExtensionCompatibilityMode>8.3.14</configurationExtensionCompatibilityMode>
   <configurationExtensionPurpose>AddOn</configurationExtensionPurpose>
   <scriptVariant>Russian</scriptVariant>
   <version>0.1.0</version>
