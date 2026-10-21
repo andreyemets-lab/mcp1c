@@ -20,6 +20,14 @@
       <value>Чтение</value>
     </synonym>
   </enumValues>
+  <enumValues uuid="4dad783f-8e14-4016-b34c-7096c0ed50b1">
+    <name>ТолькоАгрегаты</name>
+    <synonym>
+      <key>ru</key>
+      <value>Только агрегаты</value>
+    </synonym>
+    <comment>Только группировки и агрегаты; группы с числом записей меньше минимального размера не выдаются</comment>
+  </enumValues>
   <enumValues uuid="3e1b46c2-cce0-4857-a7fc-9a88ff513dcd">
     <name>Запрещено</name>
     <synonym>
