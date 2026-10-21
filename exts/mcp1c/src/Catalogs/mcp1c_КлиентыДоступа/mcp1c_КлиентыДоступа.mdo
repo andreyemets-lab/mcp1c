@@ -349,22 +349,15 @@
         <value>Значение</value>
       </synonym>
       <type>
-        <types>Boolean</types>
         <types>String</types>
-        <types>Date</types>
-        <types>Number</types>
-        <types>AnyRef</types>
-        <numberQualifiers>
-          <precision>15</precision>
-          <scale>3</scale>
-        </numberQualifiers>
         <stringQualifiers>
-          <length>255</length>
+          <length>1000</length>
         </stringQualifiers>
-        <dateQualifiers>
-          <dateFractions>DateTime</dateFractions>
-        </dateQualifiers>
       </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Значение в формате JSON, как в аргументах инструментов: {"type": "Справочник.Организации", "ref": "&lt;uuid&gt;"}, {"type": "Перечисление.X", "value": "Имя"}, строка в кавычках, число, true/false, дата "2026-01-31"; массив - несколько значений</value>
+      </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
       <fillValue xsi:type="core:UndefinedValue"/>
