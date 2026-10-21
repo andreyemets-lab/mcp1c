@@ -13,6 +13,8 @@ Usage:
   python tools/mcp_smoke_test.py --url http://localhost/base/hs/mcp1c --token mcp1c_... -v
   # if the 1C web server extension intercepts "Authorization: Bearer":
   python tools/mcp_smoke_test.py --url ... --auth-header X-MCP-Authorization
+  # publication without the technical user in its connection string (1C asks for Basic):
+  python tools/mcp_smoke_test.py --url ... --platform-auth "user:password"
   # an object that exists but is outside the profile must look like a missing one:
   python tools/mcp_smoke_test.py --url ... --denied-object Справочник.Пользователи
 
@@ -86,6 +88,7 @@ class Client:
     verbose: bool
     auth_header: str = "Authorization"
     denied_object: str | None = None
+    platform_auth: str | None = None  # "Basic ..." for the 1C publication itself
     counter: int = field(default=0)
     cache: dict[str, Any] = field(default_factory=dict)
 
@@ -111,6 +114,8 @@ class Client:
         request_headers = {"Accept": "application/json, text/event-stream"}
         if data is not None:
             request_headers["Content-Type"] = "application/json"
+        if self.platform_auth:
+            request_headers["Authorization"] = self.platform_auth
         if token == "default":
             token = self.token
         if token:
@@ -693,6 +698,10 @@ def main() -> int:
     parser.add_argument("--token", default=os.environ.get("MCP1C_TOKEN"), help="PAT (or env MCP1C_TOKEN)")
     parser.add_argument("--auth-header", default="Authorization",
                         help="header that carries the token: Authorization (default) or X-MCP-Authorization")
+    parser.add_argument("--platform-auth", default=os.environ.get("MCP1C_PLATFORM_AUTH"), metavar="USER:PASSWORD",
+                        help="1C credentials for a publication without the technical user in its connection string "
+                             "(or env MCP1C_PLATFORM_AUTH): sent as Authorization: Basic, the token goes in "
+                             "X-MCP-Authorization")
     parser.add_argument("--cafile", help="CA bundle for a self-signed certificate")
     parser.add_argument("--denied-object", help="full name of an existing object outside the token's profile")
     parser.add_argument("--timeout", type=float, default=30.0)
@@ -702,9 +711,17 @@ def main() -> int:
     if not args.token:
         parser.error("token is required: --token or MCP1C_TOKEN")
 
+    platform_auth = None
+    if args.platform_auth:
+        if ":" not in args.platform_auth:
+            parser.error("--platform-auth: expected USER:PASSWORD (the password may be empty: USER:)")
+        if args.auth_header.lower() == "authorization":
+            args.auth_header = "X-MCP-Authorization"  # Authorization is taken by the 1C credentials
+        platform_auth = "Basic " + base64.b64encode(args.platform_auth.encode("utf-8")).decode("ascii")
+
     context = ssl.create_default_context(cafile=args.cafile) if args.cafile else None
     client = Client(args.url, args.token, context, args.timeout, args.verbose, args.auth_header,
-                    args.denied_object)
+                    args.denied_object, platform_auth=platform_auth)
     selected = {code.strip() for code in args.only.split(",")} if args.only else None
 
     failed = 0
