@@ -135,6 +135,8 @@ claude mcp add --transport http onec https://mcp.company.ua/mcp \
 
 Шаблони для Cursor, VS Code і Claude Desktop (через міст [mcp-remote](https://www.npmjs.com/package/mcp-remote)) — у [deploy/clients](deploy/clients).
 
+Тестова публікація без технічного користувача (1С відповідає 401 з `WWW-Authenticate: Basic`): шаблон [claude-desktop-config.basic-1c.json](deploy/clients/claude-desktop-config.basic-1c.json) — в `Authorization` іде логін 1С, токен — в `X-MCP-Authorization`. `--allow-http` — лише для localhost і локальної мережі. Перевірено з mcp-remote 0.15.2 і IIS 10.
+
 Якщо веб-розширення 1С перехоплює `Authorization: Bearer` і відповідає 401 ще до коду сервісу, передавайте токен у `X-MCP-Authorization: Bearer ...` (або переносьте заголовок на проксі, як у шаблонах nginx і IIS).
 
 ### 6. Перевірка
