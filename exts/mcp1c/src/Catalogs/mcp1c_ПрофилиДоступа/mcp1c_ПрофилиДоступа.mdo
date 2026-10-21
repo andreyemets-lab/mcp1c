@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="52f704b9-b079-45e4-b238-fc5419453385">
+  <producedTypes>
+    <objectType typeId="6a2b0dfb-11f3-428f-95fc-d324ed60449a" valueTypeId="2afab30c-0b0a-490b-a89f-5c1a3acb484e"/>
+    <refType typeId="22a9c4df-8587-4884-9ee7-7462aa983626" valueTypeId="27fb73c7-8731-4b3b-8ef4-3e56eb41355c"/>
+    <selectionType typeId="edac9665-7f30-4a0b-b1f3-40ec7e3cd9b1" valueTypeId="34ed4fb8-c167-4804-a8cd-5149cfb20595"/>
+    <listType typeId="f14cef26-8e04-4164-9971-afc63886ad87" valueTypeId="49c9246e-5578-437d-bce8-feea160ccf2f"/>
+    <managerType typeId="9e125dd0-444e-405b-909d-1d8d307d666d" valueTypeId="f18b796b-cfb8-4ce1-b4b7-86791caaaa10"/>
+  </producedTypes>
+  <name>mcp1c_ПрофилиДоступа</name>
+  <synonym>
+    <key>ru</key>
+    <value>Профили доступа MCP</value>
+  </synonym>
+  <comment>Что получает клиент: инструменты, объекты, поля, ограничения строк, лимиты (п. 7.3 ТЗ)</comment>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.mcp1c_ПрофилиДоступа.StandardAttribute.Description</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>DontUse</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>DontUse</fullTextSearch>
+  <objectPresentation>
+    <key>ru</key>
+    <value>Профиль доступа MCP</value>
+  </objectPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Профили доступа MCP</value>
+  </listPresentation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>0</codeLength>
+  <descriptionLength>100</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>false</checkUnique>
+  <autonumbering>false</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="52aef349-82ab-4d57-96e5-b54aa3858eb1">
+    <name>Описание</name>
+    <synonym>
+      <key>ru</key>
+      <value>Описание</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="53e0ac81-a2e6-4385-8fa9-8430a9c574f1">
+    <name>Версия</name>
+    <synonym>
+      <key>ru</key>
+      <value>Версия</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Увеличивается при каждой записи профиля</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="941b5931-1256-4f3c-afe1-bf0855605e26">
+    <name>ЛимитСтрок</name>
+    <synonym>
+      <key>ru</key>
+      <value>Строк за вызов</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>4</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Максимум строк в ответе одного инструмента (не более 1000)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:NumberValue">
+      <value>50</value>
+    </fillValue>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="39a093dc-7c99-40c0-a2f0-4295837b57db">
+    <name>ВызововВМинуту</name>
+    <synonym>
+      <key>ru</key>
+      <value>Вызовов в минуту</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>5</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:NumberValue">
+      <value>30</value>
+    </fillValue>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="279ff60a-ae97-43c6-9cc4-7f413e540f5a">
+    <name>СтрокВСутки</name>
+    <synonym>
+      <key>ru</key>
+      <value>Строк в сутки</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:NumberValue">
+      <value>20000</value>
+    </fillValue>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="86bfcf11-7b81-4795-a6ad-5bb8032d2e0a">
+    <name>ГлубинаПериодаДней</name>
+    <synonym>
+      <key>ru</key>
+      <value>Глубина периода, дней</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>5</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Максимальная длина периода в запросах оборотов и выборок с отбором по периоду</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:NumberValue">
+      <value>366</value>
+    </fillValue>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="b8c1a4db-1250-469e-848b-18f43d3ea5cd">
+    <name>РазмерОтветаКБ</name>
+    <synonym>
+      <key>ru</key>
+      <value>Размер ответа, КБ</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>5</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:NumberValue">
+      <value>100</value>
+    </fillValue>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="ad4fa289-4faf-4cc0-8e78-1fc006e5b1d4">
+    <name>ГлубинаРазыменования</name>
+    <synonym>
+      <key>ru</key>
+      <value>Глубина разыменования</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>1</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Сколько точек допускается в пути поля (Контрагент.ГоловнойКонтрагент.Наименование - 2)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:NumberValue">
+      <value>2</value>
+    </fillValue>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="024261d0-4b87-4bc7-acbe-a17e6a27141f">
+    <name>РазрешитьПомеченныеНаУдаление</name>
+    <synonym>
+      <key>ru</key>
+      <value>Разрешить помеченные на удаление</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <tabularSections uuid="0603bb86-37b5-4484-aa0c-4810510e1c27">
+    <producedTypes>
+      <objectType typeId="4a546e6f-71e6-4123-a524-fe016d37ecc0" valueTypeId="fb48aff0-05fa-446b-9cd3-b1534b3fe06d"/>
+      <rowType typeId="ab4a3995-84ea-4c5b-ba5d-19791b225853" valueTypeId="2a8c1ecb-aa09-4afa-a4a1-c259707ef201"/>
+    </producedTypes>
+    <name>Инструменты</name>
+    <synonym>
+      <key>ru</key>
+      <value>Инструменты</value>
+    </synonym>
+    <attributes uuid="be92fb30-5b87-4311-a467-9b576f9921bc">
+      <name>Инструмент</name>
+      <synonym>
+        <key>ru</key>
+        <value>Инструмент</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>64</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Имя инструмента MCP, например query_records</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+  </tabularSections>
+  <tabularSections uuid="48c93c1f-82bd-46ad-b1d1-0656c41c861b">
+    <producedTypes>
+      <objectType typeId="726a4443-d0c5-43f0-96d2-13cc0e4b10fa" valueTypeId="00d0a061-28ab-4c27-a769-33edb67d0ed7"/>
+      <rowType typeId="7c85a57a-60ac-465a-ab3d-dd792aefa9d3" valueTypeId="b2b51b31-0371-477c-8b86-18a172adbed8"/>
+    </producedTypes>
+    <name>Объекты</name>
+    <synonym>
+      <key>ru</key>
+      <value>Объекты</value>
+    </synonym>
+    <attributes uuid="fd8aa40f-5f02-4b5d-a474-7e4720229ffc">
+      <name>Объект</name>
+      <synonym>
+        <key>ru</key>
+        <value>Объект</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Полное имя (Справочник.Контрагенты), шаблон вида (Документ.*) или * для всех объектов</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="55b4a223-bb9d-45f7-bc96-493557561aaf">
+      <name>Режим</name>
+      <synonym>
+        <key>ru</key>
+        <value>Режим</value>
+      </synonym>
+      <type>
+        <types>EnumRef.mcp1c_РежимыДоступаКОбъектам</types>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="e44918e0-96e1-4185-bf95-e9f220499e21">
+      <name>ПолитикаПолей</name>
+      <synonym>
+        <key>ru</key>
+        <value>Политика полей</value>
+      </synonym>
+      <type>
+        <types>EnumRef.mcp1c_ПолитикиПолей</types>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="be072378-65f3-4746-80ad-891758c8bc2f">
+      <name>ОбязательныйФильтрПериода</name>
+      <synonym>
+        <key>ru</key>
+        <value>Обязательный отбор по периоду</value>
+      </synonym>
+      <type>
+        <types>Boolean</types>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+  </tabularSections>
+  <tabularSections uuid="d33ef29f-ef78-42d2-af83-8ad39149c36e">
+    <producedTypes>
+      <objectType typeId="3098c87a-5ca5-4d2a-b911-8fcce8cc2f80" valueTypeId="3ba6ed6a-8918-487d-a79a-a6a78734471e"/>
+      <rowType typeId="c1b2b91a-aaeb-41f4-9033-d25845931973" valueTypeId="250f2090-fe59-466a-9627-93c80d0002fa"/>
+    </producedTypes>
+    <name>Поля</name>
+    <synonym>
+      <key>ru</key>
+      <value>Поля</value>
+    </synonym>
+    <attributes uuid="d8a60fb5-05ec-4182-be2a-3a02df24fee5">
+      <name>Объект</name>
+      <synonym>
+        <key>ru</key>
+        <value>Объект</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="39f66c85-64ac-4fef-9cfe-7fecebb57c04">
+      <name>Поле</name>
+      <synonym>
+        <key>ru</key>
+        <value>Поле</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Имя поля или ТабличнаяЧасть.Поле</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="a8468e52-1eef-4c81-bd49-5ec41ea752be">
+      <name>Действие</name>
+      <synonym>
+        <key>ru</key>
+        <value>Действие</value>
+      </synonym>
+      <type>
+        <types>EnumRef.mcp1c_ДействияСПолями</types>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+  </tabularSections>
+  <tabularSections uuid="95c2c574-81b6-4eb2-93da-c9fe12e9a03f">
+    <producedTypes>
+      <objectType typeId="22597d31-d14f-442d-bf00-087c7cb5448f" valueTypeId="60a5e53e-6617-41d1-8b0a-5203b4001302"/>
+      <rowType typeId="cdbb9b14-06b5-4ed3-918a-473446fa72f2" valueTypeId="08c8ae7d-6e35-4ab9-a3ab-e2c78942d491"/>
+    </producedTypes>
+    <name>ОграниченияСтрок</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ограничения строк</value>
+    </synonym>
+    <attributes uuid="6a605516-ff5b-4660-9e2b-331acd904647">
+      <name>Объект</name>
+      <synonym>
+        <key>ru</key>
+        <value>Объект</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="dd3aa177-27c8-433d-b6a7-515241b2f51f">
+      <name>Поле</name>
+      <synonym>
+        <key>ru</key>
+        <value>Поле</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="f0475e8a-8b1e-4e49-8d42-b85d4ca991ee">
+      <name>ВидСравнения</name>
+      <synonym>
+        <key>ru</key>
+        <value>Вид сравнения</value>
+      </synonym>
+      <type>
+        <types>EnumRef.mcp1c_ВидыСравнения</types>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="4da2438f-ea98-4b4c-8f7b-2b3568ae7766">
+      <name>Значение</name>
+      <synonym>
+        <key>ru</key>
+        <value>Значение</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>1000</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Значение в формате JSON, как в аргументах инструментов: {"type": "Справочник.Организации", "ref": "&lt;uuid&gt;"}, "ИмяЗначенияПеречисления", число, строка в кавычках</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="ab2d96a7-11ad-443c-9784-87d16b28061a">
+      <name>Комментарий</name>
+      <synonym>
+        <key>ru</key>
+        <value>Комментарий</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+  </tabularSections>
+</mdclass:Catalog>

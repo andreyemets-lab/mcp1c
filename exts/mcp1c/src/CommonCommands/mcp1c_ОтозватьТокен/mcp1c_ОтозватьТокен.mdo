@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonCommand xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="26af7c99-de15-4372-989d-df85bdcd0906">
+  <name>mcp1c_ОтозватьТокен</name>
+  <synonym>
+    <key>ru</key>
+    <value>Отозвать токен</value>
+  </synonym>
+  <group>FormCommandBarImportant</group>
+  <commandParameterType>
+    <types>CatalogRef.mcp1c_ТокеныДоступа</types>
+  </commandParameterType>
+  <parameterUseMode>Single</parameterUseMode>
+  <representation>Auto</representation>
+  <toolTip>
+    <key>ru</key>
+    <value>Отозвать токен с немедленным действием</value>
+  </toolTip>
+</mdclass:CommonCommand>

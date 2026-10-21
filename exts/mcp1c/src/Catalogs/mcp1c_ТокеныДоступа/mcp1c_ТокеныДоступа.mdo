@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="53ac2555-f653-4a8e-9d20-c64cbff2baf1">
+  <producedTypes>
+    <objectType typeId="6fe53a4c-f815-4fe2-b68b-0323f25a510f" valueTypeId="25e97fa3-b560-40a6-bd67-bb1e62d72368"/>
+    <refType typeId="bfdd5c8b-4e2e-4593-ae9b-1bd959a60fe6" valueTypeId="90acb1cf-8636-48bf-b567-be75a02275bf"/>
+    <selectionType typeId="25604825-e4db-4c71-a7eb-3667886e4826" valueTypeId="b30c2695-2b30-4321-8112-fb102ce12ac3"/>
+    <listType typeId="afce9072-5b84-471a-84bd-c0df0feaa999" valueTypeId="2032d2a4-915f-44e2-b876-3caff53bb872"/>
+    <managerType typeId="c62dcd47-ff04-4a67-a86f-814a5b375856" valueTypeId="8d3106ff-8f30-4c92-a0bf-1bd377f7a44a"/>
+  </producedTypes>
+  <name>mcp1c_ТокеныДоступа</name>
+  <synonym>
+    <key>ru</key>
+    <value>Токены доступа MCP</value>
+  </synonym>
+  <comment>Персональные токены (п. 6.3 ТЗ): код - идентификатор токена, хранится только SHA-256 секрета</comment>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.mcp1c_ТокеныДоступа.StandardAttribute.Code</inputByString>
+  <inputByString>Catalog.mcp1c_ТокеныДоступа.StandardAttribute.Description</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Owner</name>
+    <synonym>
+      <key>ru</key>
+      <value>Клиент</value>
+    </synonym>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <createOnInput>DontUse</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>DontUse</fullTextSearch>
+  <objectPresentation>
+    <key>ru</key>
+    <value>Токен доступа MCP</value>
+  </objectPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Токены доступа MCP</value>
+  </listPresentation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <owners>Catalog.mcp1c_КлиентыДоступа</owners>
+  <codeLength>12</codeLength>
+  <descriptionLength>100</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <codeSeries>WholeCatalog</codeSeries>
+  <checkUnique>true</checkUnique>
+  <autonumbering>false</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="5bb8edca-3e21-4e3b-bb6d-706611b34376">
+    <name>Хеш</name>
+    <synonym>
+      <key>ru</key>
+      <value>Хеш секрета</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>64</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="eee3980c-8619-480a-b19a-2a967ab9c337">
+    <name>ДействуетДо</name>
+    <synonym>
+      <key>ru</key>
+      <value>Действует до (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="c5850e69-e50c-488f-a055-e31c18b3f2c0">
+    <name>Отозван</name>
+    <synonym>
+      <key>ru</key>
+      <value>Отозван</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="a9aa3cec-7f91-4001-9fe5-404c920d45d2">
+    <name>ДатаОтзыва</name>
+    <synonym>
+      <key>ru</key>
+      <value>Дата отзыва (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="7ac75114-ba77-418d-8ce3-303a409694ce">
+    <name>ДатаВыпуска</name>
+    <synonym>
+      <key>ru</key>
+      <value>Дата выпуска (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="bb8c30c9-e76e-4ad7-8340-dd13968efeb1">
+    <name>Автор</name>
+    <synonym>
+      <key>ru</key>
+      <value>Выпустил</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="ec465257-807f-4121-9774-6e4b8d2c698b">
+    <name>Область</name>
+    <synonym>
+      <key>ru</key>
+      <value>Область</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Пусто - все возможности профиля</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+</mdclass:Catalog>

@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
-"""Smoke and conformance test for a deployed mcp1c server (stage 0).
+"""Smoke and conformance test for a deployed mcp1c server (stages 0-1).
 
 Checks transport security (token, Origin, Content-Type), MCP 2026-07-28 behaviour
-(server/discover, mirrored headers, error codes, tools) and the 2025-11-25 / 2025-06-18
-compatibility mode (initialize, ping). Uses only the Python standard library.
+(server/discover, mirrored headers, error codes, tools), the 2025-11-25 / 2025-06-18
+compatibility mode (initialize, ping) and the stage 1 data tools: paging and cursor
+signatures, query injection attempts, hidden objects, profile limits. Data checks use
+the objects the token's profile allows and are skipped when the base has no suitable data.
+Uses only the Python standard library.
 
 Usage:
   MCP1C_TOKEN=mcp1c_... python tools/mcp_smoke_test.py --url https://mcp.company.ua/mcp
   python tools/mcp_smoke_test.py --url http://localhost/base/hs/mcp1c --token mcp1c_... -v
   # if the 1C web server extension intercepts "Authorization: Bearer":
   python tools/mcp_smoke_test.py --url ... --auth-header X-MCP-Authorization
+  # publication without the technical user in its connection string (1C asks for Basic):
+  python tools/mcp_smoke_test.py --url ... --platform-auth "user:password"
+  # an object that exists but is outside the profile must look like a missing one:
+  python tools/mcp_smoke_test.py --url ... --denied-object Справочник.Пользователи
 
 Exit code: 0 - all checks passed, 1 - some checks failed, 2 - usage error.
 """
@@ -17,10 +24,12 @@ from __future__ import annotations
 
 import argparse
 import base64
+import datetime
 import json
 import os
 import ssl
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -29,7 +38,9 @@ from typing import Any, Callable
 
 MODERN = "2026-07-28"
 LEGACY = "2025-11-25"
-EXPECTED_TOOLS = ["get_context", "list_objects", "describe_object"]
+ALL_TOOLS = ["get_context", "list_objects", "describe_object", "find_objects", "get_object",
+             "query_records", "get_balances", "get_turnovers", "get_slice"]
+NOT_FOUND = "не знайдено або недоступний"
 
 
 @dataclass
@@ -59,6 +70,10 @@ class CheckFailed(Exception):
     pass
 
 
+class Skipped(Exception):
+    """The check does not apply: no suitable objects or data, or the profile forbids the tool."""
+
+
 def expect(condition: bool, message: str) -> None:
     if not condition:
         raise CheckFailed(message)
@@ -72,7 +87,10 @@ class Client:
     timeout: float
     verbose: bool
     auth_header: str = "Authorization"
+    denied_object: str | None = None
+    platform_auth: str | None = None  # "Basic ..." for the 1C publication itself
     counter: int = field(default=0)
+    cache: dict[str, Any] = field(default_factory=dict)
 
     def next_id(self) -> int:
         self.counter += 1
@@ -96,6 +114,8 @@ class Client:
         request_headers = {"Accept": "application/json, text/event-stream"}
         if data is not None:
             request_headers["Content-Type"] = "application/json"
+        if self.platform_auth:
+            request_headers["Authorization"] = self.platform_auth
         if token == "default":
             token = self.token
         if token:
@@ -105,11 +125,18 @@ class Client:
             url or self.url, data=data, method=method,
             headers={k: v for k, v in request_headers.items() if v is not None},
         )
-        try:
-            with urllib.request.urlopen(request, timeout=self.timeout, context=self.context) as answer:
-                status, raw_headers, raw = answer.status, answer.headers, answer.read()
-        except urllib.error.HTTPError as error:
-            status, raw_headers, raw = error.code, error.headers, error.read()
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(request, timeout=self.timeout, context=self.context) as answer:
+                    status, raw_headers, raw = answer.status, answer.headers, answer.read()
+            except urllib.error.HTTPError as error:
+                status, raw_headers, raw = error.code, error.headers, error.read()
+            # 429 - calls_per_minute of the profile: wait as the server asks and repeat.
+            retry_after = raw_headers.get("Retry-After") if status == 429 else None
+            if not (retry_after and retry_after.isdigit() and int(retry_after) <= 120 and attempt < 2):
+                break
+            print(f"    .. 429, waiting {retry_after} s (calls per minute of the profile)")
+            time.sleep(int(retry_after) + 1)
         text = raw.decode("utf-8", errors="replace")
         parsed = None
         if text.strip():
@@ -166,6 +193,79 @@ def tool_payload(response: Response) -> dict:
     expect(response.status == 200, f"HTTP {response.status}, expected 200: {response.text[:200]}")
     expect(response.error_code is None, f"JSON-RPC error {response.json}")
     return response.result
+
+
+def tool_data(c: Client, name: str, arguments: dict) -> dict:
+    """structuredContent of a successful tools/call."""
+    result = tool_payload(c.call_tool(name, arguments))
+    expect(result.get("isError") is False, f"{name}: isError: {tool_text(result)[:300]}")
+    return result.get("structuredContent", {})
+
+
+def tool_error(c: Client, name: str, arguments: dict) -> str:
+    """Text of a tools/call that must end with isError."""
+    result = tool_payload(c.call_tool(name, arguments))
+    expect(result.get("isError") is True, f"{name}: isError must be true, got {str(result)[:300]}")
+    return tool_text(result)
+
+
+def tool_text(result: dict) -> str:
+    content = result.get("content") or [{}]
+    return str(content[0].get("text", ""))
+
+
+def available_tools(c: Client) -> list[str]:
+    if "tools" not in c.cache:
+        c.cache["tools"] = [t.get("name") for t in tool_payload(c.modern("tools/list")).get("tools", [])]
+    return c.cache["tools"]
+
+
+def require_tools(c: Client, *names: str) -> None:
+    missing = [name for name in names if name not in available_tools(c)]
+    if missing:
+        raise Skipped(f"profile does not allow {', '.join(missing)}")
+
+
+def objects_of_kind(c: Client, kind: str, limit: int = 50) -> list[str]:
+    data = tool_data(c, "list_objects", {"kinds": [kind], "limit": limit})
+    return [item["object"] for item in data.get("items", [])]
+
+
+def sample_catalog(c: Client) -> dict:
+    """A catalog with at least one row: name, first page of query_records (limit 2)."""
+    if "catalog" not in c.cache:
+        require_tools(c, "list_objects", "query_records")
+        c.cache["catalog"] = None
+        for name in objects_of_kind(c, "catalog")[:10]:
+            result = tool_payload(c.call_tool("query_records", {"object": name, "limit": 2}))
+            data = result.get("structuredContent") or {}
+            if result.get("isError") is False and data.get("row_count", 0) > 0:
+                c.cache["catalog"] = {"object": name, "page": data}
+                break
+    if not c.cache["catalog"]:
+        raise Skipped("no readable catalog with rows")
+    return c.cache["catalog"]
+
+
+def column_index(page: dict, name: str) -> int | None:
+    for index, column in enumerate(page.get("columns", [])):
+        if column.get("name") == name:
+            return index
+    return None
+
+
+def first_ref(page: dict) -> dict | None:
+    index = column_index(page, "Ссылка")
+    if index is None:
+        return None
+    value = page["rows"][0][index]
+    return value if isinstance(value, dict) and value.get("ref") else None
+
+
+def tampered(cursor: str) -> str:
+    body, _, signature = cursor.partition(".")
+    last = "A" if signature[-1:] != "A" else "B"
+    return f"{body}.{signature[:-1]}{last}"
 
 
 # --- checks -------------------------------------------------------------------
@@ -267,12 +367,16 @@ def check_tools_list(c: Client) -> str:
     second = tool_payload(c.modern("tools/list"))
     names = [tool.get("name") for tool in first.get("tools", [])]
     expect(names == [tool.get("name") for tool in second.get("tools", [])], "tool order is not deterministic")
-    for expected_name in EXPECTED_TOOLS:
-        expect(expected_name in names, f"tool {expected_name} missing in {names}")
+    expect("get_context" in names, f"get_context missing in {names}")
+    unknown = [name for name in names if name not in ALL_TOOLS]
+    expect(not unknown, f"unexpected tools {unknown}")
+    expect(names == [name for name in ALL_TOOLS if name in names], f"tools are not in canonical order: {names}")
     for tool in first["tools"]:
         expect(tool.get("inputSchema", {}).get("type") == "object", f"{tool.get('name')}: inputSchema.type")
+        expect(tool.get("outputSchema", {}).get("type") == "object", f"{tool.get('name')}: outputSchema.type")
         expect(tool.get("annotations", {}).get("readOnlyHint") is True, f"{tool.get('name')}: readOnlyHint")
     expect(first.get("cacheScope") == "private" and isinstance(first.get("ttlMs"), int), "ttlMs/cacheScope missing")
+    c.cache["tools"] = names
     return ", ".join(names)
 
 
@@ -283,8 +387,14 @@ def check_get_context(c: Client) -> str:
     configuration = data.get("configuration", {})
     expect(bool(configuration.get("name")), "configuration.name is empty")
     expect(result.get("content", [{}])[0].get("type") == "text", "content[0] is not text")
+    access = data.get("access", {})
+    limits = access.get("limits", {})
+    expect(isinstance(limits.get("rows_per_call"), int) and limits["rows_per_call"] > 0,
+           f"access.limits.rows_per_call: {limits}")
+    c.cache["limits"] = limits
     return (f"{configuration.get('synonym') or configuration.get('name')} {configuration.get('version')}, "
-            f"platform {data.get('platform', {}).get('version')}, tz {data.get('server_time', {}).get('timezone')}")
+            f"platform {data.get('platform', {}).get('version')}, tz {data.get('server_time', {}).get('timezone')}, "
+            f"profile {access.get('profile')!r}, {limits.get('rows_per_call')} rows per call")
 
 
 def check_base64_name_header(c: Client) -> str:
@@ -390,7 +500,7 @@ def check_legacy_flow(c: Client) -> str:
     ping = tool_payload(c.legacy("ping"))
     expect(ping == {}, f"ping result {ping}")
     tools = tool_payload(c.legacy("tools/list"))
-    expect([t["name"] for t in tools.get("tools", [])][:3] == EXPECTED_TOOLS, "tools/list differs")
+    expect([t["name"] for t in tools.get("tools", [])] == available_tools(c), "tools/list differs")
     expect("resultType" not in tools, "resultType must not be sent to 2025-era clients")
     call = tool_payload(c.legacy("tools/call", {"name": "get_context", "arguments": {}}))
     expect(call.get("isError") is False, "get_context failed")
@@ -401,6 +511,147 @@ def check_legacy_without_header(c: Client) -> str:
     r = c.legacy("tools/list", version=None)
     expect(r.status == 400 and r.error_code == -32020, f"HTTP {r.status}, code {r.error_code}; expected 400/-32020")
     return "400 / -32020"
+
+
+# --- stage 1: data tools --------------------------------------------------------
+
+def check_query_records(c: Client) -> str:
+    sample = sample_catalog(c)
+    page = sample["page"]
+    columns = page.get("columns", [])
+    expect(bool(columns) and all("name" in col and "kind" in col for col in columns), f"columns: {columns}")
+    expect(all(len(row) == len(columns) for row in page.get("rows", [])), "row width differs from columns")
+    expect(page.get("row_count") == len(page.get("rows", [])) <= 2, f"row_count={page.get('row_count')}")
+    names = ", ".join(col["name"] for col in columns)
+    if not page.get("has_more"):
+        return f"{sample['object']}: {page['row_count']} row(s), one page; {names}"
+    expect(bool(page.get("next_cursor")), "has_more without next_cursor")
+    second = tool_data(c, "query_records", {"object": sample["object"], "limit": 2, "cursor": page["next_cursor"]})
+    first_rows = {json.dumps(row, sort_keys=True, ensure_ascii=False) for row in page["rows"]}
+    second_rows = {json.dumps(row, sort_keys=True, ensure_ascii=False) for row in second.get("rows", [])}
+    expect(second_rows and not first_rows & second_rows, "second page is empty or overlaps the first")
+    return f"{sample['object']}: 2 pages; {names}"
+
+
+def check_cursor_tampering(c: Client) -> str:
+    sample = sample_catalog(c)
+    cursor = sample["page"].get("next_cursor")
+    if not cursor:
+        raise Skipped("one page only: no cursor to tamper with")
+    text = tool_error(c, "query_records", {"object": sample["object"], "limit": 2, "cursor": tampered(cursor)})
+    expect("урсор" in text, f"tampered cursor: unexpected error {text[:200]}")
+    first_column = sample["page"]["columns"][0]["name"]
+    text = tool_error(c, "query_records", {"object": sample["object"], "limit": 2, "cursor": cursor,
+                                           "fields": [first_column]})
+    expect("урсор" in text, f"cursor accepted for other arguments: {text[:200]}")
+    return "tampered signature and other arguments rejected"
+
+
+def check_get_object(c: Client) -> str:
+    sample = sample_catalog(c)
+    require_tools(c, "get_object")
+    ref = first_ref(sample["page"])
+    if ref is None:
+        raise Skipped("no Ссылка column in the sample")
+    data = tool_data(c, "get_object", {"object": sample["object"], "ref": ref["ref"], "tabular_limit": 1})
+    expect((data.get("ref") or {}).get("ref") == ref["ref"], f"ref={data.get('ref')}")
+    expect(isinstance(data.get("fields"), dict), "fields missing")
+    text = tool_error(c, "get_object", {"object": sample["object"], "ref": "00000000-0000-0000-0000-000000000000"})
+    expect(NOT_FOUND in text, f"unknown ref: unexpected error {text[:200]}")
+    detail = f"{len(data['fields'])} field(s); unknown ref - not found"
+    query = (ref.get("presentation") or "").strip()[:20]
+    if "find_objects" in available_tools(c) and query and query != "<приховано>":
+        found = tool_data(c, "find_objects", {"query": query, "objects": [sample["object"]], "limit": 5})
+        expect(isinstance(found.get("items"), list), "find_objects: items missing")
+        detail += f"; find_objects {query!r}: {found.get('returned')}"
+    return detail
+
+
+def check_injection(c: Client) -> str:
+    sample = sample_catalog(c)
+    name = sample["object"]
+    for field_name in ("Ссылка КАК Х ИЗ Справочник.Пользователи //", "Ссылка) ИЛИ (ИСТИНА", "Ссылка;ВЫБРАТЬ 1"):
+        tool_error(c, "query_records", {"object": name, "fields": [field_name], "limit": 1})
+    tool_error(c, "query_records", {"object": name + " ГДЕ ИСТИНА", "limit": 1})
+    tool_error(c, "query_records", {"object": name, "limit": 1, "order_by": [{"field": "Ссылка УБЫВ, 1"}]})
+    string_columns = [col["name"] for col in sample["page"]["columns"] if col.get("kind") == "string"]
+    if not string_columns:
+        return "field, table and order names rejected"
+    data = tool_data(c, "query_records", {"object": name, "limit": 1, "filters": [
+        {"field": string_columns[0], "op": "eq", "value": "' ИЛИ ИСТИНА ИЛИ '"}]})
+    expect(data.get("row_count", 0) == 0, "a string value changed the query")
+    return f"field, table and order names rejected; a value is only a parameter ({string_columns[0]})"
+
+
+def check_hidden_object(c: Client) -> str:
+    require_tools(c, "query_records")
+    missing_name = "Справочник.НетТакогоОбъекта_mcp1c"
+    missing = tool_error(c, "query_records", {"object": missing_name, "limit": 1})
+    expect(NOT_FOUND in missing, f"missing object: unexpected error {missing[:200]}")
+    if not c.denied_object:
+        return "missing object - not found; pass --denied-object to compare with a hidden one"
+    denied = tool_error(c, "query_records", {"object": c.denied_object, "limit": 1})
+    expect(denied.replace(c.denied_object, "<object>") == missing.replace(missing_name, "<object>"),
+           f"hidden object differs from a missing one: {denied[:200]}")
+    short_name = c.denied_object.split(".")[-1]
+    listing = tool_data(c, "list_objects", {"search": short_name, "limit": 100})
+    listed = [item["object"] for item in listing.get("items", [])]
+    expect(c.denied_object not in listed, f"{c.denied_object} is listed by list_objects")
+    return f"{c.denied_object} looks like a missing object and is not listed"
+
+
+def check_row_limit(c: Client) -> str:
+    sample = sample_catalog(c)
+    if "limits" not in c.cache:
+        c.cache["limits"] = tool_data(c, "get_context", {}).get("access", {}).get("limits", {})
+    per_call = c.cache["limits"].get("rows_per_call", 0)
+    data = tool_data(c, "query_records", {"object": sample["object"], "limit": 1000})
+    expect(data.get("row_count", 0) <= per_call, f"row_count {data.get('row_count')} > rows_per_call {per_call}")
+    if per_call < 1000:
+        expect(any("обмежено" in str(note) for note in data.get("notes", [])), "no note about the profile limit")
+    return f"{data.get('row_count')} row(s), rows_per_call {per_call}"
+
+
+def recent_period(days: int = 30) -> dict:
+    end = datetime.date.today()
+    return {"from": (end - datetime.timedelta(days=days)).isoformat(), "to": end.isoformat()}
+
+
+def check_period_limit(c: Client) -> str:
+    require_tools(c, "list_objects", "get_turnovers")
+    registers = objects_of_kind(c, "accumulation_register", 5)
+    if not registers:
+        raise Skipped("no readable accumulation registers")
+    if "limits" not in c.cache:
+        c.cache["limits"] = tool_data(c, "get_context", {}).get("access", {}).get("limits", {})
+    days = c.cache["limits"].get("max_period_days") or 366
+    text = tool_error(c, "get_turnovers", {"register": registers[0], "period": recent_period(days + 1)})
+    expect("Період довший" in text, f"unexpected error: {text[:200]}")
+    return f"{days + 2} days for {registers[0]} rejected"
+
+
+def check_registers(c: Client) -> str:
+    require_tools(c, "list_objects", "describe_object")
+    done = []
+    for name in objects_of_kind(c, "accumulation_register", 10)[:3]:
+        tools = tool_data(c, "describe_object", {"object": name, "include": ["properties"]}).get("tools", [])
+        if "get_balances" in tools:
+            data = tool_data(c, "get_balances", {"register": name, "limit": 3})
+            done.append(f"get_balances {name}: {data.get('row_count')}")
+        if "get_turnovers" in tools:
+            data = tool_data(c, "get_turnovers", {"register": name, "period": recent_period(), "limit": 3})
+            done.append(f"get_turnovers {name}: {data.get('row_count')}")
+        if done:
+            break
+    for name in objects_of_kind(c, "information_register", 50)[:8]:
+        tools = tool_data(c, "describe_object", {"object": name, "include": ["properties"]}).get("tools", [])
+        if "get_slice" in tools:
+            data = tool_data(c, "get_slice", {"register": name, "limit": 3})
+            done.append(f"get_slice {name}: {data.get('row_count')}")
+            break
+    if not done:
+        raise Skipped("no readable registers with balance, turnover or slice tools")
+    return "; ".join(done)
 
 
 CHECKS: list[tuple[str, str, Callable[[Client], str]]] = [
@@ -430,6 +681,14 @@ CHECKS: list[tuple[str, str, Callable[[Client], str]]] = [
     ("L1", "initialize (сумісність)", check_legacy_initialize),
     ("L2", "сценарій клієнта 2025-11-25", check_legacy_flow),
     ("L3", "запит 2025-ї редакції без заголовка версії", check_legacy_without_header),
+    ("D1", "query_records і сторінки", check_query_records),
+    ("Б10", "підроблений курсор і курсор інших аргументів", check_cursor_tampering),
+    ("D2", "get_object, find_objects", check_get_object),
+    ("Б8", "спроби ін'єкції в іменах і значеннях", check_injection),
+    ("Б9", "прихований об'єкт не відрізняється від відсутнього", check_hidden_object),
+    ("Б11", "ліміт рядків профілю", check_row_limit),
+    ("Б12", "ліміт довжини періоду", check_period_limit),
+    ("D3", "залишки, обороти, зріз", check_registers),
 ]
 
 
@@ -439,7 +698,12 @@ def main() -> int:
     parser.add_argument("--token", default=os.environ.get("MCP1C_TOKEN"), help="PAT (or env MCP1C_TOKEN)")
     parser.add_argument("--auth-header", default="Authorization",
                         help="header that carries the token: Authorization (default) or X-MCP-Authorization")
+    parser.add_argument("--platform-auth", default=os.environ.get("MCP1C_PLATFORM_AUTH"), metavar="USER:PASSWORD",
+                        help="1C credentials for a publication without the technical user in its connection string "
+                             "(or env MCP1C_PLATFORM_AUTH): sent as Authorization: Basic, the token goes in "
+                             "X-MCP-Authorization")
     parser.add_argument("--cafile", help="CA bundle for a self-signed certificate")
+    parser.add_argument("--denied-object", help="full name of an existing object outside the token's profile")
     parser.add_argument("--timeout", type=float, default=30.0)
     parser.add_argument("--only", help="comma-separated check codes to run, e.g. M1,M6")
     parser.add_argument("-v", "--verbose", action="store_true", help="print raw responses")
@@ -447,8 +711,17 @@ def main() -> int:
     if not args.token:
         parser.error("token is required: --token or MCP1C_TOKEN")
 
+    platform_auth = None
+    if args.platform_auth:
+        if ":" not in args.platform_auth:
+            parser.error("--platform-auth: expected USER:PASSWORD (the password may be empty: USER:)")
+        if args.auth_header.lower() == "authorization":
+            args.auth_header = "X-MCP-Authorization"  # Authorization is taken by the 1C credentials
+        platform_auth = "Basic " + base64.b64encode(args.platform_auth.encode("utf-8")).decode("ascii")
+
     context = ssl.create_default_context(cafile=args.cafile) if args.cafile else None
-    client = Client(args.url, args.token, context, args.timeout, args.verbose, args.auth_header)
+    client = Client(args.url, args.token, context, args.timeout, args.verbose, args.auth_header,
+                    args.denied_object, platform_auth=platform_auth)
     selected = {code.strip() for code in args.only.split(",")} if args.only else None
 
     failed = 0
@@ -458,6 +731,8 @@ def main() -> int:
         try:
             detail = check(client)
             status = "OK  "
+        except Skipped as reason:
+            detail, status = f"skipped: {reason}", "SKIP"
         except CheckFailed as error:
             detail, status = str(error), "FAIL"
             failed += 1
