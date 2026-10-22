@@ -11,6 +11,13 @@
 		</right>
 	</object>
 	<object>
+		<name>Catalog.mcp1c_Промпты</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>Catalog.mcp1c_ПрофилиДоступа</name>
 		<right>
 			<name>Read</name>

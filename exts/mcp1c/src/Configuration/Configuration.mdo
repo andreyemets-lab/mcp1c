@@ -49,10 +49,12 @@
   <commonModules>CommonModule.mcp1c_Метаданные</commonModules>
   <commonModules>CommonModule.mcp1c_Настройки</commonModules>
   <commonModules>CommonModule.mcp1c_ОписанияИнструментов</commonModules>
+  <commonModules>CommonModule.mcp1c_ОписанияРесурсов</commonModules>
   <commonModules>CommonModule.mcp1c_Политики</commonModules>
   <commonModules>CommonModule.mcp1c_ПравилаДоступа</commonModules>
   <commonModules>CommonModule.mcp1c_Протокол</commonModules>
   <commonModules>CommonModule.mcp1c_ПутиПолей</commonModules>
+  <commonModules>CommonModule.mcp1c_РесурсыИПромпты</commonModules>
   <commonModules>CommonModule.mcp1c_Сериализация</commonModules>
   <commonModules>CommonModule.mcp1c_Сеть</commonModules>
   <commonModules>CommonModule.mcp1c_Служебный</commonModules>
@@ -62,6 +64,7 @@
   <commonCommands>CommonCommand.mcp1c_ОтозватьТокен</commonCommands>
   <commonCommands>CommonCommand.mcp1c_СостояниеСервера</commonCommands>
   <catalogs>Catalog.mcp1c_КлиентыДоступа</catalogs>
+  <catalogs>Catalog.mcp1c_Промпты</catalogs>
   <catalogs>Catalog.mcp1c_ПрофилиДоступа</catalogs>
   <catalogs>Catalog.mcp1c_ТокеныДоступа</catalogs>
   <enums>Enum.mcp1c_ВидыМасок</enums>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="ad0b3099-0a61-4544-8bc4-f381219465ea">
+  <producedTypes>
+    <objectType typeId="4ad0256c-7eb1-4c7e-830b-4951ac8580e4" valueTypeId="c9163388-a5c3-4b54-807b-adbb2d2c403d"/>
+    <refType typeId="bb3cba47-5e63-45d0-8ae1-95d9e81638ba" valueTypeId="fca0f0d0-b759-4d62-9918-0ab44b67367e"/>
+    <selectionType typeId="f5bc6a87-a045-4531-952c-14f564a79499" valueTypeId="2cf4b2c0-0217-43e3-9418-3564141c4e28"/>
+    <listType typeId="73aaa046-8ac6-4d2c-8400-aee4b4d6e2be" valueTypeId="53ed6d32-a287-46e5-a226-4c250d9b1477"/>
+    <managerType typeId="909e05bd-460c-49f8-93d3-8bc3da9155f0" valueTypeId="672b771d-a881-40b9-9699-dc8faeca91ba"/>
+  </producedTypes>
+  <name>mcp1c_Промпты</name>
+  <synonym>
+    <key>ru</key>
+    <value>Промпты MCP</value>
+  </synonym>
+  <comment>Шаблоны запросов для AI-клиентов: prompts/list и prompts/get (п. 5.6 ТЗ)</comment>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.mcp1c_Промпты.StandardAttribute.Description</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>DontUse</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>DontUse</fullTextSearch>
+  <objectPresentation>
+    <key>ru</key>
+    <value>Промпт MCP</value>
+  </objectPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Промпты MCP</value>
+  </listPresentation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>0</codeLength>
+  <descriptionLength>100</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>false</checkUnique>
+  <autonumbering>false</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="0bdc11f0-6688-43c2-8bf1-0814edc212ff">
+    <name>Имя</name>
+    <synonym>
+      <key>ru</key>
+      <value>Имя</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>64</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Имя промпта для клиента: латинские строчные буквы, цифры и _, начинается с буквы, от 3 до 64 символов (debtors_on_date)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="c39a100c-7824-4e81-9904-d50b64118f80">
+    <name>Описание</name>
+    <synonym>
+      <key>ru</key>
+      <value>Описание</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Для чего промпт: показывается пользователю AI-клиента в списке промптов</value>
+    </toolTip>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="225b33e5-c0d1-47b8-a5a6-15ddca1e667c">
+    <name>Текст</name>
+    <synonym>
+      <key>ru</key>
+      <value>Текст</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Текст сообщения для модели; {{имя}} заменяется значением аргумента, {{today}} - текущей датой сервера</value>
+    </toolTip>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <tabularSections uuid="b4d99dca-0d4a-4335-bc33-d49fc033d20b">
+    <producedTypes>
+      <objectType typeId="bfeda583-e016-4fd3-a5d4-2bff96ae86da" valueTypeId="49cae036-fa38-4cec-b62d-ec6619e3e047"/>
+      <rowType typeId="044c7cd5-988c-4b27-8151-d66568bcf7fa" valueTypeId="731e21d3-276a-4749-bb51-dca7ca1801bb"/>
+    </producedTypes>
+    <name>Аргументы</name>
+    <synonym>
+      <key>ru</key>
+      <value>Аргументы</value>
+    </synonym>
+    <attributes uuid="df63aed5-6ac3-4264-8e90-4bfdd3ed4d1a">
+      <name>Имя</name>
+      <synonym>
+        <key>ru</key>
+        <value>Имя</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>64</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Имя аргумента: латинские буквы, цифры и _ (date, counterparty); в тексте - {{date}}</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="233a7d6b-85c8-454d-b343-f6c721f76434">
+      <name>Описание</name>
+      <synonym>
+        <key>ru</key>
+        <value>Описание</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="f9c47c6f-b465-4ac1-aa81-48b028fa33cd">
+      <name>Обязательный</name>
+      <synonym>
+        <key>ru</key>
+        <value>Обязательный</value>
+      </synonym>
+      <type>
+        <types>Boolean</types>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="1ff724ff-9a06-496a-bf07-5dc2f4f4a409">
+      <name>ЗначениеПоУмолчанию</name>
+      <synonym>
+        <key>ru</key>
+        <value>Значение по умолчанию</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Подставляется, если клиент не передал аргумент; {{today}} - текущая дата сервера</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+  </tabularSections>
+  <tabularSections uuid="ce26a3c9-5b5e-46b6-9e55-0fa6aa401afb">
+    <producedTypes>
+      <objectType typeId="81113c10-07fb-4201-bac1-0b9db4c49a86" valueTypeId="19415f87-c45f-4675-8970-457681faf612"/>
+      <rowType typeId="c918ee6a-3b30-4200-af7f-43a1f3e61fc7" valueTypeId="5456fc8d-f6a9-4f56-ac85-bdd9b297b7c2"/>
+    </producedTypes>
+    <name>Профили</name>
+    <synonym>
+      <key>ru</key>
+      <value>Профили</value>
+    </synonym>
+    <toolTip>
+      <key>ru</key>
+      <value>Профили доступа, клиентам которых доступен промпт; пусто - всем профилям</value>
+    </toolTip>
+    <attributes uuid="8d027418-6258-475a-b584-0a7c950d3bf3">
+      <name>Профиль</name>
+      <synonym>
+        <key>ru</key>
+        <value>Профиль</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.mcp1c_ПрофилиДоступа</types>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+  </tabularSections>
+</mdclass:Catalog>
