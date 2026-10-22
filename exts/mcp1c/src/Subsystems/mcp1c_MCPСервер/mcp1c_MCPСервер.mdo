@@ -8,12 +8,13 @@
   <includeInCommandInterface>true</includeInCommandInterface>
   <explanation>
     <key>ru</key>
-    <value>Клиенты, профили и токены доступа AI-клиентов, промпты, журнал вызовов</value>
+    <value>Клиенты, профили и токены доступа AI-клиентов, инструменты и промпты, журнал вызовов</value>
   </explanation>
   <content>Catalog.mcp1c_КлиентыДоступа</content>
   <content>Catalog.mcp1c_ПрофилиДоступа</content>
   <content>Catalog.mcp1c_ТокеныДоступа</content>
   <content>Catalog.mcp1c_Промпты</content>
+  <content>Catalog.mcp1c_ПользовательскиеИнструменты</content>
   <content>InformationRegister.mcp1c_ЖурналВызовов</content>
   <content>InformationRegister.mcp1c_Блокировки</content>
   <content>CommonCommand.mcp1c_СостояниеСервера</content>

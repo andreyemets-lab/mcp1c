@@ -51,6 +51,7 @@
   <commonModules>CommonModule.mcp1c_ОписанияИнструментов</commonModules>
   <commonModules>CommonModule.mcp1c_ОписанияРесурсов</commonModules>
   <commonModules>CommonModule.mcp1c_Политики</commonModules>
+  <commonModules>CommonModule.mcp1c_ПользовательскиеИнструменты</commonModules>
   <commonModules>CommonModule.mcp1c_ПравилаДоступа</commonModules>
   <commonModules>CommonModule.mcp1c_Протокол</commonModules>
   <commonModules>CommonModule.mcp1c_ПутиПолей</commonModules>
@@ -64,10 +65,12 @@
   <commonCommands>CommonCommand.mcp1c_ОтозватьТокен</commonCommands>
   <commonCommands>CommonCommand.mcp1c_СостояниеСервера</commonCommands>
   <catalogs>Catalog.mcp1c_КлиентыДоступа</catalogs>
+  <catalogs>Catalog.mcp1c_ПользовательскиеИнструменты</catalogs>
   <catalogs>Catalog.mcp1c_Промпты</catalogs>
   <catalogs>Catalog.mcp1c_ПрофилиДоступа</catalogs>
   <catalogs>Catalog.mcp1c_ТокеныДоступа</catalogs>
   <enums>Enum.mcp1c_ВидыМасок</enums>
+  <enums>Enum.mcp1c_ВидыПользовательскихИнструментов</enums>
   <enums>Enum.mcp1c_ВидыСравнения</enums>
   <enums>Enum.mcp1c_ДействияСПолями</enums>
   <enums>Enum.mcp1c_ПолитикиПолей</enums>
