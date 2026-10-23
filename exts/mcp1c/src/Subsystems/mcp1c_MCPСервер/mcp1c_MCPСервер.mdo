@@ -18,4 +18,7 @@
   <content>InformationRegister.mcp1c_ЖурналВызовов</content>
   <content>InformationRegister.mcp1c_Блокировки</content>
   <content>CommonCommand.mcp1c_СостояниеСервера</content>
+  <content>CommonCommand.mcp1c_ЧувствительныеПоля</content>
+  <content>CommonCommand.mcp1c_ВыгрузитьНастройки</content>
+  <content>CommonCommand.mcp1c_ЗагрузитьНастройки</content>
 </mdclass:Subsystem>

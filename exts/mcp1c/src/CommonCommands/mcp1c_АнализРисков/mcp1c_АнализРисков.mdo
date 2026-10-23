@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonCommand xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="dd9cde28-38a8-4563-b502-7c52db2f2653">
+  <name>mcp1c_АнализРисков</name>
+  <synonym>
+    <key>ru</key>
+    <value>Анализ рисков</value>
+  </synonym>
+  <group>FormCommandBarImportant</group>
+  <commandParameterType>
+    <types>CatalogRef.mcp1c_ПрофилиДоступа</types>
+  </commandParameterType>
+  <parameterUseMode>Single</parameterUseMode>
+  <representation>Auto</representation>
+  <toolTip>
+    <key>ru</key>
+    <value>Чувствительные поля без маски, клиенты с внешним AI-провайдером, объекты без фильтра периода, лимиты</value>
+  </toolTip>
+</mdclass:CommonCommand>
