@@ -27,4 +27,12 @@
       <value>Запретить</value>
     </synonym>
   </enumValues>
+  <enumValues uuid="9f5a3cb9-fda5-42ef-8ab3-e99857cf9ec8">
+    <name>Маскировать</name>
+    <synonym>
+      <key>ru</key>
+      <value>Маскировать</value>
+    </synonym>
+    <comment>Поле видно в замаскированном виде (вид маски - в строке профиля); в отборах, сортировке и группировке не используется</comment>
+  </enumValues>
 </mdclass:Enum>

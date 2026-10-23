@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="fdc5a9da-66ee-422c-a28c-a9b34279dcf1">
+  <name>mcp1c_АнализДоступа</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: анализ доступа</value>
+  </synonym>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>

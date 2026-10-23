@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonCommand xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="f43366b9-2d67-468b-8781-5cd075df2218">
+  <name>mcp1c_ВыгрузитьНастройки</name>
+  <synonym>
+    <key>ru</key>
+    <value>Выгрузить настройки MCP</value>
+  </synonym>
+  <group>ActionsPanelTools</group>
+  <commandParameterType/>
+  <representation>Auto</representation>
+  <toolTip>
+    <key>ru</key>
+    <value>Профили, пользовательские инструменты, промпты, инструкции и глоссарий в JSON (без токенов и клиентов)</value>
+  </toolTip>
+</mdclass:CommonCommand>

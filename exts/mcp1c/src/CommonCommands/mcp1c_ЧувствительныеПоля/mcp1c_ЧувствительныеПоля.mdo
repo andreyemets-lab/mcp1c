@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonCommand xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="b440583a-82f4-4bbf-9c38-5fb8ab87a37a">
+  <name>mcp1c_ЧувствительныеПоля</name>
+  <synonym>
+    <key>ru</key>
+    <value>Чувствительные поля MCP</value>
+  </synonym>
+  <group>ActionsPanelTools</group>
+  <commandParameterType/>
+  <representation>Auto</representation>
+  <toolTip>
+    <key>ru</key>
+    <value>Кандидаты в чувствительные поля по метаданным конфигурации: ИНН, документы, адреса, телефоны, e-mail, счета</value>
+  </toolTip>
+</mdclass:CommonCommand>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="74169ff6-3594-4c2b-91d0-c928f8b2cfaa">
+  <producedTypes>
+    <refType typeId="6824193d-012b-4f11-8d99-ba21221017bf" valueTypeId="7afdbb8b-da40-4882-8e6f-4597ae29b775"/>
+    <listType typeId="fa62f8d6-e2b8-4c28-bd06-be7c521b706c" valueTypeId="9aef364a-4a8a-4b50-9444-376e75539411"/>
+    <managerType typeId="36b7e315-d67d-456a-ae67-f04c0faa7234" valueTypeId="6f0ff51d-cbb3-4467-b736-7c699a1cb1ac"/>
+  </producedTypes>
+  <name>mcp1c_ВидыМасок</name>
+  <synonym>
+    <key>ru</key>
+    <value>Виды масок (MCP)</value>
+  </synonym>
+  <comment>Маскирование значений полей в ответах (п. 7.4 ТЗ)</comment>
+  <useStandardCommands>true</useStandardCommands>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <enumValues uuid="3d20d725-85a4-489e-be6f-5d3f35eaf753">
+    <name>Полная</name>
+    <synonym>
+      <key>ru</key>
+      <value>Полная (***)</value>
+    </synonym>
+    <comment>Значение заменяется на ***</comment>
+  </enumValues>
+  <enumValues uuid="181b7bb0-9cc8-42fe-a89c-fb1f7995f35e">
+    <name>Частичная</name>
+    <synonym>
+      <key>ru</key>
+      <value>Частичная (последние символы)</value>
+    </synonym>
+    <comment>Видны только последние N символов (параметр маски, по умолчанию 4): ***1234</comment>
+  </enumValues>
+  <enumValues uuid="3428c075-4819-457d-b85f-3e63860557e7">
+    <name>Хеш</name>
+    <synonym>
+      <key>ru</key>
+      <value>Хеш</value>
+    </synonym>
+    <comment>h: и 12 символов SHA-256 значения с солью профиля: одинаковые значения дают одинаковый хеш</comment>
+  </enumValues>
+  <enumValues uuid="6e8d8398-f0b3-44f2-bb0e-93a43710eb98">
+    <name>Округление</name>
+    <synonym>
+      <key>ru</key>
+      <value>Округление</value>
+    </synonym>
+    <comment>Число округляется до шага (параметр маски, по умолчанию 1000); для других типов - полная маска</comment>
+  </enumValues>
+</mdclass:Enum>

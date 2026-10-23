@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="24f6814b-b5cc-4617-a47b-e7c5d9438a46">
+  <producedTypes>
+    <refType typeId="61144c6c-b6f3-4262-8cfc-96da392071aa" valueTypeId="3ea2e455-f298-4f85-ad97-ebb6c49b2c09"/>
+    <listType typeId="4302fce8-e384-405b-ba28-f5d50289a82d" valueTypeId="35c8f91a-4366-4a54-9ef3-900673e563a0"/>
+    <managerType typeId="552a8c06-e3d7-4126-a7e3-f64bc38c4723" valueTypeId="182f8c52-733e-432a-9773-15c885ab0f90"/>
+  </producedTypes>
+  <name>mcp1c_ВидыПользовательскихИнструментов</name>
+  <synonym>
+    <key>ru</key>
+    <value>Виды пользовательских инструментов (MCP)</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <enumValues uuid="c670c470-7690-4648-903a-e65765f1eb1c">
+    <name>Запрос</name>
+    <synonym>
+      <key>ru</key>
+      <value>Запрос</value>
+    </synonym>
+    <comment>Текст запроса с параметрами</comment>
+  </enumValues>
+  <enumValues uuid="fa9cc457-0c0b-4d66-bfae-ae37dc32a99e">
+    <name>КомпоновкаДанных</name>
+    <synonym>
+      <key>ru</key>
+      <value>Схема компоновки данных</value>
+    </synonym>
+    <comment>Схема компоновки данных в XML</comment>
+  </enumValues>
+  <enumValues uuid="3c5b872f-3cef-455a-b5dc-0084875079ef">
+    <name>МетодМодуля</name>
+    <synonym>
+      <key>ru</key>
+      <value>Метод модуля</value>
+    </synonym>
+    <comment>Экспортная функция серверного общего модуля (для разработчика)</comment>
+  </enumValues>
+</mdclass:Enum>
