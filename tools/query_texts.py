@@ -6,9 +6,10 @@
 (Строки.Добавить("ВЫБРАТЬ")), помечаются partial: целиком их проверить нельзя. Результат - JSON-массив {file, line, text, partial}.
 
 Проверка на платформе (Windows, внешнее соединение с базой, где установлено расширение):
-    python tools/query_texts.py exts/mcp1c/src > queries.json
+    python tools/query_texts.py exts/mcp1c/src --output queries.json
     powershell -File tools/check_queries.ps1 -Queries queries.json -Connection 'File="...";Usr="...";Pwd="";'
 """
+import argparse
 import json
 import pathlib
 import sys
@@ -67,7 +68,11 @@ def literals(text):
 
 
 def main():
-    root = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'exts/mcp1c/src')
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('src', nargs='?', default='exts/mcp1c/src', help='каталог src проекта EDT')
+    parser.add_argument('--output', help='файл JSON (UTF-8); без него - стандартный вывод')
+    args = parser.parse_args()
+    root = pathlib.Path(args.src)
     result = []
     for path in sorted(root.rglob('*.bsl')):
         text = path.read_text(encoding='utf-8-sig')
@@ -79,8 +84,13 @@ def main():
                        or prefix.endswith('Добавить('))
             result.append({'file': path.relative_to(root).as_posix(), 'line': line, 'text': value,
                            'partial': partial})
-    json.dump(result, sys.stdout, ensure_ascii=False, indent=1)
-    sys.stdout.write('\n')
+    text = json.dumps(result, ensure_ascii=False, indent=1) + '\n'
+    if args.output:
+        # Файлом, а не перенаправлением: PowerShell 5.1 пишет перенаправленный вывод в UTF-16.
+        pathlib.Path(args.output).write_text(text, encoding='utf-8')
+    else:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stdout.write(text)
 
 
 if __name__ == '__main__':
