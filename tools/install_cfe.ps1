@@ -2,7 +2,9 @@
 Встановлює або оновлює розширення з .cfe через зовнішнє з'єднання (режим 1С:Підприємство): спершу
 перевіряє застосовність до конфігурації бази, потім записує. Нове розширення створюється з вимкненими
 безпечним режимом і захистом від небезпечних дій (README, «Встановлення»); у наявного властивості
-не змінюються - лише вміст. Зміни діють для нових сеансів.
+не змінюються - лише вміст, якщо не вказано -DisableSafeMode: тоді вимикаються і в наявного (у безпечному
+режимі привілейований режим ігнорується, і технічний користувач публікації не читає прикладні дані).
+Зміни діють для нових сеансів.
 
 Якщо нова версія змінює структуру даних розширення, запис потребує монопольного доступу до бази:
 завершіть сеанси, зокрема конфігуратор і агент EDT, підключені до неї. Запуск від користувача
@@ -13,6 +15,8 @@
     -Connection 'File="C:\Bases\Demo";Usr="Адміністратор";Pwd="";'
   powershell -ExecutionPolicy Bypass -File tools\install_cfe.ps1 -Cfe build\mcp1c.cfe `
     -Connection 'Srvr="app01";Ref="erp";Usr="Адміністратор";Pwd="...";'
+  powershell -ExecutionPolicy Bypass -File tools\install_cfe.ps1 -DisableSafeMode `
+    -Connection 'File="C:\Bases\Demo";Usr="Адміністратор";Pwd="";'
 
 Код виходу 1 - розширення не записано.
 #>
@@ -20,7 +24,8 @@ param(
     [Parameter(Mandatory = $true)] [string]$Connection,
     [string]$Cfe = (Join-Path $PSScriptRoot '..\build\mcp1c.cfe'),
     [string]$Name = 'mcp1c',
-    [switch]$CheckOnly
+    [switch]$CheckOnly,
+    [switch]$DisableSafeMode
 )
 $ErrorActionPreference = 'Stop'
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -41,6 +46,14 @@ function FindExtension($Manager) {
     return $null
 }
 
+function DisableProtection($Connection1C, $Extension) {
+    # Модель B (ТЗ п. 7.2): привілейований режим на час запиту, який безпечний режим розширення вимикає.
+    S $Extension 'БезопасныйРежим' $false
+    $protection = M $Connection1C 'NewObject' @([string]'ОписаниеЗащитыОтОпасныхДействий')
+    S $protection 'ПредупреждатьОбОпасныхДействиях' $false
+    S $Extension 'ЗащитаОтОпасныхДействий' $protection
+}
+
 function Describe($Connection1C, $Extension) {
     'version {0}, hash {1}, safe mode {2}, active {3}' -f (P $Extension 'Версия'),
         (M $Connection1C 'Base64Строка' (, (P $Extension 'ХешСумма'))), (P $Extension 'БезопасныйРежим'), (P $Extension 'Активно')
@@ -55,12 +68,13 @@ try {
     if ($null -eq $extension) {
         'extension {0}: not installed, a new one will be created' -f $Name
         $extension = M $manager 'Создать' @()
-        S $extension 'БезопасныйРежим' $false
-        $protection = M $connection1C 'NewObject' @([string]'ОписаниеЗащитыОтОпасныхДействий')
-        S $protection 'ПредупреждатьОбОпасныхДействиях' $false
-        S $extension 'ЗащитаОтОпасныхДействий' $protection
+        DisableProtection $connection1C $extension
     } else {
         'before: ' + (Describe $connection1C $extension)
+        if ($DisableSafeMode) {
+            DisableProtection $connection1C $extension
+            'safe mode and dangerous action protection will be turned off'
+        }
     }
     $data = M $connection1C 'NewObject' @([string]'ДвоичныеДанные', [string]$Cfe)
     $problems = M $extension 'ПроверитьВозможностьПрименения' @($data, $false)
