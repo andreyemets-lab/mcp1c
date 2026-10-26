@@ -2,8 +2,8 @@
 """Извлекает тексты запросов из модулей BSL для проверки на платформе.
 
 Литерал считается текстом запроса, если начинается с ВЫБРАТЬ (после пробелов). Литералы, которые
-склеиваются с другими выражениями или содержат подстановки %1 для СтрШаблон, помечаются partial:
-целиком их проверить нельзя. Результат - JSON-массив {file, line, text, partial}.
+склеиваются с другими выражениями, содержат подстановки %1 для СтрШаблон или собираются построчно
+(Строки.Добавить("ВЫБРАТЬ")), помечаются partial: целиком их проверить нельзя. Результат - JSON-массив {file, line, text, partial}.
 
 Проверка на платформе (Windows, внешнее соединение с базой, где установлено расширение):
     python tools/query_texts.py exts/mcp1c/src > queries.json
@@ -15,7 +15,7 @@ import sys
 
 
 def literals(text):
-    """Строковые литералы модуля: (номер строки, значение, символ до, символ после)."""
+    """Строковые литералы модуля: (номер строки, значение, текст до литерала, символ после)."""
     i, n, line = 0, len(text), 1
     while i < n:
         c = text[i]
@@ -60,9 +60,8 @@ def literals(text):
                 if c != '\r':
                     value.append(c)
                 i += 1
-            before = text[:start].rstrip()[-1:] if text[:start].rstrip() else ''
-            after = text[i:].lstrip()[:1]
-            yield start_line, ''.join(value), before, after
+            prefix = text[:start].rstrip()
+            yield start_line, ''.join(value), prefix, text[i:].lstrip()[:1]
         else:
             i += 1
 
@@ -72,10 +71,12 @@ def main():
     result = []
     for path in sorted(root.rglob('*.bsl')):
         text = path.read_text(encoding='utf-8-sig')
-        for line, value, before, after in literals(text):
+        for line, value, prefix, after in literals(text):
             if not value.lstrip().upper().startswith('ВЫБРАТЬ'):
                 continue
-            partial = before == '+' or after == '+' or '%1' in value
+            # Части текста: склейка, подстановки СтрШаблон, построчная сборка через Добавить.
+            partial = (prefix.endswith('+') or after == '+' or '%1' in value
+                       or prefix.endswith('Добавить('))
             result.append({'file': path.relative_to(root).as_posix(), 'line': line, 'text': value,
                            'partial': partial})
     json.dump(result, sys.stdout, ensure_ascii=False, indent=1)
