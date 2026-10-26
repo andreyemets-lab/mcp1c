@@ -1,11 +1,15 @@
 ﻿<#
 Збирає .cfe розширення з проєкту EDT без робочої області користувача й без його бази:
-EDT CLI у тимчасовій робочій області -> XML -> тимчасова файлова база -> перевірка конфігурації -> .cfe.
+EDT CLI у тимчасовій робочій області -> перевірка проєкту EDT -> XML -> тимчасова файлова база ->
+перевірка конфігурації -> .cfe.
 
 Основна конфігурація тимчасової бази - заготовка з однією мовою «Русский»: розширення не запозичує
 об'єктів, крім кореня конфігурації й мови, а запозичені об'єкти зіставляються за іменем, тож .cfe
 застосовується до будь-якої конфігурації з цією мовою. Перевірка конфігурації (/CheckConfig) компілює
-модулі розширення платформою в усіх контекстах; помилка перевірки зупиняє збирання.
+модулі розширення платформою в усіх контекстах; помилка перевірки зупиняє збирання. Перевірка проєкту
+EDT (validate) - ті самі перевірки, що в робочій області EDT з налаштуваннями за замовчуванням, зокрема
+типи властивостей структур за документуючими коментарями; будь-яке зауваження зупиняє збирання
+(-NoValidate - лише показати).
 
 Приклади:
   powershell -ExecutionPolicy Bypass -File tools\build_cfe.ps1
@@ -21,7 +25,8 @@ param(
     [string]$Platform = '',
     [string]$EdtCli = '',
     [string]$WorkDir = (Join-Path $env:TEMP 'mcp1c-build-cfe'),
-    [switch]$NoCheck
+    [switch]$NoCheck,
+    [switch]$NoValidate
 )
 $ErrorActionPreference = 'Stop'
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -160,6 +165,22 @@ $contained
     if ((Run 'edt-extension' $EdtCli "$workspace export --project $(Quote $extension) --configuration-files $(Quote $xmlExtension)") -ne 0) {
         throw 'EDT CLI не вивантажив розширення'
     }
+
+    # Перевірка проєкту EDT: проєкти вже імпортовано вивантаженням.
+    $issues = Join-Path $WorkDir 'edt-validate.tsv'
+    $projectName = [regex]::Match([IO.File]::ReadAllText((Join-Path $Project '.project')), '<name>([^<]+)</name>').Groups[1].Value
+    if ((Run 'edt-validate' $EdtCli "$workspace validate --file $(Quote $issues) --project-name-list $projectName") -ne 0 -or
+        -not (Test-Path $issues)) {
+        throw 'EDT CLI не перевірив проєкт'
+    }
+    $found = @(Get-Content $issues -Encoding UTF8 | Where-Object { $_.Trim() })
+    foreach ($line in $found) {
+        # Колонки: час, важливість, ..., проєкт, ..., об'єкт, рядок, текст.
+        $columns = $line -split "`t"
+        Log ('  EDT: {0} {1} {2}: {3}' -f $columns[1], $columns[5], $columns[6], $columns[7])
+    }
+    Log "EDT validate: $($found.Count) issue(s)"
+    if ($found.Count -gt 0 -and -not $NoValidate) { throw "перевірка проєкту EDT: зауважень $($found.Count)" }
 
     # Тимчасова база: заготовка, розширення, застосування, перевірка, .cfe.
     $name = [regex]::Match($extensionMdo, '<name>([^<]+)</name>').Groups[1].Value
