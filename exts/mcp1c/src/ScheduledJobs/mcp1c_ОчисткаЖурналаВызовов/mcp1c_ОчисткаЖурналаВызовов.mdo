@@ -7,7 +7,6 @@
   </synonym>
   <comment>Удаляет записи журнала вызовов старше срока хранения (п. 8.1 ТЗ)</comment>
   <methodName>CommonModule.mcp1c_Аудит.ОчисткаЖурналаВызовов</methodName>
-  <description>Очистка журнала вызовов MCP</description>
   <use>true</use>
   <predefined>true</predefined>
   <restartCountOnFailure>3</restartCountOnFailure>

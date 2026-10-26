@@ -175,9 +175,9 @@ $contained
     }
     $found = @(Get-Content $issues -Encoding UTF8 | Where-Object { $_.Trim() })
     foreach ($line in $found) {
-        # Колонки: час, важливість, ..., проєкт, ..., об'єкт, рядок, текст.
+        # Колонки: час, важливість, вид, проєкт, перевірка, об'єкт, місце, текст.
         $columns = $line -split "`t"
-        Log ('  EDT: {0} {1} {2}: {3}' -f $columns[1], $columns[5], $columns[6], $columns[7])
+        Log ('  EDT: {0} {1} {2}: {3} ({4})' -f $columns[1], $columns[5], $columns[6], $columns[7], $columns[4])
     }
     Log "EDT validate: $($found.Count) issue(s)"
     if ($found.Count -gt 0 -and -not $NoValidate) { throw "перевірка проєкту EDT: зауважень $($found.Count)" }
