@@ -67,6 +67,7 @@
   <commonModules>CommonModule.mcp1c_ФорматОбмена</commonModules>
   <commonModules>CommonModule.mcp1c_ЧувствительныеДанные</commonModules>
   <httpServices>HTTPService.mcp1c_Сервер</httpServices>
+  <scheduledJobs>ScheduledJob.mcp1c_ОчисткаЖурналаВызовов</scheduledJobs>
   <commonCommands>CommonCommand.mcp1c_АнализРисков</commonCommands>
   <commonCommands>CommonCommand.mcp1c_ВыгрузитьНастройки</commonCommands>
   <commonCommands>CommonCommand.mcp1c_ВыпуститьТокен</commonCommands>

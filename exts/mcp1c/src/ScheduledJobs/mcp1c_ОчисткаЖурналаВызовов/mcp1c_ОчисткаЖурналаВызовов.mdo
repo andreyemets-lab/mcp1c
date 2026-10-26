@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:ScheduledJob xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="2523df9a-cc7b-4f5e-bf23-012b548a1df2">
+  <name>mcp1c_ОчисткаЖурналаВызовов</name>
+  <synonym>
+    <key>ru</key>
+    <value>Очистка журнала вызовов MCP</value>
+  </synonym>
+  <comment>Удаляет записи журнала вызовов старше срока хранения (п. 8.1 ТЗ)</comment>
+  <methodName>CommonModule.mcp1c_Аудит.ОчисткаЖурналаВызовов</methodName>
+  <description>Очистка журнала вызовов MCP</description>
+  <use>true</use>
+  <predefined>true</predefined>
+  <restartCountOnFailure>3</restartCountOnFailure>
+  <restartIntervalOnFailure>600</restartIntervalOnFailure>
+</mdclass:ScheduledJob>
