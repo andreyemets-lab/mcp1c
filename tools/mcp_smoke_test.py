@@ -18,6 +18,9 @@ Usage:
   python tools/mcp_smoke_test.py --url ... --platform-auth "user:password"
   # an object that exists but is outside the profile must look like a missing one:
   python tools/mcp_smoke_test.py --url ... --denied-object Справочник.Пользователи
+  # Б4, only with direct access to the publication (a proxy overwrites X-Real-IP, and the test would
+  # block your own address): 10 invalid tokens from a TEST-NET address must get that address blocked
+  python tools/mcp_smoke_test.py --url ... --ip-block-test 203.0.113.77
 
 Exit code: 0 - all checks passed, 1 - some checks failed, 2 - usage error.
 """
@@ -92,6 +95,7 @@ class Client:
     auth_header: str = "Authorization"
     denied_object: str | None = None
     platform_auth: str | None = None  # "Basic ..." for the 1C publication itself
+    ip_block_test: str | None = None  # X-Real-IP address for the Б4 check
     counter: int = field(default=0)
     cache: dict[str, Any] = field(default_factory=dict)
 
@@ -299,12 +303,32 @@ def check_invalid_token(c: Client) -> str:
 
 
 def check_token_in_query(c: Client) -> str:
+    # A token in the query string is refused even next to a valid token in the header. The query value
+    # is fake: web servers and proxies log query strings, and a real token must not end up there (Б14).
+    fake = "mcp1c_AAAAAAAAAAAA_" + "A" * 43
     separator = "&" if "?" in c.url else "?"
-    url = c.url + separator + urllib.parse.urlencode({"AccessToken": c.token})
+    url = c.url + separator + urllib.parse.urlencode({"AccessToken": fake})
     r = c.send({"jsonrpc": "2.0", "id": 1, "method": "server/discover", "params": {"_meta": c.meta()}},
-               headers={"MCP-Protocol-Version": MODERN, "Mcp-Method": "server/discover"}, token=None, url=url)
+               headers={"MCP-Protocol-Version": MODERN, "Mcp-Method": "server/discover"}, url=url)
     expect(r.status in (400, 401), f"HTTP {r.status}, expected 400 (proxy) or 401 (server)")
-    return f"HTTP {r.status}"
+    return f"HTTP {r.status} with a valid token in the header"
+
+
+def check_ip_block(c: Client) -> str:
+    if not c.ip_block_test:
+        raise Skipped("pass --ip-block-test <IP> (direct access to the publication only)")
+    fake = "mcp1c_AAAAAAAAAAAA_" + "A" * 43
+    body = {"jsonrpc": "2.0", "id": 1, "method": "server/discover", "params": {"_meta": c.meta()}}
+    headers = {"MCP-Protocol-Version": MODERN, "Mcp-Method": "server/discover", "X-Real-IP": c.ip_block_test}
+    statuses = [c.send(body, headers=headers, token=fake).status for _ in range(10)]
+    expect(all(status in (401, 403) for status in statuses), f"invalid tokens: {statuses}")
+    blocked = c.send(body, headers=headers)
+    expect(blocked.status == 403 and bool(blocked.header("retry-after")),
+           f"valid token from {c.ip_block_test}: HTTP {blocked.status}, expected 403 with Retry-After "
+           f"(the server must trust X-Real-IP: clientIpHeader)")
+    other = c.send(body, headers={"MCP-Protocol-Version": MODERN, "Mcp-Method": "server/discover"})
+    expect(other.status == 200, f"valid token without X-Real-IP: HTTP {other.status}")
+    return f"{c.ip_block_test} blocked after invalid tokens {statuses}: 403, Retry-After {blocked.header('retry-after')}"
 
 
 def check_content_type(c: Client) -> str:
@@ -756,6 +780,7 @@ CHECKS: list[tuple[str, str, Callable[[Client], str]]] = [
     ("Б1", "запит без токена", check_no_token),
     ("Б2", "недійсний токен", check_invalid_token),
     ("Б3", "токен у рядку запиту", check_token_in_query),
+    ("Б4", "блокування IP після невдалих спроб", check_ip_block),
     ("Б5", "чужий Origin", check_origin),
     ("T1", "GET на ендпоінт", check_get_not_allowed),
     ("T2", "Content-Type не JSON", check_content_type),
@@ -785,7 +810,7 @@ CHECKS: list[tuple[str, str, Callable[[Client], str]]] = [
     ("Б8", "спроби ін'єкції в іменах і значеннях", check_injection),
     ("Б9", "прихований об'єкт не відрізняється від відсутнього", check_hidden_object),
     ("Б11", "ліміт рядків профілю", check_row_limit),
-    ("Б12", "ліміт довжини періоду", check_period_limit),
+    ("Б11", "ліміт довжини періоду", check_period_limit),
     ("D3", "залишки, обороти, зріз", check_registers),
     ("R1", "resources/list і шаблони", check_resources_list),
     ("R2", "resources/read onec://context", check_resource_context),
@@ -808,6 +833,10 @@ def main() -> int:
                              "X-MCP-Authorization")
     parser.add_argument("--cafile", help="CA bundle for a self-signed certificate")
     parser.add_argument("--denied-object", help="full name of an existing object outside the token's profile")
+    parser.add_argument("--ip-block-test", metavar="IP",
+                        help="Б4: send invalid tokens with X-Real-IP: IP and expect the address blocked (403 with "
+                             "Retry-After for ipBlockMinutes). Direct access to the publication only: a proxy "
+                             "overwrites X-Real-IP, and the test would block your own address")
     parser.add_argument("--timeout", type=float, default=30.0)
     parser.add_argument("--only", help="comma-separated check codes to run, e.g. M1,M6")
     parser.add_argument("-v", "--verbose", action="store_true", help="print raw responses")
@@ -825,7 +854,7 @@ def main() -> int:
 
     context = ssl.create_default_context(cafile=args.cafile) if args.cafile else None
     client = Client(args.url, args.token, context, args.timeout, args.verbose, args.auth_header,
-                    args.denied_object, platform_auth=platform_auth)
+                    args.denied_object, platform_auth=platform_auth, ip_block_test=args.ip_block_test)
     selected = {code.strip() for code in args.only.split(",")} if args.only else None
 
     failed = 0
