@@ -341,6 +341,29 @@
       <fullTextSearch>DontUse</fullTextSearch>
       <dataHistory>DontUse</dataHistory>
     </attributes>
+    <attributes uuid="b1c34870-db37-40a7-96e4-da73d245f62b">
+      <name>МинимальныйРазмерГруппы</name>
+      <synonym>
+        <key>ru</key>
+        <value>Минимальный размер группы</value>
+      </synonym>
+      <type>
+        <types>Number</types>
+        <numberQualifiers>
+          <precision>5</precision>
+          <nonNegative>true</nonNegative>
+        </numberQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Для режима «Только агрегаты»: группы, в которых меньше записей, не выдаются (ИМЕЮЩИЕ КОЛИЧЕСТВО(*) &gt;= k); 0 - 5 записей</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
   </tabularSections>
   <tabularSections uuid="d33ef29f-ef78-42d2-af83-8ad39149c36e">
     <producedTypes>
@@ -401,6 +424,49 @@
       <type>
         <types>EnumRef.mcp1c_ДействияСПолями</types>
       </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="3188b51a-dfcb-4ebd-a1dd-83574c3db755">
+      <name>ВидМаски</name>
+      <synonym>
+        <key>ru</key>
+        <value>Вид маски</value>
+      </synonym>
+      <type>
+        <types>EnumRef.mcp1c_ВидыМасок</types>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Для действия «Маскировать»; не задан - полная маска</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="8bc05f71-8227-45a6-9d5e-258a57e361b2">
+      <name>ПараметрМаски</name>
+      <synonym>
+        <key>ru</key>
+        <value>Параметр маски</value>
+      </synonym>
+      <type>
+        <types>Number</types>
+        <numberQualifiers>
+          <precision>15</precision>
+          <scale>2</scale>
+          <nonNegative>true</nonNegative>
+        </numberQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Частичная маска - сколько последних символов показать (0 - 4); округление - шаг (0 - 1000)</value>
+      </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
       <fillValue xsi:type="core:UndefinedValue"/>
@@ -491,11 +557,110 @@
       <fullTextSearch>DontUse</fullTextSearch>
       <dataHistory>DontUse</dataHistory>
     </attributes>
+    <attributes uuid="3a53207a-19ac-4d1a-8bcf-500db823ddcd">
+      <name>Параметр</name>
+      <synonym>
+        <key>ru</key>
+        <value>Параметр профиля</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>64</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Имя параметра с вкладки «Параметры»: значения берутся из клиента доступа вместо поля «Значение»; несколько значений - условие В (В ИЕРАРХИИ, НЕ В)</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
     <attributes uuid="ab2d96a7-11ad-443c-9784-87d16b28061a">
       <name>Комментарий</name>
       <synonym>
         <key>ru</key>
         <value>Комментарий</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+  </tabularSections>
+  <tabularSections uuid="567eceeb-1a3e-4d66-8317-f85cbf6ea6bc">
+    <producedTypes>
+      <objectType typeId="c821ff74-c12b-45d3-8d56-112c3df7aad3" valueTypeId="144ed7f2-1ebb-4060-a6ae-c4e19e7fbca8"/>
+      <rowType typeId="2757b0d8-afe3-4127-839d-6e27f1f1c20e" valueTypeId="e6b6e7f9-26c7-442d-8379-320512ec61cd"/>
+    </producedTypes>
+    <name>Параметры</name>
+    <synonym>
+      <key>ru</key>
+      <value>Параметры</value>
+    </synonym>
+    <toolTip>
+      <key>ru</key>
+      <value>Параметры профиля для ограничений строк; значения задаются в клиенте доступа (п. 7.3 ТЗ)</value>
+    </toolTip>
+    <attributes uuid="bcd84f7d-c596-4069-83da-75784d9547a5">
+      <name>Имя</name>
+      <synonym>
+        <key>ru</key>
+        <value>Имя</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>64</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Имя параметра, например РазрешенныеОрганизации</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="845ad96b-0178-4be1-914e-a74a69593662">
+      <name>ТипЗначения</name>
+      <synonym>
+        <key>ru</key>
+        <value>Тип значения</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Полное имя объекта (Справочник.Организации) или Строка, Число, Дата, Булево; несколько типов - через запятую</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="3c8bca68-4d25-4ba2-9423-5aa41f12dace">
+      <name>Описание</name>
+      <synonym>
+        <key>ru</key>
+        <value>Описание</value>
       </synonym>
       <type>
         <types>String</types>

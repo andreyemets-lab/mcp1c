@@ -35,6 +35,7 @@
   <commonModules>CommonModule.mcp1c_Администрирование</commonModules>
   <commonModules>CommonModule.mcp1c_АдминистрированиеВызовСервера</commonModules>
   <commonModules>CommonModule.mcp1c_АдминистрированиеКлиент</commonModules>
+  <commonModules>CommonModule.mcp1c_АнализДоступа</commonModules>
   <commonModules>CommonModule.mcp1c_Аудит</commonModules>
   <commonModules>CommonModule.mcp1c_Аутентификация</commonModules>
   <commonModules>CommonModule.mcp1c_ВыполнениеЗапросов</commonModules>
@@ -45,24 +46,43 @@
   <commonModules>CommonModule.mcp1c_КонструкторЗапросов</commonModules>
   <commonModules>CommonModule.mcp1c_Курсор</commonModules>
   <commonModules>CommonModule.mcp1c_Лимиты</commonModules>
+  <commonModules>CommonModule.mcp1c_Маскирование</commonModules>
   <commonModules>CommonModule.mcp1c_Метаданные</commonModules>
+  <commonModules>CommonModule.mcp1c_МетодыMCP</commonModules>
   <commonModules>CommonModule.mcp1c_Настройки</commonModules>
+  <commonModules>CommonModule.mcp1c_ОбменНастройками</commonModules>
   <commonModules>CommonModule.mcp1c_ОписанияИнструментов</commonModules>
+  <commonModules>CommonModule.mcp1c_ОписанияРесурсов</commonModules>
+  <commonModules>CommonModule.mcp1c_Песочница</commonModules>
   <commonModules>CommonModule.mcp1c_Политики</commonModules>
+  <commonModules>CommonModule.mcp1c_ПользовательскиеИнструменты</commonModules>
   <commonModules>CommonModule.mcp1c_ПравилаДоступа</commonModules>
   <commonModules>CommonModule.mcp1c_Протокол</commonModules>
   <commonModules>CommonModule.mcp1c_ПутиПолей</commonModules>
+  <commonModules>CommonModule.mcp1c_РесурсыИПромпты</commonModules>
   <commonModules>CommonModule.mcp1c_Сериализация</commonModules>
   <commonModules>CommonModule.mcp1c_Сеть</commonModules>
   <commonModules>CommonModule.mcp1c_Служебный</commonModules>
   <commonModules>CommonModule.mcp1c_СхемаJSON</commonModules>
+  <commonModules>CommonModule.mcp1c_ФорматОбмена</commonModules>
+  <commonModules>CommonModule.mcp1c_ЧувствительныеДанные</commonModules>
   <httpServices>HTTPService.mcp1c_Сервер</httpServices>
+  <scheduledJobs>ScheduledJob.mcp1c_ОчисткаЖурналаВызовов</scheduledJobs>
+  <commonCommands>CommonCommand.mcp1c_АнализРисков</commonCommands>
+  <commonCommands>CommonCommand.mcp1c_ВыгрузитьНастройки</commonCommands>
   <commonCommands>CommonCommand.mcp1c_ВыпуститьТокен</commonCommands>
+  <commonCommands>CommonCommand.mcp1c_ЗагрузитьНастройки</commonCommands>
   <commonCommands>CommonCommand.mcp1c_ОтозватьТокен</commonCommands>
+  <commonCommands>CommonCommand.mcp1c_Песочница</commonCommands>
   <commonCommands>CommonCommand.mcp1c_СостояниеСервера</commonCommands>
+  <commonCommands>CommonCommand.mcp1c_ЧувствительныеПоля</commonCommands>
   <catalogs>Catalog.mcp1c_КлиентыДоступа</catalogs>
+  <catalogs>Catalog.mcp1c_ПользовательскиеИнструменты</catalogs>
+  <catalogs>Catalog.mcp1c_Промпты</catalogs>
   <catalogs>Catalog.mcp1c_ПрофилиДоступа</catalogs>
   <catalogs>Catalog.mcp1c_ТокеныДоступа</catalogs>
+  <enums>Enum.mcp1c_ВидыМасок</enums>
+  <enums>Enum.mcp1c_ВидыПользовательскихИнструментов</enums>
   <enums>Enum.mcp1c_ВидыСравнения</enums>
   <enums>Enum.mcp1c_ДействияСПолями</enums>
   <enums>Enum.mcp1c_ПолитикиПолей</enums>

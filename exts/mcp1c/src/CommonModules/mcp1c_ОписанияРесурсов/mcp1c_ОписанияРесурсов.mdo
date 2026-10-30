@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="088ca0ef-a76e-4e48-acd6-aec684a19c74">
+  <name>mcp1c_ОписанияРесурсов</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: описания ресурсов и промптов</value>
+  </synonym>
+  <comment>Чистая логика без обращений к данным; покрыта тестами OneScript</comment>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>

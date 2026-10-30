@@ -18,6 +18,8 @@
 *.md      text eol=lf
 *.yml     text eol=lf
 *.sh      text eol=lf
+# PowerShell 5.1 читає скрипти з кирилицею лише з BOM UTF-8; файли зберігаються з BOM.
+*.ps1     text eol=crlf
 
 # Двійкові артефакти 1С.
 *.cfe     binary

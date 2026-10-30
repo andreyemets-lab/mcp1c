@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="dc6b2a15-05f2-48ae-9254-9a9c587373db">
+  <name>mcp1c_Песочница</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: песочница</value>
+  </synonym>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>

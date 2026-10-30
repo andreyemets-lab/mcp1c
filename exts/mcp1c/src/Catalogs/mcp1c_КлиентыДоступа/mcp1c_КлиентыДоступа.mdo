@@ -306,4 +306,63 @@
     <fullTextSearch>DontUse</fullTextSearch>
     <dataHistory>DontUse</dataHistory>
   </attributes>
+  <tabularSections uuid="18fe4828-e525-488b-94de-3f781cf82d63">
+    <producedTypes>
+      <objectType typeId="09092394-4c75-4caf-97ad-24dba78dfc0c" valueTypeId="b37cbe32-2247-4ea9-8646-cd0ad8de1828"/>
+      <rowType typeId="eeaf2f86-4701-4837-b207-dbf7ac733e99" valueTypeId="f5263373-2f93-4ce7-ae47-5ed9216c3b49"/>
+    </producedTypes>
+    <name>ЗначенияПараметров</name>
+    <synonym>
+      <key>ru</key>
+      <value>Значения параметров профиля</value>
+    </synonym>
+    <toolTip>
+      <key>ru</key>
+      <value>Значения параметров профиля для ограничений строк; несколько строк одного параметра - список значений</value>
+    </toolTip>
+    <attributes uuid="e9ae607e-96e1-48c6-8a38-ae382eca1617">
+      <name>Параметр</name>
+      <synonym>
+        <key>ru</key>
+        <value>Параметр</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>64</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Имя параметра с вкладки «Параметры» профиля</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="4407a6b0-0bb3-4d28-911b-27307317303b">
+      <name>Значение</name>
+      <synonym>
+        <key>ru</key>
+        <value>Значение</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>1000</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Значение в формате JSON, как в аргументах инструментов: {"type": "Справочник.Организации", "ref": "&lt;uuid&gt;"}, {"type": "Перечисление.X", "value": "Имя"}, строка в кавычках, число, true/false, дата "2026-01-31"; массив - несколько значений</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+  </tabularSections>
 </mdclass:Catalog>

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Smoke and conformance test for a deployed mcp1c server (stages 0-1).
+"""Smoke and conformance test for a deployed mcp1c server (stages 0-2).
 
 Checks transport security (token, Origin, Content-Type), MCP 2026-07-28 behaviour
 (server/discover, mirrored headers, error codes, tools), the 2025-11-25 / 2025-06-18
-compatibility mode (initialize, ping) and the stage 1 data tools: paging and cursor
-signatures, query injection attempts, hidden objects, profile limits. Data checks use
-the objects the token's profile allows and are skipped when the base has no suitable data.
+compatibility mode (initialize, ping), the stage 1 data tools (paging and cursor
+signatures, query injection attempts, hidden objects, profile limits) and stage 2:
+resources and resource templates, prompts, custom tools. Data checks use the objects
+the token's profile allows and are skipped when the base has no suitable data.
 Uses only the Python standard library.
 
 Usage:
@@ -17,6 +18,9 @@ Usage:
   python tools/mcp_smoke_test.py --url ... --platform-auth "user:password"
   # an object that exists but is outside the profile must look like a missing one:
   python tools/mcp_smoke_test.py --url ... --denied-object Справочник.Пользователи
+  # Б4, only with direct access to the publication (a proxy overwrites X-Real-IP, and the test would
+  # block your own address): 10 invalid tokens from a TEST-NET address must get that address blocked
+  python tools/mcp_smoke_test.py --url ... --ip-block-test 203.0.113.77
 
 Exit code: 0 - all checks passed, 1 - some checks failed, 2 - usage error.
 """
@@ -27,6 +31,7 @@ import base64
 import datetime
 import json
 import os
+import re
 import ssl
 import sys
 import time
@@ -41,6 +46,7 @@ LEGACY = "2025-11-25"
 ALL_TOOLS = ["get_context", "list_objects", "describe_object", "find_objects", "get_object",
              "query_records", "get_balances", "get_turnovers", "get_slice"]
 NOT_FOUND = "не знайдено або недоступний"
+MCP_NAME = re.compile(r"^[a-z][a-z0-9_]{2,63}$")
 
 
 @dataclass
@@ -89,6 +95,7 @@ class Client:
     auth_header: str = "Authorization"
     denied_object: str | None = None
     platform_auth: str | None = None  # "Basic ..." for the 1C publication itself
+    ip_block_test: str | None = None  # X-Real-IP address for the Б4 check
     counter: int = field(default=0)
     cache: dict[str, Any] = field(default_factory=dict)
 
@@ -296,12 +303,32 @@ def check_invalid_token(c: Client) -> str:
 
 
 def check_token_in_query(c: Client) -> str:
+    # A token in the query string is refused even next to a valid token in the header. The query value
+    # is fake: web servers and proxies log query strings, and a real token must not end up there (Б14).
+    fake = "mcp1c_AAAAAAAAAAAA_" + "A" * 43
     separator = "&" if "?" in c.url else "?"
-    url = c.url + separator + urllib.parse.urlencode({"AccessToken": c.token})
+    url = c.url + separator + urllib.parse.urlencode({"AccessToken": fake})
     r = c.send({"jsonrpc": "2.0", "id": 1, "method": "server/discover", "params": {"_meta": c.meta()}},
-               headers={"MCP-Protocol-Version": MODERN, "Mcp-Method": "server/discover"}, token=None, url=url)
+               headers={"MCP-Protocol-Version": MODERN, "Mcp-Method": "server/discover"}, url=url)
     expect(r.status in (400, 401), f"HTTP {r.status}, expected 400 (proxy) or 401 (server)")
-    return f"HTTP {r.status}"
+    return f"HTTP {r.status} with a valid token in the header"
+
+
+def check_ip_block(c: Client) -> str:
+    if not c.ip_block_test:
+        raise Skipped("pass --ip-block-test <IP> (direct access to the publication only)")
+    fake = "mcp1c_AAAAAAAAAAAA_" + "A" * 43
+    body = {"jsonrpc": "2.0", "id": 1, "method": "server/discover", "params": {"_meta": c.meta()}}
+    headers = {"MCP-Protocol-Version": MODERN, "Mcp-Method": "server/discover", "X-Real-IP": c.ip_block_test}
+    statuses = [c.send(body, headers=headers, token=fake).status for _ in range(10)]
+    expect(all(status in (401, 403) for status in statuses), f"invalid tokens: {statuses}")
+    blocked = c.send(body, headers=headers)
+    expect(blocked.status == 403 and bool(blocked.header("retry-after")),
+           f"valid token from {c.ip_block_test}: HTTP {blocked.status}, expected 403 with Retry-After "
+           f"(the server must trust X-Real-IP: clientIpHeader)")
+    other = c.send(body, headers={"MCP-Protocol-Version": MODERN, "Mcp-Method": "server/discover"})
+    expect(other.status == 200, f"valid token without X-Real-IP: HTTP {other.status}")
+    return f"{c.ip_block_test} blocked after invalid tokens {statuses}: 403, Retry-After {blocked.header('retry-after')}"
 
 
 def check_content_type(c: Client) -> str:
@@ -323,7 +350,9 @@ def check_discover(c: Client) -> str:
     result = tool_payload(r)
     expect(MODERN in result.get("supportedVersions", []), f"supportedVersions={result.get('supportedVersions')}")
     expect(result.get("resultType") == "complete", f"resultType={result.get('resultType')!r}")
-    expect("tools" in result.get("capabilities", {}), "capabilities.tools missing")
+    capabilities = result.get("capabilities", {})
+    for capability in ("tools", "resources", "prompts"):
+        expect(capability in capabilities, f"capabilities.{capability} missing")
     expect(isinstance(result.get("ttlMs"), int) and result.get("cacheScope") in ("public", "private"),
            "ttlMs/cacheScope missing")
     info = result.get("_meta", {}).get("io.modelcontextprotocol/serverInfo", {})
@@ -357,7 +386,7 @@ def check_unsupported_version(c: Client) -> str:
 
 
 def check_unknown_method(c: Client) -> str:
-    r = c.modern("resources/list")
+    r = c.modern("completion/complete")
     expect(r.status == 404 and r.error_code == -32601, f"HTTP {r.status}, code {r.error_code}; expected 404/-32601")
     return "404 / -32601"
 
@@ -368,16 +397,21 @@ def check_tools_list(c: Client) -> str:
     names = [tool.get("name") for tool in first.get("tools", [])]
     expect(names == [tool.get("name") for tool in second.get("tools", [])], "tool order is not deterministic")
     expect("get_context" in names, f"get_context missing in {names}")
-    unknown = [name for name in names if name not in ALL_TOOLS]
-    expect(not unknown, f"unexpected tools {unknown}")
-    expect(names == [name for name in ALL_TOOLS if name in names], f"tools are not in canonical order: {names}")
+    # Built-in tools in canonical order, then the administrator's custom tools by name (stage 2).
+    builtin = [name for name in names if name in ALL_TOOLS]
+    custom = names[len(builtin):]
+    expect(names[:len(builtin)] == [name for name in ALL_TOOLS if name in names],
+           f"built-in tools are not first or not in canonical order: {names}")
+    expect(custom == sorted(custom), f"custom tools are not sorted by name: {custom}")
+    expect(all(MCP_NAME.match(name or "") for name in custom), f"custom tool names: {custom}")
+    c.cache["custom_tools"] = custom
     for tool in first["tools"]:
         expect(tool.get("inputSchema", {}).get("type") == "object", f"{tool.get('name')}: inputSchema.type")
         expect(tool.get("outputSchema", {}).get("type") == "object", f"{tool.get('name')}: outputSchema.type")
         expect(tool.get("annotations", {}).get("readOnlyHint") is True, f"{tool.get('name')}: readOnlyHint")
     expect(first.get("cacheScope") == "private" and isinstance(first.get("ttlMs"), int), "ttlMs/cacheScope missing")
     c.cache["tools"] = names
-    return ", ".join(names)
+    return ", ".join(names) + (f" (custom: {len(custom)})" if custom else "")
 
 
 def check_get_context(c: Client) -> str:
@@ -654,10 +688,99 @@ def check_registers(c: Client) -> str:
     return "; ".join(done)
 
 
+def encoded_name(value: str) -> str:
+    """Mcp-Name value: ASCII as is, anything else in the base64 form of MCP 2026-07-28."""
+    if value.isascii():
+        return value
+    return "=?base64?" + base64.b64encode(value.encode("utf-8")).decode("ascii") + "?="
+
+
+def read_resource(c: Client, uri: str) -> Response:
+    return c.modern("resources/read", {"uri": uri}, name_header=encoded_name(uri))
+
+
+def resource_json(c: Client, uri: str) -> dict:
+    result = tool_payload(read_resource(c, uri))
+    contents = result.get("contents") or [{}]
+    expect(contents[0].get("uri") == uri, f"contents[0].uri={contents[0].get('uri')!r}")
+    expect(contents[0].get("mimeType") == "application/json", f"mimeType={contents[0].get('mimeType')!r}")
+    return json.loads(contents[0].get("text") or "{}")
+
+
+def check_resources_list(c: Client) -> str:
+    listed = tool_payload(c.modern("resources/list"))
+    uris = [item.get("uri") for item in listed.get("resources", [])]
+    expect("onec://context" in uris, f"onec://context missing in {uris}")
+    expect(listed.get("cacheScope") == "private", "cacheScope missing")
+    templates = tool_payload(c.modern("resources/templates/list")).get("resourceTemplates", [])
+    patterns = [item.get("uriTemplate") for item in templates]
+    c.cache["resource_templates"] = patterns
+    return f"resources {uris}, templates {patterns}"
+
+
+def check_resource_context(c: Client) -> str:
+    data = resource_json(c, "onec://context")
+    expect(bool(data.get("configuration", {}).get("name")), "configuration.name is empty")
+    return f"onec://context: {data['configuration']['name']}"
+
+
+def check_resource_metadata(c: Client) -> str:
+    if "onec://metadata/{object}" not in c.cache.get("resource_templates", []):
+        tool_payload(c.modern("resources/templates/list"))
+        raise Skipped("profile does not allow describe_object")
+    objects = objects_of_kind(c, "catalog", 1) or objects_of_kind(c, "document", 1)
+    if not objects:
+        raise Skipped("no readable catalogs or documents")
+    uri = "onec://metadata/" + urllib.parse.quote(objects[0], safe=".")
+    data = resource_json(c, uri)
+    expect(data.get("object") == objects[0], f"object={data.get('object')!r}, expected {objects[0]!r}")
+    return f"{uri} (Mcp-Name in base64 if needed)"
+
+
+def check_resource_not_found(c: Client) -> str:
+    r = read_resource(c, "onec://nowhere")
+    expect(r.status == 200 and r.error_code == -32602, f"HTTP {r.status}, code {r.error_code}; expected 200/-32602")
+    data = (r.json or {}).get("error", {}).get("data", {})
+    expect(data.get("uri") == "onec://nowhere", f"error.data={data}")
+    return "-32602 Resource not found"
+
+
+def check_prompts(c: Client) -> str:
+    prompts = tool_payload(c.modern("prompts/list")).get("prompts", [])
+    if not prompts:
+        raise Skipped("no prompts for the profile")
+    prompt = prompts[0]
+    arguments = {arg["name"]: "test" for arg in prompt.get("arguments", []) if arg.get("required")}
+    result = tool_payload(c.modern("prompts/get", {"name": prompt["name"], "arguments": arguments},
+                                   name_header=prompt["name"]))
+    messages = result.get("messages", [])
+    expect(messages and messages[0].get("content", {}).get("type") == "text", f"messages={str(messages)[:200]}")
+    missing = c.modern("prompts/get", {"name": "no_such_prompt_xyz", "arguments": {}}, name_header="no_such_prompt_xyz")
+    expect(missing.error_code == -32602, f"unknown prompt: code {missing.error_code}, expected -32602")
+    return f"{len(prompts)} prompt(s), {prompt['name']}: {len(messages)} message(s)"
+
+
+def check_custom_tools(c: Client) -> str:
+    if "custom_tools" not in c.cache:
+        check_tools_list(c)
+    custom = c.cache.get("custom_tools", [])
+    if not custom:
+        raise Skipped("no custom tools for the profile")
+    result = tool_payload(c.call_tool(custom[0], {}))
+    text = tool_text(result)
+    if result.get("isError"):
+        expect("аргумент" in text or "argument" in text.lower(), f"{custom[0]}: unexpected error {text[:200]}")
+        return f"{custom[0]}: arguments are validated ({text[:80]})"
+    data = result.get("structuredContent", {})
+    expect(isinstance(data.get("rows"), list), f"{custom[0]}: structuredContent.rows missing")
+    return f"{custom[0]}: {len(data['rows'])} row(s)"
+
+
 CHECKS: list[tuple[str, str, Callable[[Client], str]]] = [
     ("Б1", "запит без токена", check_no_token),
     ("Б2", "недійсний токен", check_invalid_token),
     ("Б3", "токен у рядку запиту", check_token_in_query),
+    ("Б4", "блокування IP після невдалих спроб", check_ip_block),
     ("Б5", "чужий Origin", check_origin),
     ("T1", "GET на ендпоінт", check_get_not_allowed),
     ("T2", "Content-Type не JSON", check_content_type),
@@ -687,8 +810,14 @@ CHECKS: list[tuple[str, str, Callable[[Client], str]]] = [
     ("Б8", "спроби ін'єкції в іменах і значеннях", check_injection),
     ("Б9", "прихований об'єкт не відрізняється від відсутнього", check_hidden_object),
     ("Б11", "ліміт рядків профілю", check_row_limit),
-    ("Б12", "ліміт довжини періоду", check_period_limit),
+    ("Б11", "ліміт довжини періоду", check_period_limit),
     ("D3", "залишки, обороти, зріз", check_registers),
+    ("R1", "resources/list і шаблони", check_resources_list),
+    ("R2", "resources/read onec://context", check_resource_context),
+    ("R3", "resources/read onec://metadata/{object}", check_resource_metadata),
+    ("R4", "невідомий ресурс", check_resource_not_found),
+    ("P1", "prompts/list і prompts/get", check_prompts),
+    ("U1", "користувацький інструмент", check_custom_tools),
 ]
 
 
@@ -704,6 +833,10 @@ def main() -> int:
                              "X-MCP-Authorization")
     parser.add_argument("--cafile", help="CA bundle for a self-signed certificate")
     parser.add_argument("--denied-object", help="full name of an existing object outside the token's profile")
+    parser.add_argument("--ip-block-test", metavar="IP",
+                        help="Б4: send invalid tokens with X-Real-IP: IP and expect the address blocked (403 with "
+                             "Retry-After for ipBlockMinutes). Direct access to the publication only: a proxy "
+                             "overwrites X-Real-IP, and the test would block your own address")
     parser.add_argument("--timeout", type=float, default=30.0)
     parser.add_argument("--only", help="comma-separated check codes to run, e.g. M1,M6")
     parser.add_argument("-v", "--verbose", action="store_true", help="print raw responses")
@@ -721,7 +854,7 @@ def main() -> int:
 
     context = ssl.create_default_context(cafile=args.cafile) if args.cafile else None
     client = Client(args.url, args.token, context, args.timeout, args.verbose, args.auth_header,
-                    args.denied_object, platform_auth=platform_auth)
+                    args.denied_object, platform_auth=platform_auth, ip_block_test=args.ip_block_test)
     selected = {code.strip() for code in args.only.split(",")} if args.only else None
 
     failed = 0

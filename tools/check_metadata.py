@@ -8,6 +8,8 @@ Checks:
   * own objects use the extension name prefix;
   * identifiers (uuid, typeId, valueTypeId, objectId) are well-formed and unique;
   * common modules and HTTP services have Module.bsl; HTTP handlers exist in the module;
+  * role rights refer to existing objects, and the service role (<prefix>Сервис, the only role of
+    the publication's technical user) may use every HTTP service method;
   * BSL block keywords are balanced (Функция/КонецФункции, Если/КонецЕсли, ...);
   * calls like mcp1c_Module.Method( point to an existing exported method.
 
@@ -32,11 +34,14 @@ COLLECTIONS = {
     "informationRegisters": ("InformationRegister", "InformationRegisters"),
     "dataProcessors": ("DataProcessor", "DataProcessors"),
     "commonForms": ("CommonForm", "CommonForms"),
+    "commonCommands": ("CommonCommand", "CommonCommands"),
     "commonTemplates": ("CommonTemplate", "CommonTemplates"),
     "enums": ("Enum", "Enums"),
 }
 
 ID_ATTRS = ("uuid", "typeId", "valueTypeId", "objectId")
+ROLES_NS = "{http://v8.1c.ru/8.2/roles}"
+SERVICE_ROLE = "Сервис"  # suffix after the name prefix
 UUID_RE = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
 
 # (opening keyword, closing keyword); counted as whole words outside strings and comments.
@@ -60,6 +65,7 @@ class Checker:
         self.src = project / "src"
         self.errors: list[str] = []
         self.prefix = ""
+        self.objects: set[str] = set()  # "Catalog.mcp1c_X" for every object in Configuration.mdo
 
     def error(self, message: str) -> None:
         self.errors.append(message)
@@ -120,6 +126,7 @@ class Checker:
                     continue
                 name = text[len(ref_prefix) + 1 :]
                 referenced.add((folder, name))
+                self.objects.add(text)
                 self.check_object(folder, name)
 
         for tag, (_, folder) in COLLECTIONS.items():
@@ -155,6 +162,46 @@ class Checker:
                     self.error(f"{self.rel(module)}: handler {handler.text} is not defined")
         if folder == "Roles" and not (self.src / folder / name / "Rights.rights").is_file():
             self.error(f"{self.rel(self.src / folder / name)}: Rights.rights missing")
+
+    # --- Roles ---------------------------------------------------------------
+    def http_methods(self) -> set[str]:
+        """Rights object names of all HTTP service methods: HTTPService.S.URLTemplate.T.Method.M."""
+        methods: set[str] = set()
+        for mdo in sorted((self.src / "HTTPServices").glob("*/*.mdo")):
+            root = self.parse(mdo)
+            if root is None:
+                continue
+            service = root.findtext("name")
+            for template in root.findall("urlTemplates"):
+                for method in template.findall("methods"):
+                    methods.add(
+                        f"HTTPService.{service}.URLTemplate.{template.findtext('name')}.Method.{method.findtext('name')}"
+                    )
+        return methods
+
+    def check_roles(self) -> None:
+        methods = self.http_methods()
+        for path in sorted((self.src / "Roles").glob("*/Rights.rights")):
+            root = self.parse(path)
+            if root is None:
+                continue
+            used: set[str] = set()
+            for element in root.findall(ROLES_NS + "object"):
+                name = element.findtext(ROLES_NS + "name") or ""
+                parts = name.split(".")
+                if parts[0] == "Configuration":
+                    pass
+                elif ".".join(parts[:2]) not in self.objects:
+                    self.error(f"{self.rel(path)}: rights for unknown object {name}")
+                elif parts[0] == "HTTPService" and name not in methods:
+                    self.error(f"{self.rel(path)}: rights for unknown HTTP service method {name}")
+                for right in element.findall(ROLES_NS + "right"):
+                    if right.findtext(ROLES_NS + "name") == "Use" and right.findtext(ROLES_NS + "value") == "true":
+                        used.add(name)
+            # Without the Use right the platform answers 403 before the service module runs.
+            if path.parent.name == self.prefix + SERVICE_ROLE:
+                for name in sorted(methods - used):
+                    self.error(f"{self.rel(path)}: service role has no Use right for {name}")
 
     # --- BSL -----------------------------------------------------------------
     @staticmethod
@@ -237,6 +284,7 @@ class Checker:
 
     def run(self) -> int:
         self.check_configuration()
+        self.check_roles()
         self.check_xml_files()
         self.check_bsl()
         for message in self.errors:

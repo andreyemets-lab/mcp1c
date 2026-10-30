@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonCommand xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="7c5fa48a-51c6-4dde-b638-d57b71cd08b3">
+  <name>mcp1c_Песочница</name>
+  <synonym>
+    <key>ru</key>
+    <value>Песочница MCP</value>
+  </synonym>
+  <group>FormCommandBarImportant</group>
+  <commandParameterType>
+    <types>CatalogRef.mcp1c_КлиентыДоступа</types>
+  </commandParameterType>
+  <parameterUseMode>Single</parameterUseMode>
+  <representation>Auto</representation>
+  <toolTip>
+    <key>ru</key>
+    <value>Вызвать инструмент, ресурс или промпт от имени клиента и увидеть точный ответ модели и примененные правила</value>
+  </toolTip>
+</mdclass:CommonCommand>
