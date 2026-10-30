@@ -28,7 +28,7 @@ FORM = Form(
     items=[
         Group(
             "ГруппаСостояние",
-            Label("ДекорацияСостояние", "Стан сервера", hstretch=True),
+            Label("ДекорацияСостояние", "Стан сервера", hstretch=True, bold=True),
             Group(
                 "ГруппаАдрес",
                 Field("КаноническийАдрес", "КаноническийАдрес", title="Публічна адреса", hstretch=True,
@@ -42,7 +42,7 @@ FORM = Form(
         ),
         Group(
             "ГруппаПредупреждения",
-            Label("ДекорацияПредупреждения", "", hstretch=True),
+            Label("ДекорацияПредупреждения", "", hstretch=True, color="SpecialTextColor"),
             title="Попередження",
             show_title=True,
             representation="NormalSeparation",

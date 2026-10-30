@@ -23,7 +23,10 @@ jobs:
         run: python tools/check_metadata.py exts/mcp1c
 
       - name: Скрипти Python компілюються
-        run: python -m py_compile tools/check_metadata.py tools/mcp_smoke_test.py tools/bsl_ls_report.py tools/run_unit_tests.py
+        run: python -m py_compile tools/check_metadata.py tools/mcp_smoke_test.py tools/bsl_ls_report.py tools/run_unit_tests.py tools/forms/*.py
+
+      - name: Форми збігаються з описами tools/forms
+        run: python tools/forms/build.py --check
 
       - uses: actions/setup-node@v4
         with:

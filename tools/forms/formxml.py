@@ -327,7 +327,7 @@ class Field(Item):
                  choice_button: bool | None = None, clear_button: bool | None = None, open_button: bool | None = None,
                  list_choice: bool = False, choice_list: Sequence[tuple[object, str]] = (),
                  input_hint: str | None = None, hyperlink: bool = False, format: str | None = None,
-                 columns_count: int | None = None, choice_history: bool = False) -> None:
+                 columns_count: int | None = None) -> None:
         super().__init__(name, title, tooltip, visible, enabled)
         if type not in self.EXT:
             raise ValueError(f"{name}: unknown field type {type}")
@@ -356,7 +356,6 @@ class Field(Item):
         self.hyperlink = hyperlink
         self.format = format
         self.columns_count = columns_count
-        self.choice_history = choice_history
 
     def handlers(self) -> list[str]:
         return list(self.events.values())
@@ -426,7 +425,6 @@ class Field(Item):
             x.leaf("chooseType", True)
             x.leaf("typeDomainEnabled", True)
             x.leaf("textEdit", True)
-            x.leaf("choiceHistoryOnInput", "DontUse" if self.choice_history is False and self.choice_list else None)
             self._choice_list(x)
             x.mls("inputHint", self.input_hint)
         elif self.type == "LabelField":
@@ -444,12 +442,14 @@ class Field(Item):
 
 
 class Label(Item):
-    """Label decoration; the text is the title. events: {"Click": "..."} (with hyperlink=True)."""
+    """Label decoration; the text is the title. events: {"Click": "..."} (with hyperlink=True).
+    color: style color ("SpecialTextColor"); bold: bold normal text font."""
 
     def __init__(self, name: str, title: str = "", tooltip: str | None = None, visible: bool = True,
                  hyperlink: bool = False, events: dict[str, str] | None = None, width: int | None = None,
                  max_width: int | None = None, height: int | None = None, hstretch: bool | None = None,
-                 vstretch: bool | None = None, align: str = "Left") -> None:
+                 vstretch: bool | None = None, align: str = "Left", color: str | None = None,
+                 bold: bool = False) -> None:
         super().__init__(name, title, tooltip, visible)
         self.hyperlink = hyperlink
         self.events = dict(events or {})
@@ -459,6 +459,8 @@ class Label(Item):
         self.hstretch = hstretch
         self.vstretch = vstretch
         self.align = align
+        self.color = color
+        self.bold = bold
 
     def handlers(self) -> list[str]:
         return list(self.events.values())
@@ -480,6 +482,18 @@ class Label(Item):
         x.leaf("autoMaxHeight", True)
         x.leaf("horizontalStretch", self.hstretch)
         x.leaf("verticalStretch", self.vstretch)
+        if self.color:
+            x.open("textColor", "core:ColorRef")
+            x.leaf("color", "Style." + self.color)
+            x.close("textColor")
+        if self.bold:
+            x.open("font", "core:FontRef")
+            x.leaf("font", "Style.NormalTextFont")
+            x.leaf("bold", True)
+            x.leaf("italic", "false")
+            x.leaf("underline", "false")
+            x.leaf("strikeout", "false")
+            x.close("font")
         x.open("extInfo", "form:LabelDecorationExtInfo")
         x.handlers(self.events)
         x.leaf("hyperlink", self.hyperlink)
