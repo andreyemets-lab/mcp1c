@@ -5,6 +5,10 @@
     <key>ru</key>
     <value>MCP-сервер</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>MCP-сервер</value>
+  </synonym>
   <includeInCommandInterface>true</includeInCommandInterface>
   <explanation>
     <key>ru</key>

@@ -4,6 +4,10 @@
     <key>ru</key>
     <value>MCP-сервер</value>
   </title>
+  <title>
+    <key>uk</key>
+    <value>MCP-сервер</value>
+  </title>
   <items xsi:type="form:FormGroup">
     <name>ГруппаСостояние</name>
     <id>1</id>
@@ -12,6 +16,10 @@
       <id>2</id>
       <title>
         <key>ru</key>
+        <value>Стан сервера</value>
+      </title>
+      <title>
+        <key>uk</key>
         <value>Стан сервера</value>
       </title>
       <visible>true</visible>
@@ -35,7 +43,6 @@
         <autoFill>true</autoFill>
       </contextMenu>
       <type>Label</type>
-      <autoMaxWidth>true</autoMaxWidth>
       <autoMaxHeight>true</autoMaxHeight>
       <horizontalStretch>true</horizontalStretch>
       <font xsi:type="core:FontRef">
@@ -57,6 +64,10 @@
         <id>6</id>
         <title>
           <key>ru</key>
+          <value>Публічна адреса</value>
+        </title>
+        <title>
+          <key>uk</key>
           <value>Публічна адреса</value>
         </title>
         <visible>true</visible>
@@ -97,6 +108,10 @@
           <textEdit>true</textEdit>
           <inputHint>
             <key>ru</key>
+            <value>https://mcp.company.ua/mcp</value>
+          </inputHint>
+          <inputHint>
+            <key>uk</key>
             <value>https://mcp.company.ua/mcp</value>
           </inputHint>
         </extInfo>
@@ -159,6 +174,10 @@
         <key>ru</key>
         <value>Прив'язка до бази</value>
       </title>
+      <title>
+        <key>uk</key>
+        <value>Прив'язка до бази</value>
+      </title>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
@@ -200,6 +219,10 @@
         <key>ru</key>
         <value></value>
       </title>
+      <title>
+        <key>uk</key>
+        <value></value>
+      </title>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
@@ -221,7 +244,6 @@
         <autoFill>true</autoFill>
       </contextMenu>
       <type>Label</type>
-      <autoMaxWidth>true</autoMaxWidth>
       <autoMaxHeight>true</autoMaxHeight>
       <horizontalStretch>true</horizontalStretch>
       <extInfo xsi:type="form:LabelDecorationExtInfo">
@@ -263,6 +285,10 @@
         <key>ru</key>
         <value></value>
       </title>
+      <title>
+        <key>uk</key>
+        <value></value>
+      </title>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
@@ -284,7 +310,6 @@
         <autoFill>true</autoFill>
       </contextMenu>
       <type>Label</type>
-      <autoMaxWidth>true</autoMaxWidth>
       <autoMaxHeight>true</autoMaxHeight>
       <horizontalStretch>true</horizontalStretch>
       <textColor xsi:type="core:ColorRef">
@@ -301,6 +326,10 @@
     </userVisible>
     <title>
       <key>ru</key>
+      <value>Попередження</value>
+    </title>
+    <title>
+      <key>uk</key>
       <value>Попередження</value>
     </title>
     <extendedTooltip>
@@ -338,6 +367,10 @@
           <key>ru</key>
           <value>Останні 24 години і 7 днів. Тривалість - виклики інструментів, ресурсів і промптів.</value>
         </title>
+        <title>
+          <key>uk</key>
+          <value>Останні 24 години і 7 днів. Тривалість - виклики інструментів, ресурсів і промптів.</value>
+        </title>
         <visible>true</visible>
         <enabled>true</enabled>
         <userVisible>
@@ -359,7 +392,6 @@
           <autoFill>true</autoFill>
         </contextMenu>
         <type>Label</type>
-        <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
         <horizontalStretch>true</horizontalStretch>
         <extInfo xsi:type="form:LabelDecorationExtInfo">
@@ -383,6 +415,10 @@
           <id>30</id>
           <title>
             <key>ru</key>
+            <value>Показник</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Показник</value>
           </title>
           <visible>true</visible>
@@ -429,6 +465,10 @@
             <key>ru</key>
             <value>За добу</value>
           </title>
+          <title>
+            <key>uk</key>
+            <value>За добу</value>
+          </title>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -472,6 +512,10 @@
           <id>36</id>
           <title>
             <key>ru</key>
+            <value>За тиждень</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>За тиждень</value>
           </title>
           <visible>true</visible>
@@ -634,6 +678,10 @@
         <key>ru</key>
         <value>Показники</value>
       </title>
+      <title>
+        <key>uk</key>
+        <value>Показники</value>
+      </title>
       <extendedTooltip>
         <name>СтраницаПоказателиРасширеннаяПодсказка</name>
         <id>51</id>
@@ -660,6 +708,10 @@
           <key>ru</key>
           <value>Виклики tools/call за 7 днів.</value>
         </title>
+        <title>
+          <key>uk</key>
+          <value>Виклики tools/call за 7 днів.</value>
+        </title>
         <visible>true</visible>
         <enabled>true</enabled>
         <userVisible>
@@ -681,7 +733,6 @@
           <autoFill>true</autoFill>
         </contextMenu>
         <type>Label</type>
-        <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
         <horizontalStretch>true</horizontalStretch>
         <extInfo xsi:type="form:LabelDecorationExtInfo">
@@ -705,6 +756,10 @@
           <id>57</id>
           <title>
             <key>ru</key>
+            <value>Інструмент</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Інструмент</value>
           </title>
           <visible>true</visible>
@@ -751,6 +806,10 @@
             <key>ru</key>
             <value>Викликів</value>
           </title>
+          <title>
+            <key>uk</key>
+            <value>Викликів</value>
+          </title>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -795,6 +854,10 @@
             <key>ru</key>
             <value>Неуспішних</value>
           </title>
+          <title>
+            <key>uk</key>
+            <value>Неуспішних</value>
+          </title>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -837,6 +900,10 @@
           <id>66</id>
           <title>
             <key>ru</key>
+            <value>Середня тривалість</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Середня тривалість</value>
           </title>
           <visible>true</visible>
@@ -884,6 +951,10 @@
             <key>ru</key>
             <value>p95</value>
           </title>
+          <title>
+            <key>uk</key>
+            <value>p95</value>
+          </title>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -927,6 +998,10 @@
           <id>72</id>
           <title>
             <key>ru</key>
+            <value>Найдовший</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Найдовший</value>
           </title>
           <visible>true</visible>
@@ -1089,6 +1164,10 @@
         <key>ru</key>
         <value>Інструменти</value>
       </title>
+      <title>
+        <key>uk</key>
+        <value>Інструменти</value>
+      </title>
       <extendedTooltip>
         <name>СтраницаИнструментыРасширеннаяПодсказка</name>
         <id>87</id>
@@ -1115,6 +1194,10 @@
           <key>ru</key>
           <value>Об'єкти, до яких зверталися клієнти за 7 днів.</value>
         </title>
+        <title>
+          <key>uk</key>
+          <value>Об'єкти, до яких зверталися клієнти за 7 днів.</value>
+        </title>
         <visible>true</visible>
         <enabled>true</enabled>
         <userVisible>
@@ -1136,7 +1219,6 @@
           <autoFill>true</autoFill>
         </contextMenu>
         <type>Label</type>
-        <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
         <horizontalStretch>true</horizontalStretch>
         <extInfo xsi:type="form:LabelDecorationExtInfo">
@@ -1160,6 +1242,10 @@
           <id>93</id>
           <title>
             <key>ru</key>
+            <value>Об'єкт</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Об'єкт</value>
           </title>
           <visible>true</visible>
@@ -1204,6 +1290,10 @@
           <id>96</id>
           <title>
             <key>ru</key>
+            <value>Звернень</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Звернень</value>
           </title>
           <visible>true</visible>
@@ -1365,6 +1455,10 @@
         <key>ru</key>
         <value>Об'єкти</value>
       </title>
+      <title>
+        <key>uk</key>
+        <value>Об'єкти</value>
+      </title>
       <extendedTooltip>
         <name>СтраницаОбъектыРасширеннаяПодсказка</name>
         <id>111</id>
@@ -1391,6 +1485,10 @@
           <key>ru</key>
           <value>Останні 50 неуспішних викликів за 7 днів.</value>
         </title>
+        <title>
+          <key>uk</key>
+          <value>Останні 50 неуспішних викликів за 7 днів.</value>
+        </title>
         <visible>true</visible>
         <enabled>true</enabled>
         <userVisible>
@@ -1412,7 +1510,6 @@
           <autoFill>true</autoFill>
         </contextMenu>
         <type>Label</type>
-        <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
         <horizontalStretch>true</horizontalStretch>
         <extInfo xsi:type="form:LabelDecorationExtInfo">
@@ -1436,6 +1533,10 @@
           <id>117</id>
           <title>
             <key>ru</key>
+            <value>Час</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Час</value>
           </title>
           <visible>true</visible>
@@ -1482,6 +1583,10 @@
             <key>ru</key>
             <value>Клієнт</value>
           </title>
+          <title>
+            <key>uk</key>
+            <value>Клієнт</value>
+          </title>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -1524,6 +1629,10 @@
           <id>123</id>
           <title>
             <key>ru</key>
+            <value>Виклик</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Виклик</value>
           </title>
           <visible>true</visible>
@@ -1570,6 +1679,10 @@
             <key>ru</key>
             <value>Результат</value>
           </title>
+          <title>
+            <key>uk</key>
+            <value>Результат</value>
+          </title>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -1614,6 +1727,10 @@
             <key>ru</key>
             <value>Причина</value>
           </title>
+          <title>
+            <key>uk</key>
+            <value>Причина</value>
+          </title>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -1656,6 +1773,10 @@
           <id>132</id>
           <title>
             <key>ru</key>
+            <value>IP-адреса</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>IP-адреса</value>
           </title>
           <visible>true</visible>
@@ -1821,6 +1942,10 @@
         <key>ru</key>
         <value>Відмови і помилки</value>
       </title>
+      <title>
+        <key>uk</key>
+        <value>Відмови і помилки</value>
+      </title>
       <extendedTooltip>
         <name>СтраницаОтказыРасширеннаяПодсказка</name>
         <id>147</id>
@@ -1847,6 +1972,10 @@
           <key>ru</key>
           <value>Діючі токени, термін яких спливає протягом 7 днів.</value>
         </title>
+        <title>
+          <key>uk</key>
+          <value>Діючі токени, термін яких спливає протягом 7 днів.</value>
+        </title>
         <visible>true</visible>
         <enabled>true</enabled>
         <userVisible>
@@ -1868,7 +1997,6 @@
           <autoFill>true</autoFill>
         </contextMenu>
         <type>Label</type>
-        <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
         <horizontalStretch>true</horizontalStretch>
         <extInfo xsi:type="form:LabelDecorationExtInfo">
@@ -1892,6 +2020,10 @@
           <id>153</id>
           <title>
             <key>ru</key>
+            <value>Клієнт</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Клієнт</value>
           </title>
           <visible>true</visible>
@@ -1938,6 +2070,10 @@
             <key>ru</key>
             <value>Токен</value>
           </title>
+          <title>
+            <key>uk</key>
+            <value>Токен</value>
+          </title>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -1982,6 +2118,10 @@
             <key>ru</key>
             <value>Діє до</value>
           </title>
+          <title>
+            <key>uk</key>
+            <value>Діє до</value>
+          </title>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -2024,6 +2164,10 @@
           <id>162</id>
           <title>
             <key>ru</key>
+            <value>Залишилось</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Залишилось</value>
           </title>
           <visible>true</visible>
@@ -2189,6 +2333,10 @@
         <key>ru</key>
         <value>Токени, що спливають</value>
       </title>
+      <title>
+        <key>uk</key>
+        <value>Токени, що спливають</value>
+      </title>
       <extendedTooltip>
         <name>СтраницаТокеныРасширеннаяПодсказка</name>
         <id>177</id>
@@ -2215,6 +2363,10 @@
           <key>ru</key>
           <value>Тимчасові блокування IP-адрес після перебору токенів і клієнтів після серії відмов політики.</value>
         </title>
+        <title>
+          <key>uk</key>
+          <value>Тимчасові блокування IP-адрес після перебору токенів і клієнтів після серії відмов політики.</value>
+        </title>
         <visible>true</visible>
         <enabled>true</enabled>
         <userVisible>
@@ -2236,7 +2388,6 @@
           <autoFill>true</autoFill>
         </contextMenu>
         <type>Label</type>
-        <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
         <horizontalStretch>true</horizontalStretch>
         <extInfo xsi:type="form:LabelDecorationExtInfo">
@@ -2260,6 +2411,10 @@
           <id>183</id>
           <title>
             <key>ru</key>
+            <value>Вид</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Вид</value>
           </title>
           <visible>true</visible>
@@ -2306,6 +2461,10 @@
             <key>ru</key>
             <value>Заблоковано</value>
           </title>
+          <title>
+            <key>uk</key>
+            <value>Заблоковано</value>
+          </title>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -2348,6 +2507,10 @@
           <id>189</id>
           <title>
             <key>ru</key>
+            <value>Діє до</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Діє до</value>
           </title>
           <visible>true</visible>
@@ -2394,6 +2557,10 @@
             <key>ru</key>
             <value>Залишилось</value>
           </title>
+          <title>
+            <key>uk</key>
+            <value>Залишилось</value>
+          </title>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -2436,6 +2603,10 @@
           <id>195</id>
           <title>
             <key>ru</key>
+            <value>Причина</value>
+          </title>
+          <title>
+            <key>uk</key>
             <value>Причина</value>
           </title>
           <visible>true</visible>
@@ -2625,6 +2796,10 @@
         <key>ru</key>
         <value>Блокування</value>
       </title>
+      <title>
+        <key>uk</key>
+        <value>Блокування</value>
+      </title>
       <extendedTooltip>
         <name>СтраницаБлокировкиРасширеннаяПодсказка</name>
         <id>212</id>
@@ -2811,6 +2986,10 @@
       <key>ru</key>
       <value>Публічна адреса</value>
     </title>
+    <title>
+      <key>uk</key>
+      <value>Публічна адреса</value>
+    </title>
     <id>1</id>
     <valueType>
       <types>String</types>
@@ -2829,6 +3008,10 @@
     <name>Привязка</name>
     <title>
       <key>ru</key>
+      <value>Прив'язка до бази</value>
+    </title>
+    <title>
+      <key>uk</key>
       <value>Прив'язка до бази</value>
     </title>
     <id>2</id>
@@ -3490,9 +3673,17 @@
       <key>ru</key>
       <value>Оновити</value>
     </title>
+    <title>
+      <key>uk</key>
+      <value>Оновити</value>
+    </title>
     <id>1</id>
     <toolTip>
       <key>ru</key>
+      <value>Оновити стан і показники</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
       <value>Оновити стан і показники</value>
     </toolTip>
     <use>
@@ -3514,9 +3705,17 @@
       <key>ru</key>
       <value>Увімкнути</value>
     </title>
+    <title>
+      <key>uk</key>
+      <value>Увімкнути</value>
+    </title>
     <id>2</id>
     <toolTip>
       <key>ru</key>
+      <value>Увімкнути MCP-сервер із вказаною публічною адресою</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
       <value>Увімкнути MCP-сервер із вказаною публічною адресою</value>
     </toolTip>
     <use>
@@ -3535,9 +3734,17 @@
       <key>ru</key>
       <value>Вимкнути</value>
     </title>
+    <title>
+      <key>uk</key>
+      <value>Вимкнути</value>
+    </title>
     <id>3</id>
     <toolTip>
       <key>ru</key>
+      <value>Вимкнути MCP-сервер: клієнти отримуватимуть 503</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
       <value>Вимкнути MCP-сервер: клієнти отримуватимуть 503</value>
     </toolTip>
     <use>
@@ -3556,9 +3763,17 @@
       <key>ru</key>
       <value>Підтвердити перенесення бази</value>
     </title>
+    <title>
+      <key>uk</key>
+      <value>Підтвердити перенесення бази</value>
+    </title>
     <id>4</id>
     <toolTip>
       <key>ru</key>
+      <value>Прийняти нове розташування бази після перенесення або відновлення з копії; усі токени буде відкликано</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
       <value>Прийняти нове розташування бази після перенесення або відновлення з копії; усі токени буде відкликано</value>
     </toolTip>
     <use>
@@ -3577,9 +3792,17 @@
       <key>ru</key>
       <value>Зберегти адресу</value>
     </title>
+    <title>
+      <key>uk</key>
+      <value>Зберегти адресу</value>
+    </title>
     <id>5</id>
     <toolTip>
       <key>ru</key>
+      <value>Зберегти публічну адресу MCP-ендпоінта</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
       <value>Зберегти публічну адресу MCP-ендпоінта</value>
     </toolTip>
     <use>
@@ -3598,9 +3821,17 @@
       <key>ru</key>
       <value>Перевірити профілі на чутливі поля</value>
     </title>
+    <title>
+      <key>uk</key>
+      <value>Перевірити профілі на чутливі поля</value>
+    </title>
     <id>6</id>
     <toolTip>
       <key>ru</key>
+      <value>Знайти профілі клієнтів, які показують чутливі поля без маски (фонове завдання)</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
       <value>Знайти профілі клієнтів, які показують чутливі поля без маски (фонове завдання)</value>
     </toolTip>
     <use>
@@ -3619,9 +3850,17 @@
       <key>ru</key>
       <value>Зняти блокування</value>
     </title>
+    <title>
+      <key>uk</key>
+      <value>Зняти блокування</value>
+    </title>
     <id>7</id>
     <toolTip>
       <key>ru</key>
+      <value>Зняти вибране блокування IP-адреси або клієнта</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
       <value>Зняти вибране блокування IP-адреси або клієнта</value>
     </toolTip>
     <use>

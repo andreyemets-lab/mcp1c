@@ -7,15 +7,16 @@ and search additions) and writes properties in the order EDT writes them. Proper
 by default in the EDT model (visible, enabled, header, showTitle, ...) are written only when true,
 as EDT does, so a hidden item simply omits <visible>.
 
-Texts are single-language: the extension has one language (code "ru"), and user texts are written
-in Ukrainian (see CLAUDE.md).
+Texts are written in Ukrainian (see CLAUDE.md) under the language codes in LANGS: the extension adopts only
+the "ru" language, but a session in Ukrainian (BAS) shows the "uk" value and falls back to the item name, not
+to "ru", when it is missing.
 """
 from __future__ import annotations
 
 import re
 from typing import Iterable, Sequence
 
-LANG = "ru"
+LANGS = ("ru", "uk")
 
 # Form events handled in the object form extension (catalog and data processor forms).
 OBJECT_FORM_EVENTS = {
@@ -59,13 +60,14 @@ class Xml:
         self.lines.append("  " * self.level + f"<{tag}{self._type(xsi)}/>")
 
     def mls(self, tag: str, value: str | None) -> None:
-        """Multilingual string with the only language of the extension."""
+        """Multilingual string: the same text for every language in LANGS."""
         if value is None:
             return
-        self.open(tag)
-        self.leaf("key", LANG)
-        self.leaf("value", value)
-        self.close(tag)
+        for lang in LANGS:
+            self.open(tag)
+            self.leaf("key", lang)
+            self.leaf("value", value)
+            self.close(tag)
 
     def handlers(self, events: dict[str, str]) -> None:
         for event, name in events.items():
@@ -476,7 +478,7 @@ class Label(Item):
         _context_menu(x, ids, self.name)
         x.leaf("type", "Label")
         x.leaf("width", self.width)
-        x.leaf("autoMaxWidth", self.max_width is None)
+        x.leaf("autoMaxWidth", self.max_width is None and not self.hstretch)
         x.leaf("maxWidth", self.max_width)
         x.leaf("height", self.height)
         x.leaf("autoMaxHeight", True)

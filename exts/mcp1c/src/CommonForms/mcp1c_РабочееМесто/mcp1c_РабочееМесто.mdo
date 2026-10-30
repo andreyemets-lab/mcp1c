@@ -5,6 +5,10 @@
     <key>ru</key>
     <value>Рабочее место MCP-сервера</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Робоче місце MCP-сервера</value>
+  </synonym>
   <comment>Состояние сервера, мониторинг вызовов, токены и блокировки (п. 8.3, 9.2 ТЗ)</comment>
   <usePurposes>PersonalComputer</usePurposes>
   <usePurposes>MobileDevice</usePurposes>
