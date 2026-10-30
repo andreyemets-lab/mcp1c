@@ -2925,8 +2925,38 @@
     </edit>
   </attributes>
   <attributes>
-    <name>Показатели</name>
+    <name>АдресПроверки</name>
     <id>9</id>
+    <valueType>
+      <types>String</types>
+      <stringQualifiers/>
+    </valueType>
+    <view>
+      <common>true</common>
+    </view>
+    <edit>
+      <common>true</common>
+    </edit>
+  </attributes>
+  <attributes>
+    <name>ЗаданиеПроверки</name>
+    <id>10</id>
+    <valueType>
+      <types>String</types>
+      <stringQualifiers>
+        <length>36</length>
+      </stringQualifiers>
+    </valueType>
+    <view>
+      <common>true</common>
+    </view>
+    <edit>
+      <common>true</common>
+    </edit>
+  </attributes>
+  <attributes>
+    <name>Показатели</name>
+    <id>11</id>
     <valueType>
       <types>ValueTable</types>
     </valueType>
@@ -2987,7 +3017,7 @@
   </attributes>
   <attributes>
     <name>Инструменты</name>
-    <id>10</id>
+    <id>12</id>
     <valueType>
       <types>ValueTable</types>
     </valueType>
@@ -3096,7 +3126,7 @@
   </attributes>
   <attributes>
     <name>Объекты</name>
-    <id>11</id>
+    <id>13</id>
     <valueType>
       <types>ValueTable</types>
     </valueType>
@@ -3141,7 +3171,7 @@
   </attributes>
   <attributes>
     <name>Отказы</name>
-    <id>12</id>
+    <id>14</id>
     <valueType>
       <types>ValueTable</types>
     </valueType>
@@ -3247,7 +3277,7 @@
   </attributes>
   <attributes>
     <name>Токены</name>
-    <id>13</id>
+    <id>15</id>
     <valueType>
       <types>ValueTable</types>
     </valueType>
@@ -3318,7 +3348,7 @@
   </attributes>
   <attributes>
     <name>Блокировки</name>
-    <id>14</id>
+    <id>16</id>
     <valueType>
       <types>ValueTable</types>
     </valueType>
@@ -3566,12 +3596,12 @@
     <name>ПроверитьЧувствительныеПоля</name>
     <title>
       <key>ru</key>
-      <value>Перевірити профілі</value>
+      <value>Перевірити профілі на чутливі поля</value>
     </title>
     <id>6</id>
     <toolTip>
       <key>ru</key>
-      <value>Знайти профілі клієнтів, які показують чутливі поля без маски</value>
+      <value>Знайти профілі клієнтів, які показують чутливі поля без маски (фонове завдання)</value>
     </toolTip>
     <use>
       <common>true</common>
