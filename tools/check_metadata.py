@@ -10,6 +10,9 @@ Checks:
   * common modules and HTTP services have Module.bsl; HTTP handlers exist in the module;
   * role rights refer to existing objects, and the service role (<prefix>Сервис, the only role of
     the publication's technical user) may use every HTTP service method;
+  * managed forms (Form.form): unique item names and ids, data paths point to form attributes and their
+    columns, buttons point to form commands, event and command handlers exist in the form module;
+  * subsystem command interfaces (CommandInterface.cmi) refer to existing objects;
   * BSL block keywords are balanced (Функция/КонецФункции, Если/КонецЕсли, ...);
   * calls like mcp1c_Module.Method( point to an existing exported method.
 
@@ -88,7 +91,7 @@ class Checker:
     def check_xml_files(self) -> None:
         """Parses every XML file once and checks that identifiers are unique."""
         seen: dict[str, str] = {}
-        for pattern in ("*.mdo", "*.rights", ".project"):
+        for pattern in ("*.mdo", "*.rights", "*.form", "*.cmi", ".project"):
             for path in sorted(self.project.rglob(pattern)):
                 root = self.parse(path)
                 if root is None:
@@ -162,6 +165,10 @@ class Checker:
                     self.error(f"{self.rel(module)}: handler {handler.text} is not defined")
         if folder == "Roles" and not (self.src / folder / name / "Rights.rights").is_file():
             self.error(f"{self.rel(self.src / folder / name)}: Rights.rights missing")
+        if folder == "CommonForms":
+            for required in ("Form.form", "Module.bsl"):
+                if not (self.src / folder / name / required).is_file():
+                    self.error(f"{self.rel(self.src / folder / name / required)}: missing")
 
     # --- Roles ---------------------------------------------------------------
     def http_methods(self) -> set[str]:
@@ -202,6 +209,74 @@ class Checker:
             if path.parent.name == self.prefix + SERVICE_ROLE:
                 for name in sorted(methods - used):
                     self.error(f"{self.rel(path)}: service role has no Use right for {name}")
+
+    # --- Forms ---------------------------------------------------------------
+    def check_forms(self) -> None:
+        for path in sorted(self.src.rglob("Form.form")):
+            root = self.parse(path)
+            if root is not None:
+                self.check_form(path, root)
+
+    def check_form(self, path: Path, root: ET.Element) -> None:
+        where = self.rel(path)
+        names: set[str] = set()
+        ids: set[str] = set()
+        # Items, their extended tooltips, context menus, command bars and table additions share one id space.
+        for element in root.iter():
+            tag = element.tag
+            if tag not in ("items", "extendedTooltip", "contextMenu", "autoCommandBar", "searchStringAddition",
+                           "viewStatusAddition", "searchControlAddition"):
+                continue
+            name, ident = element.findtext("name"), element.findtext("id")
+            if name is None or ident is None:
+                continue
+            if name in names:
+                self.error(f"{where}: item name {name} is used twice")
+            names.add(name)
+            if ident != "-1":
+                if ident in ids:
+                    self.error(f"{where}: item id {ident} is used twice ({name})")
+                ids.add(ident)
+
+        attributes: dict[str, set[str]] = {}
+        for attribute in root.findall("attributes"):
+            attributes[attribute.findtext("name") or ""] = {c.findtext("name") or "" for c in attribute.findall("columns")}
+        for data_path in root.iter("dataPath"):
+            segments = (data_path.findtext("segments") or "").split(".")
+            if segments[0] not in attributes:
+                self.error(f"{where}: data path {'.'.join(segments)} - no form attribute {segments[0]}")
+            elif len(segments) > 1 and attributes[segments[0]] and segments[1] not in attributes[segments[0]]:
+                self.error(f"{where}: data path {'.'.join(segments)} - attribute has no column {segments[1]}")
+
+        commands = {command.findtext("name") for command in root.findall("formCommands")}
+        for command in root.iter("commandName"):
+            text = command.text or ""
+            if text.startswith("Form.Command.") and text[len("Form.Command."):] not in commands:
+                self.error(f"{where}: button refers to unknown form command {text}")
+
+        module = path.parent / "Module.bsl"
+        defined = set()
+        if module.is_file():
+            defined = {m.group(2) for m in METHOD_DEF.finditer(self.strip_code(module.read_text(encoding="utf-8")))}
+        handlers = [h.findtext("name") for h in root.iter("handlers")]
+        handlers += [h.findtext("name") for h in root.iter("handler")]
+        for handler in handlers:
+            if handler and handler not in defined:
+                self.error(f"{self.rel(module)}: form handler {handler} is not defined")
+
+    def check_command_interfaces(self) -> None:
+        for path in sorted(self.src.rglob("CommandInterface.cmi")):
+            root = self.parse(path)
+            if root is None:
+                continue
+            for element in root.iter():
+                if element.tag not in ("command", "commands") or not element.text:
+                    continue
+                # "CommonForm.X.StandardCommand.Open", "Catalog.X.StandardCommand.OpenList", "CommonCommand.X"
+                parts = element.text.split(".")
+                owner = ".".join(parts[:2])
+                if len(parts) >= 2 and parts[1].startswith(self.prefix) and owner not in self.objects:
+                    self.error(f"{self.rel(path)}: command {element.text} - unknown object {owner}")
 
     # --- BSL -----------------------------------------------------------------
     @staticmethod
@@ -285,6 +360,8 @@ class Checker:
     def run(self) -> int:
         self.check_configuration()
         self.check_roles()
+        self.check_forms()
+        self.check_command_interfaces()
         self.check_xml_files()
         self.check_bsl()
         for message in self.errors:
