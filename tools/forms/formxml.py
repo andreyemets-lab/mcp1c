@@ -58,6 +58,11 @@ class Xml:
             return
         self.lines.append("  " * self.level + f"<{tag}{self._type(xsi)}>{_text(value)}</{tag}>")
 
+    def opt(self, tag: str, value: bool | None) -> None:
+        """Nullable boolean (stretch of fields, groups and decorations): None - auto, False is written."""
+        if value is not None:
+            self.lines.append("  " * self.level + f"<{tag}>{_text(value)}</{tag}>")
+
     def empty(self, tag: str, xsi: str | None = None) -> None:
         self.lines.append("  " * self.level + f"<{tag}{self._type(xsi)}/>")
 
@@ -332,7 +337,7 @@ class Field(Item):
                  list_choice: bool = False, choice_list: Sequence[tuple[object, str]] = (),
                  input_hint: str | None = None, hyperlink: bool = False, format: str | None = None,
                  columns_count: int | None = None, spin_button: bool | None = None,
-                 min_value: int | None = None, max_value: int | None = None) -> None:
+                 min_value: int | None = None, max_value: int | None = None, auto_max_width: bool = True) -> None:
         super().__init__(name, title, tooltip, visible, enabled)
         if type not in self.EXT:
             raise ValueError(f"{name}: unknown field type {type}")
@@ -364,6 +369,7 @@ class Field(Item):
         self.spin_button = spin_button
         self.min_value = min_value
         self.max_value = max_value
+        self.auto_max_width = auto_max_width
 
     def handlers(self) -> list[str]:
         return list(self.events.values())
@@ -416,12 +422,12 @@ class Field(Item):
             x.close("items")
             return
         x.leaf("width", self.width)
-        x.leaf("autoMaxWidth", self.max_width is None)
+        x.leaf("autoMaxWidth", self.max_width is None and self.auto_max_width)
         x.leaf("maxWidth", self.max_width)
         x.leaf("height", self.height)
         x.leaf("autoMaxHeight", True)
-        x.leaf("horizontalStretch", self.hstretch)
-        x.leaf("verticalStretch", self.vstretch)
+        x.opt("horizontalStretch", self.hstretch)
+        x.opt("verticalStretch", self.vstretch)
         if self.type == "InputField":
             x.leaf("wrap", self.wrap)
             x.leaf("passwordMode", self.password)
@@ -495,8 +501,8 @@ class Label(Item):
         x.leaf("maxWidth", self.max_width)
         x.leaf("height", self.height)
         x.leaf("autoMaxHeight", True)
-        x.leaf("horizontalStretch", self.hstretch)
-        x.leaf("verticalStretch", self.vstretch)
+        x.opt("horizontalStretch", self.hstretch)
+        x.opt("verticalStretch", self.vstretch)
         if self.color:
             x.open("textColor", "core:ColorRef")
             x.leaf("color", "Style." + self.color)
@@ -596,8 +602,8 @@ class Group(_Container):
 
     def write(self, x: Xml, ids: Ids) -> None:
         self._head(x, ids)
-        x.leaf("horizontalStretch", self.hstretch)
-        x.leaf("verticalStretch", self.vstretch)
+        x.opt("horizontalStretch", self.hstretch)
+        x.opt("verticalStretch", self.vstretch)
         _tooltip(x, ids, self.name)
         x.leaf("type", "UsualGroup")
         x.open("extInfo", "form:UsualGroupExtInfo")

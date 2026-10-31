@@ -24,12 +24,8 @@ FORM = Form(
             "Страницы",
             Page(
                 "СтраницаПараметры", "Параметри",
-                Group(
-                    "ГруппаКлиент",
-                    Field("Клиент", "Клиент", type="LabelField", title="Клієнт"),
-                    Field("Профиль", "Профиль", type="LabelField", title="Профіль"),
-                    group="Horizontal",
-                ),
+                Field("Клиент", "Клиент", type="LabelField", title="Клієнт"),
+                Field("Профиль", "Профиль", type="LabelField", title="Профіль"),
                 Group(
                     "ГруппаСрок",
                     Field("СрокДействия", "СрокДействия", title="Термін дії, днів", width=5, spin_button=True,
@@ -57,10 +53,11 @@ FORM = Form(
                 Label("ДекорацияОдинРаз", "Токен показується один раз: скопіюйте його зараз. Після закриття вікна "
                       "отримати його знову неможливо - лише видати новий.", hstretch=True, color="SpecialTextColor",
                       bold=True),
-                Field("Токен", "Токен", title="Токен", read_only=True, hstretch=True),
+                Field("Токен", "Токен", title="Токен", read_only=True, width=80, auto_max_width=False,
+                      hstretch=True),
                 Field("ДействуетДоТокена", "ДействуетДо", type="LabelField", title="Діє до", format="ДЛФ=DT"),
                 Field("Фрагменты", "Фрагменты", title="Фрагменти підключення", title_location="Top", read_only=True,
-                      multiline=True, height=14, hstretch=True, vstretch=True),
+                      multiline=True, height=14, auto_max_width=False, hstretch=True, vstretch=True),
             ),
             representation="None",
         ),

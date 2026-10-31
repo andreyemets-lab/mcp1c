@@ -66,7 +66,7 @@ FORM = Form(
                 obj("Ответственный", hstretch=True),
                 check("ВнешнийПровайдер"),
                 check("Заблокирован"),
-                obj("Комментарий", multiline=True, height=3, hstretch=True),
+                obj("Комментарий", multiline=True, height=3, hstretch=True, vstretch=False),
             ),
             Page(
                 "СтраницаОграничения", "Обмеження",
@@ -104,7 +104,7 @@ FORM = Form(
                       visible=False),
                 Table(
                     "Токены", "Токены",
-                    column("Токены", "Идентификатор", "Ідентифікатор"),
+                    column("Токены", "Идентификатор", "Ідентифікатор", width=14),
                     column("Токены", "Состояние", "Стан"),
                     column("Токены", "Наименование", "Коментар"),
                     column("Токены", "ДатаВыпуска", "Видано"),
@@ -114,7 +114,7 @@ FORM = Form(
                     column("Токены", "Автор", "Видав"),
                     read_only=True, change_row_set=False, height_rows=6,
                     buttons=[
-                        Button("ТокеныВыпуститьТокен", "ВыпуститьТокен"),
+                        Button("ТокеныВыпуститьТокен", "ВыпуститьТокен", representation="PictureAndText"),
                         Button("ТокеныОтозватьТокен", "ОтозватьТокен"),
                         Button("ТокеныОбновитьТокены", "ОбновитьТокены"),
                     ],
