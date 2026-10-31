@@ -5,5 +5,9 @@
     <key>ru</key>
     <value>MCP: администратор сервера</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>MCP: адміністратор сервера</value>
+  </synonym>
   <comment>Настройки сервера, клиенты, профили, выпуск и отзыв токенов, просмотр журнала (п. 9.1 ТЗ)</comment>
 </mdclass:Role>

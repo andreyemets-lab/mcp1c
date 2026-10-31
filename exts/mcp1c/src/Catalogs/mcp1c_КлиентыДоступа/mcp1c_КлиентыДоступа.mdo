@@ -12,6 +12,10 @@
     <key>ru</key>
     <value>Клиенты доступа MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Клієнти доступу MCP</value>
+  </synonym>
   <comment>Кому выдан доступ: профиль, ограничения, состояние (п. 7.1 ТЗ)</comment>
   <useStandardCommands>true</useStandardCommands>
   <inputByString>Catalog.mcp1c_КлиентыДоступа.StandardAttribute.Description</inputByString>
@@ -23,9 +27,17 @@
     <key>ru</key>
     <value>Клиент доступа MCP</value>
   </objectPresentation>
+  <objectPresentation>
+    <key>uk</key>
+    <value>Клієнт доступу MCP</value>
+  </objectPresentation>
   <listPresentation>
     <key>ru</key>
     <value>Клиенты доступа MCP</value>
+  </listPresentation>
+  <listPresentation>
+    <key>uk</key>
+    <value>Клієнти доступу MCP</value>
   </listPresentation>
   <levelCount>2</levelCount>
   <foldersOnTop>true</foldersOnTop>
@@ -44,6 +56,10 @@
       <key>ru</key>
       <value>Профиль</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Профіль</value>
+    </synonym>
     <type>
       <types>CatalogRef.mcp1c_ПрофилиДоступа</types>
     </type>
@@ -58,6 +74,10 @@
     <synonym>
       <key>ru</key>
       <value>Тип клиента</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Тип клієнта</value>
     </synonym>
     <type>
       <types>EnumRef.mcp1c_ТипыКлиентов</types>
@@ -74,12 +94,20 @@
       <key>ru</key>
       <value>Внешний AI-провайдер</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Зовнішній AI-провайдер</value>
+    </synonym>
     <type>
       <types>Boolean</types>
     </type>
     <toolTip>
       <key>ru</key>
       <value>Данные уходят внешнему AI-провайдеру (облачная модель)</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Дані передаються зовнішньому AI-провайдеру (хмарна модель)</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -92,6 +120,10 @@
     <synonym>
       <key>ru</key>
       <value>Ответственный</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Відповідальний</value>
     </synonym>
     <type>
       <types>String</types>
@@ -111,6 +143,10 @@
       <key>ru</key>
       <value>Пользователь ИБ</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Користувач ІБ</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -120,6 +156,10 @@
     <toolTip>
       <key>ru</key>
       <value>Имя пользователя информационной базы; его права ограничивают профиль сверху</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Ім'я користувача інформаційної бази; його права обмежують профіль згори</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -132,6 +172,10 @@
     <synonym>
       <key>ru</key>
       <value>Заблокирован</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Заблоковано</value>
     </synonym>
     <type>
       <types>Boolean</types>
@@ -148,6 +192,10 @@
       <key>ru</key>
       <value>Разрешенные IP-адреса</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Дозволені IP-адреси</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers/>
@@ -155,6 +203,10 @@
     <toolTip>
       <key>ru</key>
       <value>Адреса и подсети CIDR через запятую или с новой строки; пусто - без ограничения</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Адреси й підмережі CIDR через кому або з нового рядка; порожньо - без обмеження</value>
     </toolTip>
     <multiLine>true</multiLine>
     <minValue xsi:type="core:UndefinedValue"/>
@@ -169,6 +221,10 @@
       <key>ru</key>
       <value>Разрешенные Origin</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Дозволені Origin</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers/>
@@ -176,6 +232,10 @@
     <toolTip>
       <key>ru</key>
       <value>Дополнительные значения заголовка Origin через запятую или с новой строки</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Додаткові значення заголовка Origin через кому або з нового рядка</value>
     </toolTip>
     <multiLine>true</multiLine>
     <minValue xsi:type="core:UndefinedValue"/>
@@ -189,6 +249,10 @@
     <synonym>
       <key>ru</key>
       <value>Доступ с</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Доступ з</value>
     </synonym>
     <type>
       <types>Date</types>
@@ -208,6 +272,10 @@
       <key>ru</key>
       <value>Доступ по</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Доступ до</value>
+    </synonym>
     <type>
       <types>Date</types>
       <dateQualifiers>
@@ -226,6 +294,10 @@
       <key>ru</key>
       <value>Строк за вызов</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Рядків за виклик</value>
+    </synonym>
     <type>
       <types>Number</types>
       <numberQualifiers>
@@ -236,6 +308,10 @@
     <toolTip>
       <key>ru</key>
       <value>0 - по профилю; больше профиля не действует</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>0 - за профілем; більше за профіль не діє</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -249,6 +325,10 @@
       <key>ru</key>
       <value>Вызовов в минуту</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Викликів за хвилину</value>
+    </synonym>
     <type>
       <types>Number</types>
       <numberQualifiers>
@@ -259,6 +339,10 @@
     <toolTip>
       <key>ru</key>
       <value>0 - по профилю; больше профиля не действует</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>0 - за профілем; більше за профіль не діє</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -272,6 +356,10 @@
       <key>ru</key>
       <value>Строк в сутки</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Рядків за добу</value>
+    </synonym>
     <type>
       <types>Number</types>
       <numberQualifiers>
@@ -282,6 +370,10 @@
     <toolTip>
       <key>ru</key>
       <value>0 - по профилю; больше профиля не действует</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>0 - за профілем; більше за профіль не діє</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -294,6 +386,10 @@
     <synonym>
       <key>ru</key>
       <value>Комментарий</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Коментар</value>
     </synonym>
     <type>
       <types>String</types>
@@ -316,14 +412,26 @@
       <key>ru</key>
       <value>Значения параметров профиля</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Значення параметрів профілю</value>
+    </synonym>
     <toolTip>
       <key>ru</key>
       <value>Значения параметров профиля для ограничений строк; несколько строк одного параметра - список значений</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Значення параметрів профілю для обмежень рядків; кілька рядків одного параметра - список значень</value>
     </toolTip>
     <attributes uuid="e9ae607e-96e1-48c6-8a38-ae382eca1617">
       <name>Параметр</name>
       <synonym>
         <key>ru</key>
+        <value>Параметр</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
         <value>Параметр</value>
       </synonym>
       <type>
@@ -335,6 +443,10 @@
       <toolTip>
         <key>ru</key>
         <value>Имя параметра с вкладки «Параметры» профиля</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Ім'я параметра з вкладки «Параметри» профілю</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -348,6 +460,10 @@
         <key>ru</key>
         <value>Значение</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Значення</value>
+      </synonym>
       <type>
         <types>String</types>
         <stringQualifiers>
@@ -357,6 +473,10 @@
       <toolTip>
         <key>ru</key>
         <value>Значение в формате JSON, как в аргументах инструментов: {"type": "Справочник.Организации", "ref": "&lt;uuid&gt;"}, {"type": "Перечисление.X", "value": "Имя"}, строка в кавычках, число, true/false, дата "2026-01-31"; массив - несколько значений</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Значення у форматі JSON, як в аргументах інструментів: {"type": "Справочник.Организации", "ref": "&lt;uuid&gt;"}, {"type": "Перечисление.X", "value": "Имя"}, рядок у лапках, число, true/false, дата "2026-01-31"; масив - кілька значень</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>

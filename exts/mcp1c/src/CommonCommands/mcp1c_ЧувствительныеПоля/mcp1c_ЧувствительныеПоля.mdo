@@ -5,11 +5,19 @@
     <key>ru</key>
     <value>Чувствительные поля MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Чутливі поля MCP</value>
+  </synonym>
   <group>ActionsPanelTools</group>
   <commandParameterType/>
   <representation>Auto</representation>
   <toolTip>
     <key>ru</key>
     <value>Кандидаты в чувствительные поля по метаданным конфигурации: ИНН, документы, адреса, телефоны, e-mail, счета</value>
+  </toolTip>
+  <toolTip>
+    <key>uk</key>
+    <value>Кандидати в чутливі поля за метаданими конфігурації: ІПН, документи, адреси, телефони, e-mail, рахунки</value>
   </toolTip>
 </mdclass:CommonCommand>

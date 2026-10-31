@@ -10,6 +10,10 @@
     <key>ru</key>
     <value>Виды пользовательских инструментов (MCP)</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Види користувацьких інструментів (MCP)</value>
+  </synonym>
   <useStandardCommands>true</useStandardCommands>
   <quickChoice>true</quickChoice>
   <choiceMode>BothWays</choiceMode>
@@ -19,6 +23,10 @@
       <key>ru</key>
       <value>Запрос</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Запит</value>
+    </synonym>
     <comment>Текст запроса с параметрами</comment>
   </enumValues>
   <enumValues uuid="fa9cc457-0c0b-4d66-bfae-ae37dc32a99e">
@@ -27,12 +35,20 @@
       <key>ru</key>
       <value>Схема компоновки данных</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Схема компонування даних</value>
+    </synonym>
     <comment>Схема компоновки данных в XML</comment>
   </enumValues>
   <enumValues uuid="3c5b872f-3cef-455a-b5dc-0084875079ef">
     <name>МетодМодуля</name>
     <synonym>
       <key>ru</key>
+      <value>Метод модуля</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
       <value>Метод модуля</value>
     </synonym>
     <comment>Экспортная функция серверного общего модуля (для разработчика)</comment>

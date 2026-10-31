@@ -10,6 +10,10 @@
     <key>ru</key>
     <value>Политики полей (MCP)</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Політики полів (MCP)</value>
+  </synonym>
   <useStandardCommands>true</useStandardCommands>
   <quickChoice>true</quickChoice>
   <choiceMode>BothWays</choiceMode>
@@ -19,12 +23,20 @@
       <key>ru</key>
       <value>Все, кроме запрещенных</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Усі, крім заборонених</value>
+    </synonym>
   </enumValues>
   <enumValues uuid="03b795b6-1a9e-4bf7-9609-c67e9c7bf12a">
     <name>ТолькоРазрешенные</name>
     <synonym>
       <key>ru</key>
       <value>Только разрешенные</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Лише дозволені</value>
     </synonym>
   </enumValues>
 </mdclass:Enum>

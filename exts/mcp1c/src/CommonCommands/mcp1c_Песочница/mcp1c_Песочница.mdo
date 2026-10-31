@@ -5,6 +5,10 @@
     <key>ru</key>
     <value>Песочница MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Пісочниця MCP</value>
+  </synonym>
   <group>FormCommandBarImportant</group>
   <commandParameterType>
     <types>CatalogRef.mcp1c_КлиентыДоступа</types>
@@ -14,5 +18,9 @@
   <toolTip>
     <key>ru</key>
     <value>Вызвать инструмент, ресурс или промпт от имени клиента и увидеть точный ответ модели и примененные правила</value>
+  </toolTip>
+  <toolTip>
+    <key>uk</key>
+    <value>Викликати інструмент, ресурс або промпт від імені клієнта й побачити точну відповідь для моделі та застосовані правила</value>
   </toolTip>
 </mdclass:CommonCommand>

@@ -5,6 +5,10 @@
     <key>ru</key>
     <value>Очистка журнала вызовов MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Очищення журналу викликів MCP</value>
+  </synonym>
   <comment>Удаляет записи журнала вызовов старше срока хранения (п. 8.1 ТЗ)</comment>
   <methodName>CommonModule.mcp1c_Аудит.ОчисткаЖурналаВызовов</methodName>
   <use>true</use>

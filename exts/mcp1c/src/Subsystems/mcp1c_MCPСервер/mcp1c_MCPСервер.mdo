@@ -14,6 +14,10 @@
     <key>ru</key>
     <value>Клиенты, профили и токены доступа AI-клиентов, инструменты и промпты, журнал вызовов</value>
   </explanation>
+  <explanation>
+    <key>uk</key>
+    <value>Клієнти, профілі й токени доступу AI-клієнтів, інструменти і промпти, журнал викликів</value>
+  </explanation>
   <content>CommonForm.mcp1c_РабочееМесто</content>
   <content>Catalog.mcp1c_КлиентыДоступа</content>
   <content>Catalog.mcp1c_ПрофилиДоступа</content>

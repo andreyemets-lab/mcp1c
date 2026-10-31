@@ -14,6 +14,10 @@
     <key>ru</key>
     <value>Настройки MCP-сервера</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Налаштування MCP-сервера</value>
+  </synonym>
   <comment>JSON с настройками сервера (ключ server). Константы в расширениях недоступны в режиме совместимости ниже 8.3.16</comment>
   <useStandardCommands>true</useStandardCommands>
   <editType>InDialog</editType>
@@ -22,11 +26,19 @@
     <key>ru</key>
     <value>Настройки MCP-сервера</value>
   </recordPresentation>
+  <recordPresentation>
+    <key>uk</key>
+    <value>Налаштування MCP-сервера</value>
+  </recordPresentation>
   <resources uuid="d7d59c68-3ff9-4ad2-b257-a2633cf6e45d">
     <name>Значение</name>
     <synonym>
       <key>ru</key>
       <value>Значение</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Значення</value>
     </synonym>
     <type>
       <types>String</types>
@@ -43,6 +55,10 @@
     <name>Ключ</name>
     <synonym>
       <key>ru</key>
+      <value>Ключ</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
       <value>Ключ</value>
     </synonym>
     <type>

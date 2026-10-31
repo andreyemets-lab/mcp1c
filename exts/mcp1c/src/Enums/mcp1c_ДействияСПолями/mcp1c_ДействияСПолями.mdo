@@ -10,6 +10,10 @@
     <key>ru</key>
     <value>Действия с полями (MCP)</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Дії з полями (MCP)</value>
+  </synonym>
   <useStandardCommands>true</useStandardCommands>
   <quickChoice>true</quickChoice>
   <choiceMode>BothWays</choiceMode>
@@ -19,6 +23,10 @@
       <key>ru</key>
       <value>Разрешить</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Дозволити</value>
+    </synonym>
   </enumValues>
   <enumValues uuid="40ad2453-2671-4925-bd27-98b78ac3e7f1">
     <name>Запретить</name>
@@ -26,12 +34,20 @@
       <key>ru</key>
       <value>Запретить</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Заборонити</value>
+    </synonym>
   </enumValues>
   <enumValues uuid="9f5a3cb9-fda5-42ef-8ab3-e99857cf9ec8">
     <name>Маскировать</name>
     <synonym>
       <key>ru</key>
       <value>Маскировать</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Маскувати</value>
     </synonym>
     <comment>Поле видно в замаскированном виде (вид маски - в строке профиля); в отборах, сортировке и группировке не используется</comment>
   </enumValues>
