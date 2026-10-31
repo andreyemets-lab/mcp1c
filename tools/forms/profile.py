@@ -32,7 +32,7 @@ def limit(name: str, title: str) -> Group:
     return Group(
         "Группа" + name,
         obj(name, title=title, width=10, spin_button=True, min_value=0),
-        Label("Подсказка" + name, "", color="SpecialTextColor"),
+        Label("Подсказка" + name, ""),
         group="Horizontal",
     )
 
