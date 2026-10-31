@@ -1141,7 +1141,7 @@
         </dataPath>
         <titleLocation>None</titleLocation>
         <items xsi:type="form:FormField">
-          <name>ТокеныКод</name>
+          <name>ТокеныИдентификатор</name>
           <id>88</id>
           <title>
             <key>ru</key>
@@ -1157,10 +1157,10 @@
             <common>true</common>
           </userVisible>
           <dataPath xsi:type="form:DataPath">
-            <segments>Токены.Код</segments>
+            <segments>Токены.Идентификатор</segments>
           </dataPath>
           <extendedTooltip>
-            <name>ТокеныКодРасширеннаяПодсказка</name>
+            <name>ТокеныИдентификаторРасширеннаяПодсказка</name>
             <id>89</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
@@ -1170,7 +1170,7 @@
             </extInfo>
           </extendedTooltip>
           <contextMenu>
-            <name>ТокеныКодКонтекстноеМеню</name>
+            <name>ТокеныИдентификаторКонтекстноеМеню</name>
             <id>90</id>
             <autoFill>true</autoFill>
           </contextMenu>
@@ -1289,11 +1289,11 @@
           <id>97</id>
           <title>
             <key>ru</key>
-            <value>Видано (UTC)</value>
+            <value>Видано</value>
           </title>
           <title>
             <key>uk</key>
-            <value>Видано (UTC)</value>
+            <value>Видано</value>
           </title>
           <visible>true</visible>
           <enabled>true</enabled>
@@ -1337,11 +1337,11 @@
           <id>100</id>
           <title>
             <key>ru</key>
-            <value>Діє до (UTC)</value>
+            <value>Діє до</value>
           </title>
           <title>
             <key>uk</key>
-            <value>Діє до (UTC)</value>
+            <value>Діє до</value>
           </title>
           <visible>true</visible>
           <enabled>true</enabled>
@@ -1385,11 +1385,11 @@
           <id>103</id>
           <title>
             <key>ru</key>
-            <value>Останнє використання (UTC)</value>
+            <value>Останнє використання</value>
           </title>
           <title>
             <key>uk</key>
-            <value>Останнє використання (UTC)</value>
+            <value>Останнє використання</value>
           </title>
           <visible>true</visible>
           <enabled>true</enabled>
@@ -1577,14 +1577,39 @@
             <placementArea>UserCmds</placementArea>
             <representationInContextMenu>Auto</representationInContextMenu>
           </items>
+          <items xsi:type="form:Button">
+            <name>ТокеныОбновитьТокены</name>
+            <id>117</id>
+            <visible>true</visible>
+            <enabled>true</enabled>
+            <userVisible>
+              <common>true</common>
+            </userVisible>
+            <extendedTooltip>
+              <name>ТокеныОбновитьТокеныРасширеннаяПодсказка</name>
+              <id>118</id>
+              <type>Label</type>
+              <autoMaxWidth>true</autoMaxWidth>
+              <autoMaxHeight>true</autoMaxHeight>
+              <extInfo xsi:type="form:LabelDecorationExtInfo">
+                <horizontalAlign>Left</horizontalAlign>
+              </extInfo>
+            </extendedTooltip>
+            <commandName>Form.Command.ОбновитьТокены</commandName>
+            <representation>Auto</representation>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <placementArea>UserCmds</placementArea>
+            <representationInContextMenu>Auto</representationInContextMenu>
+          </items>
           <horizontalAlign>Left</horizontalAlign>
         </autoCommandBar>
         <searchStringAddition>
           <name>ТокеныСтрокаПоиска</name>
-          <id>117</id>
+          <id>119</id>
           <extendedTooltip>
             <name>ТокеныСтрокаПоискаРасширеннаяПодсказка</name>
-            <id>118</id>
+            <id>120</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -1594,7 +1619,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ТокеныСтрокаПоискаКонтекстноеМеню</name>
-            <id>119</id>
+            <id>121</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <source>Токены</source>
@@ -1604,10 +1629,10 @@
         </searchStringAddition>
         <viewStatusAddition>
           <name>ТокеныСостояниеПросмотра</name>
-          <id>120</id>
+          <id>122</id>
           <extendedTooltip>
             <name>ТокеныСостояниеПросмотраРасширеннаяПодсказка</name>
-            <id>121</id>
+            <id>123</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -1617,7 +1642,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ТокеныСостояниеПросмотраКонтекстноеМеню</name>
-            <id>122</id>
+            <id>124</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>ViewStatusAddition</type>
@@ -1628,10 +1653,10 @@
         </viewStatusAddition>
         <searchControlAddition>
           <name>ТокеныУправлениеПоиском</name>
-          <id>123</id>
+          <id>125</id>
           <extendedTooltip>
             <name>ТокеныУправлениеПоискомРасширеннаяПодсказка</name>
-            <id>124</id>
+            <id>126</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -1641,7 +1666,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ТокеныУправлениеПоискомКонтекстноеМеню</name>
-            <id>125</id>
+            <id>127</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>SearchControlAddition</type>
@@ -1652,7 +1677,7 @@
         </searchControlAddition>
         <extendedTooltip>
           <name>ТокеныРасширеннаяПодсказка</name>
-          <id>126</id>
+          <id>128</id>
           <type>Label</type>
           <autoMaxWidth>true</autoMaxWidth>
           <autoMaxHeight>true</autoMaxHeight>
@@ -1662,7 +1687,7 @@
         </extendedTooltip>
         <contextMenu>
           <name>ТокеныКонтекстноеМеню</name>
-          <id>127</id>
+          <id>129</id>
           <autoFill>true</autoFill>
         </contextMenu>
         <readOnly>true</readOnly>
@@ -1685,16 +1710,7 @@
         <searchStringLocation>None</searchStringLocation>
         <viewStatusLocation>None</viewStatusLocation>
         <searchControlLocation>None</searchControlLocation>
-        <extInfo xsi:type="form:DynamicListTableExtInfo">
-          <autoRefreshPeriod>60</autoRefreshPeriod>
-          <period>
-            <startDate>0001-01-01T00:00:00</startDate>
-            <endDate>0001-01-01T00:00:00</endDate>
-          </period>
-          <topLevelParent xsi:type="core:UndefinedValue"/>
-          <showRoot>true</showRoot>
-          <allowGettingCurrentRowURL>true</allowGettingCurrentRowURL>
-        </extInfo>
+        <rowFilter xsi:type="core:UndefinedValue"/>
       </items>
       <visible>true</visible>
       <enabled>true</enabled>
@@ -1711,7 +1727,7 @@
       </title>
       <extendedTooltip>
         <name>СтраницаТокеныРасширеннаяПодсказка</name>
-        <id>128</id>
+        <id>130</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
@@ -1727,10 +1743,10 @@
     </items>
     <items xsi:type="form:FormGroup">
       <name>СтраницаЖурнал</name>
-      <id>129</id>
+      <id>131</id>
       <items xsi:type="form:Table">
         <name>Журнал</name>
-        <id>130</id>
+        <id>132</id>
         <visible>true</visible>
         <enabled>true</enabled>
         <userVisible>
@@ -1742,7 +1758,7 @@
         <titleLocation>None</titleLocation>
         <items xsi:type="form:FormField">
           <name>ЖурналМомент</name>
-          <id>131</id>
+          <id>133</id>
           <title>
             <key>ru</key>
             <value>Час (UTC)</value>
@@ -1761,7 +1777,7 @@
           </dataPath>
           <extendedTooltip>
             <name>ЖурналМоментРасширеннаяПодсказка</name>
-            <id>132</id>
+            <id>134</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -1771,7 +1787,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналМоментКонтекстноеМеню</name>
-            <id>133</id>
+            <id>135</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>InputField</type>
@@ -1790,7 +1806,7 @@
         </items>
         <items xsi:type="form:FormField">
           <name>ЖурналМетод</name>
-          <id>134</id>
+          <id>136</id>
           <title>
             <key>ru</key>
             <value>Метод</value>
@@ -1809,7 +1825,7 @@
           </dataPath>
           <extendedTooltip>
             <name>ЖурналМетодРасширеннаяПодсказка</name>
-            <id>135</id>
+            <id>137</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -1819,7 +1835,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналМетодКонтекстноеМеню</name>
-            <id>136</id>
+            <id>138</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>InputField</type>
@@ -1838,7 +1854,7 @@
         </items>
         <items xsi:type="form:FormField">
           <name>ЖурналИнструмент</name>
-          <id>137</id>
+          <id>139</id>
           <title>
             <key>ru</key>
             <value>Інструмент або ресурс</value>
@@ -1857,7 +1873,7 @@
           </dataPath>
           <extendedTooltip>
             <name>ЖурналИнструментРасширеннаяПодсказка</name>
-            <id>138</id>
+            <id>140</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -1867,7 +1883,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналИнструментКонтекстноеМеню</name>
-            <id>139</id>
+            <id>141</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>InputField</type>
@@ -1886,7 +1902,7 @@
         </items>
         <items xsi:type="form:FormField">
           <name>ЖурналРезультат</name>
-          <id>140</id>
+          <id>142</id>
           <title>
             <key>ru</key>
             <value>Результат</value>
@@ -1905,7 +1921,7 @@
           </dataPath>
           <extendedTooltip>
             <name>ЖурналРезультатРасширеннаяПодсказка</name>
-            <id>141</id>
+            <id>143</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -1915,7 +1931,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналРезультатКонтекстноеМеню</name>
-            <id>142</id>
+            <id>144</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>InputField</type>
@@ -1934,7 +1950,7 @@
         </items>
         <items xsi:type="form:FormField">
           <name>ЖурналКоличествоСтрок</name>
-          <id>143</id>
+          <id>145</id>
           <title>
             <key>ru</key>
             <value>Рядків</value>
@@ -1953,7 +1969,7 @@
           </dataPath>
           <extendedTooltip>
             <name>ЖурналКоличествоСтрокРасширеннаяПодсказка</name>
-            <id>144</id>
+            <id>146</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -1963,7 +1979,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналКоличествоСтрокКонтекстноеМеню</name>
-            <id>145</id>
+            <id>147</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>InputField</type>
@@ -1982,7 +1998,7 @@
         </items>
         <items xsi:type="form:FormField">
           <name>ЖурналДлительностьМс</name>
-          <id>146</id>
+          <id>148</id>
           <title>
             <key>ru</key>
             <value>Тривалість, мс</value>
@@ -2001,7 +2017,7 @@
           </dataPath>
           <extendedTooltip>
             <name>ЖурналДлительностьМсРасширеннаяПодсказка</name>
-            <id>147</id>
+            <id>149</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -2011,7 +2027,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналДлительностьМсКонтекстноеМеню</name>
-            <id>148</id>
+            <id>150</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>InputField</type>
@@ -2030,7 +2046,7 @@
         </items>
         <items xsi:type="form:FormField">
           <name>ЖурналПричина</name>
-          <id>149</id>
+          <id>151</id>
           <title>
             <key>ru</key>
             <value>Причина</value>
@@ -2049,7 +2065,7 @@
           </dataPath>
           <extendedTooltip>
             <name>ЖурналПричинаРасширеннаяПодсказка</name>
-            <id>150</id>
+            <id>152</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -2059,7 +2075,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналПричинаКонтекстноеМеню</name>
-            <id>151</id>
+            <id>153</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>InputField</type>
@@ -2078,7 +2094,7 @@
         </items>
         <items xsi:type="form:FormField">
           <name>ЖурналАдресКлиента</name>
-          <id>152</id>
+          <id>154</id>
           <title>
             <key>ru</key>
             <value>IP-адреса</value>
@@ -2097,7 +2113,7 @@
           </dataPath>
           <extendedTooltip>
             <name>ЖурналАдресКлиентаРасширеннаяПодсказка</name>
-            <id>153</id>
+            <id>155</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -2107,7 +2123,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналАдресКлиентаКонтекстноеМеню</name>
-            <id>154</id>
+            <id>156</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>InputField</type>
@@ -2126,7 +2142,7 @@
         </items>
         <items xsi:type="form:FormField">
           <name>ЖурналИнформацияКлиента</name>
-          <id>155</id>
+          <id>157</id>
           <title>
             <key>ru</key>
             <value>Програма клієнта</value>
@@ -2145,7 +2161,7 @@
           </dataPath>
           <extendedTooltip>
             <name>ЖурналИнформацияКлиентаРасширеннаяПодсказка</name>
-            <id>156</id>
+            <id>158</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -2155,7 +2171,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналИнформацияКлиентаКонтекстноеМеню</name>
-            <id>157</id>
+            <id>159</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>InputField</type>
@@ -2174,16 +2190,16 @@
         </items>
         <autoCommandBar>
           <name>ЖурналКоманднаяПанель</name>
-          <id>158</id>
+          <id>160</id>
           <horizontalAlign>Left</horizontalAlign>
           <autoFill>true</autoFill>
         </autoCommandBar>
         <searchStringAddition>
           <name>ЖурналСтрокаПоиска</name>
-          <id>159</id>
+          <id>161</id>
           <extendedTooltip>
             <name>ЖурналСтрокаПоискаРасширеннаяПодсказка</name>
-            <id>160</id>
+            <id>162</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -2193,7 +2209,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналСтрокаПоискаКонтекстноеМеню</name>
-            <id>161</id>
+            <id>163</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <source>Журнал</source>
@@ -2203,10 +2219,10 @@
         </searchStringAddition>
         <viewStatusAddition>
           <name>ЖурналСостояниеПросмотра</name>
-          <id>162</id>
+          <id>164</id>
           <extendedTooltip>
             <name>ЖурналСостояниеПросмотраРасширеннаяПодсказка</name>
-            <id>163</id>
+            <id>165</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -2216,7 +2232,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналСостояниеПросмотраКонтекстноеМеню</name>
-            <id>164</id>
+            <id>166</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>ViewStatusAddition</type>
@@ -2227,10 +2243,10 @@
         </viewStatusAddition>
         <searchControlAddition>
           <name>ЖурналУправлениеПоиском</name>
-          <id>165</id>
+          <id>167</id>
           <extendedTooltip>
             <name>ЖурналУправлениеПоискомРасширеннаяПодсказка</name>
-            <id>166</id>
+            <id>168</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -2240,7 +2256,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналУправлениеПоискомКонтекстноеМеню</name>
-            <id>167</id>
+            <id>169</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>SearchControlAddition</type>
@@ -2251,7 +2267,7 @@
         </searchControlAddition>
         <extendedTooltip>
           <name>ЖурналРасширеннаяПодсказка</name>
-          <id>168</id>
+          <id>170</id>
           <type>Label</type>
           <autoMaxWidth>true</autoMaxWidth>
           <autoMaxHeight>true</autoMaxHeight>
@@ -2261,7 +2277,7 @@
         </extendedTooltip>
         <contextMenu>
           <name>ЖурналКонтекстноеМеню</name>
-          <id>169</id>
+          <id>171</id>
           <autoFill>true</autoFill>
         </contextMenu>
         <readOnly>true</readOnly>
@@ -2310,7 +2326,7 @@
       </title>
       <extendedTooltip>
         <name>СтраницаЖурналРасширеннаяПодсказка</name>
-        <id>170</id>
+        <id>172</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
@@ -2331,7 +2347,7 @@
     </userVisible>
     <extendedTooltip>
       <name>СтраницыРасширеннаяПодсказка</name>
-      <id>171</id>
+      <id>173</id>
       <type>Label</type>
       <autoMaxWidth>true</autoMaxWidth>
       <autoMaxHeight>true</autoMaxHeight>
@@ -2354,6 +2370,10 @@
   <handlers>
     <event>OnCreateAtServer</event>
     <name>ПриСозданииНаСервере</name>
+  </handlers>
+  <handlers>
+    <event>NotificationProcessing</event>
+    <name>ОбработкаОповещения</name>
   </handlers>
   <saveWindowSettings>true</saveWindowSettings>
   <autoTitle>true</autoTitle>
@@ -2383,7 +2403,7 @@
     <name>Токены</name>
     <id>2</id>
     <valueType>
-      <types>DynamicList</types>
+      <types>ValueTable</types>
     </valueType>
     <view>
       <common>true</common>
@@ -2391,50 +2411,147 @@
     <edit>
       <common>true</common>
     </edit>
-    <extInfo xsi:type="form:DynamicListExtInfo">
-      <queryText>ВЫБРАТЬ
-	Токены.Ссылка КАК Ссылка,
-	Токены.Код КАК Код,
-	Токены.Наименование КАК Наименование,
-	Токены.ДатаВыпуска КАК ДатаВыпуска,
-	Токены.ДействуетДо КАК ДействуетДо,
-	Токены.Отозван КАК Отозван,
-	Токены.ДатаОтзыва КАК ДатаОтзыва,
-	Токены.ОбластьДоступа КАК ОбластьДоступа,
-	Токены.Автор КАК Автор,
-	Токены.ПометкаУдаления КАК ПометкаУдаления,
-	ВЫБОР
-		КОГДА Токены.Отозван
-			ТОГДА "відкликано"
-		КОГДА Токены.ДействуетДо &lt;= &amp;Сейчас
-			ТОГДА "минув термін"
-		ИНАЧЕ "діє"
-	КОНЕЦ КАК Состояние,
-	Использование.ПоследнееИспользование КАК ПоследнееИспользование
-ИЗ
-	Справочник.mcp1c_ТокеныДоступа КАК Токены
-		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
-			Журнал.ИдентификаторТокена КАК ИдентификаторТокена,
-			МАКСИМУМ(Журнал.Момент) КАК ПоследнееИспользование
-		ИЗ
-			РегистрСведений.mcp1c_ЖурналВызовов КАК Журнал
-		ГДЕ
-			Журнал.Клиент = &amp;Клиент
-			И Журнал.ИдентификаторТокена &lt;&gt; ""
-			И Журнал.Результат &lt;&gt; ЗНАЧЕНИЕ(Перечисление.mcp1c_РезультатыВызовов.ОтказАутентификации)
-
-		СГРУППИРОВАТЬ ПО
-			Журнал.ИдентификаторТокена) КАК Использование
-		ПО Токены.Код = Использование.ИдентификаторТокена
-ГДЕ
-	Токены.Владелец = &amp;Клиент</queryText>
-      <mainTable>Catalog.mcp1c_ТокеныДоступа</mainTable>
-      <dynamicDataRead>true</dynamicDataRead>
-      <autoFillAvailableFields>true</autoFillAvailableFields>
-      <customQuery>true</customQuery>
-      <autoSaveUserSettings>true</autoSaveUserSettings>
-      <getInvisibleFieldPresentations>true</getInvisibleFieldPresentations>
-    </extInfo>
+    <columns>
+      <name>Ссылка</name>
+      <id>1</id>
+      <valueType>
+        <types>CatalogRef.mcp1c_ТокеныДоступа</types>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>Идентификатор</name>
+      <id>2</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers>
+          <length>12</length>
+        </stringQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>Состояние</name>
+      <id>3</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers>
+          <length>50</length>
+        </stringQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>Наименование</name>
+      <id>4</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers>
+          <length>100</length>
+        </stringQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>ДатаВыпуска</name>
+      <id>5</id>
+      <valueType>
+        <types>Date</types>
+        <dateQualifiers>
+          <dateFractions>DateTime</dateFractions>
+        </dateQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>ДействуетДо</name>
+      <id>6</id>
+      <valueType>
+        <types>Date</types>
+        <dateQualifiers>
+          <dateFractions>DateTime</dateFractions>
+        </dateQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>ПоследнееИспользование</name>
+      <id>7</id>
+      <valueType>
+        <types>Date</types>
+        <dateQualifiers>
+          <dateFractions>DateTime</dateFractions>
+        </dateQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>ОбластьДоступа</name>
+      <id>8</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers>
+          <length>1000</length>
+        </stringQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>Автор</name>
+      <id>9</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers>
+          <length>100</length>
+        </stringQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
   </attributes>
   <attributes>
     <name>Журнал</name>
@@ -2536,6 +2653,38 @@
     <currentRowUse>DontUse</currentRowUse>
   </formCommands>
   <formCommands>
+    <name>ОбновитьТокены</name>
+    <title>
+      <key>ru</key>
+      <value>Оновити</value>
+    </title>
+    <title>
+      <key>uk</key>
+      <value>Оновити</value>
+    </title>
+    <id>3</id>
+    <toolTip>
+      <key>ru</key>
+      <value>Оновити список токенів і час останнього використання</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Оновити список токенів і час останнього використання</value>
+    </toolTip>
+    <use>
+      <common>true</common>
+    </use>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.Refresh</picture>
+    </picture>
+    <action xsi:type="form:FormCommandHandlerContainer">
+      <handler>
+        <name>ОбновитьТокены</name>
+      </handler>
+    </action>
+    <currentRowUse>DontUse</currentRowUse>
+  </formCommands>
+  <formCommands>
     <name>СнятьБлокировку</name>
     <title>
       <key>ru</key>
@@ -2545,7 +2694,7 @@
       <key>uk</key>
       <value>Зняти блокування</value>
     </title>
-    <id>3</id>
+    <id>4</id>
     <toolTip>
       <key>ru</key>
       <value>Зняти автоматичне блокування клієнта</value>

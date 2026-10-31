@@ -8,7 +8,7 @@ FORM = Form(
     events={"OnCreateAtServer": "ПриСозданииНаСервере"},
     auto_fill=False,
     buttons=[
-        Button("ФормаВыполнить", "Выполнить", default=True),
+        Button("ФормаВыполнитьВызов", "ВыполнитьВызов", default=True),
         Button("ФормаЗакрыть", "Form.StandardCommand.Close"),
     ],
     items=[
@@ -61,7 +61,7 @@ FORM = Form(
         Attr("Правила", "String"),
     ],
     commands=[
-        Command("Выполнить", "Виконати", "Виконати виклик від імені клієнта: ліміти не витрачаються, у журнал "
+        Command("ВыполнитьВызов", "Виконати", "Виконати виклик від імені клієнта: ліміти не витрачаються, у журнал "
                 "викликів не пишеться"),
     ],
     parameters=[
