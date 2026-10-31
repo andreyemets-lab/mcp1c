@@ -19,7 +19,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 SRC = HERE.parent.parent / "exts" / "mcp1c" / "src"
-FORMS = ["workplace", "token_issue", "client", "sandbox"]
+FORMS = ["workplace", "token_issue", "client", "sandbox", "profile"]
 
 METHOD = re.compile(r"^[ \t]*(?:&\S+[ \t]+)?(?:Процедура|Функция)[ \t]+([^\s(]+)", re.IGNORECASE | re.MULTILINE)
 
