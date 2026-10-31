@@ -27,8 +27,14 @@ def ts(table: str, name: str, title: str | None = None, type: str = "InputField"
     return col(table, name, title, type, path="Объект." + table, **kwargs)
 
 
-def limit(name: str, title: str, hint: str) -> Field:
-    return obj(name, title=title, width=10, spin_button=True, min_value=0, input_hint=hint)
+def limit(name: str, title: str) -> Group:
+    """Ліміт профілю і підказка праворуч: типове й граничне значення (заповнює модуль форми)."""
+    return Group(
+        "Группа" + name,
+        obj(name, title=title, width=10, spin_button=True, min_value=0),
+        Label("Подсказка" + name, "", color="SpecialTextColor"),
+        group="Horizontal",
+    )
 
 
 FORM = Form(
@@ -157,12 +163,12 @@ FORM = Form(
             Page(
                 "СтраницаЛимиты", "Ліміти",
                 Label("ДекорацияЛимиты", LIMITS_HINT, hstretch=True),
-                limit("ЛимитСтрок", "Рядків за виклик", "типово 50, максимум 1000"),
-                limit("ВызововВМинуту", "Викликів за хвилину", "типово 30"),
-                limit("СтрокВСутки", "Рядків за добу", "типово 20 000"),
-                limit("ГлубинаПериодаДней", "Глибина періоду, днів", "типово 366"),
-                limit("РазмерОтветаКБ", "Розмір відповіді, КБ", "типово 100"),
-                limit("ГлубинаРазыменования", "Глибина розіменування", "типово 2"),
+                limit("ЛимитСтрок", "Рядків за виклик"),
+                limit("ВызововВМинуту", "Викликів за хвилину"),
+                limit("СтрокВСутки", "Рядків за добу"),
+                limit("ГлубинаПериодаДней", "Глибина періоду, днів"),
+                limit("РазмерОтветаКБ", "Розмір відповіді, КБ"),
+                limit("ГлубинаРазыменования", "Глибина розіменування"),
                 obj("РазрешитьПомеченныеНаУдаление", type="CheckBoxField", title_location="Right"),
             ),
             representation="TabsOnTop",
