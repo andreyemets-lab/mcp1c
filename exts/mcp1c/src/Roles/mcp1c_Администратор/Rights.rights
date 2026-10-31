@@ -302,6 +302,20 @@
 		</right>
 	</object>
 	<object>
+		<name>CommonForm.mcp1c_ВыпускТокена</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>CommonForm.mcp1c_Песочница</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>CommonCommand.mcp1c_Песочница</name>
 		<right>
 			<name>View</name>

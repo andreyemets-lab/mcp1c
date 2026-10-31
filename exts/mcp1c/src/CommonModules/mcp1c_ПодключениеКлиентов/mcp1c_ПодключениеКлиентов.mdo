@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="25f2edfd-9879-4397-a997-da5a41fd16c2">
+  <name>mcp1c_ПодключениеКлиентов</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: фрагменты подключения клиентов</value>
+  </synonym>
+  <comment>Чистая логика без обращений к данным; покрыта тестами OneScript</comment>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>

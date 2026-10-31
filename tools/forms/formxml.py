@@ -29,7 +29,9 @@ FIELD_EVENTS = {"OnChange"}
 def _text(value: object) -> str:
     if isinstance(value, bool):
         return "true" if value else "false"
-    return str(value).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    text = str(value).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    # Multi-line values (query texts) get the CRLF line ends of the file.
+    return text.replace("\r\n", "\n").replace("\n", "\r\n")
 
 
 class Xml:
@@ -329,7 +331,8 @@ class Field(Item):
                  choice_button: bool | None = None, clear_button: bool | None = None, open_button: bool | None = None,
                  list_choice: bool = False, choice_list: Sequence[tuple[object, str]] = (),
                  input_hint: str | None = None, hyperlink: bool = False, format: str | None = None,
-                 columns_count: int | None = None) -> None:
+                 columns_count: int | None = None, spin_button: bool | None = None,
+                 min_value: int | None = None, max_value: int | None = None) -> None:
         super().__init__(name, title, tooltip, visible, enabled)
         if type not in self.EXT:
             raise ValueError(f"{name}: unknown field type {type}")
@@ -358,6 +361,9 @@ class Field(Item):
         self.hyperlink = hyperlink
         self.format = format
         self.columns_count = columns_count
+        self.spin_button = spin_button
+        self.min_value = min_value
+        self.max_value = max_value
 
     def handlers(self) -> list[str]:
         return list(self.events.values())
@@ -421,13 +427,20 @@ class Field(Item):
             x.leaf("passwordMode", self.password)
             x.leaf("multiLine", self.multiline)
             x.leaf("choiceButton", self.choice_button)
+            x.leaf("spinButton", self.spin_button)
             x.leaf("clearButton", self.clear_button)
             x.leaf("openButton", self.open_button)
             x.leaf("listChoiceMode", self.list_choice)
             x.leaf("chooseType", True)
             x.leaf("typeDomainEnabled", True)
             x.leaf("textEdit", True)
+            for tag, value in (("minValue", self.min_value), ("maxValue", self.max_value)):
+                if value is not None:
+                    x.open(tag, "core:NumberValue")
+                    x.leaf("value", value)
+                    x.close(tag)
             self._choice_list(x)
+            x.mls("format", self.format)
             x.mls("inputHint", self.input_hint)
         elif self.type == "LabelField":
             x.leaf("hyperlink", self.hyperlink)
@@ -662,7 +675,7 @@ class CommandBar(_Container):
 
 
 class Table(Item):
-    """Table bound to a value table or value tree attribute (path = attribute name).
+    """Table bound to a value table, value tree, tabular section or dynamic list (dynamic=True) attribute.
 
     columns: Field items with paths "<path>.<column>". buttons: command bar buttons; command_bar=False hides
     the bar. events: Selection, OnActivateRow, BeforeAddRow, BeforeDeleteRow, OnChange, ..."""
@@ -674,7 +687,7 @@ class Table(Item):
                  selection: str = "SingleRow", tree: bool = False, initial_tree_view: str | None = None,
                  lines: bool = True, alternation: bool = False, hstretch: bool = True, vstretch: bool = True,
                  change_row_set: bool = False, change_row_order: bool = False,
-                 excluded_commands: Sequence[str] = (), auto_insert: bool = False) -> None:
+                 excluded_commands: Sequence[str] = (), auto_insert: bool = False, dynamic: bool = False) -> None:
         super().__init__(name, title, None, visible, enabled)
         self.path = path
         self.columns = list(columns)
@@ -699,6 +712,7 @@ class Table(Item):
         self.change_row_order = change_row_order
         self.excluded_commands = list(excluded_commands)
         self.auto_insert = auto_insert
+        self.dynamic = dynamic
 
     def children(self) -> list[Item]:
         return [*self.columns, *self.buttons]
@@ -775,7 +789,21 @@ class Table(Item):
         x.leaf("searchStringLocation", "None")
         x.leaf("viewStatusLocation", "None")
         x.leaf("searchControlLocation", "None")
-        x.empty("rowFilter", "core:UndefinedValue")
+        if not self.dynamic:
+            x.empty("rowFilter", "core:UndefinedValue")
+            x.close("items")
+            return
+        # Dynamic list: refresh period, an empty period filter and the list root.
+        x.open("extInfo", "form:DynamicListTableExtInfo")
+        x.leaf("autoRefreshPeriod", 60)
+        x.open("period")
+        x.leaf("startDate", "0001-01-01T00:00:00")
+        x.leaf("endDate", "0001-01-01T00:00:00")
+        x.close("period")
+        x.empty("topLevelParent", "core:UndefinedValue")
+        x.leaf("showRoot", True)
+        x.leaf("allowGettingCurrentRowURL", True)
+        x.close("extInfo")
         x.close("items")
 
 

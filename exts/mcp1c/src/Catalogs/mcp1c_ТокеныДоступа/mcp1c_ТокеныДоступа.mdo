@@ -199,7 +199,7 @@
     <dataHistory>DontUse</dataHistory>
   </attributes>
   <attributes uuid="ec465257-807f-4121-9774-6e4b8d2c698b">
-    <name>Область</name>
+    <name>ОбластьДоступа</name>
     <synonym>
       <key>ru</key>
       <value>Область</value>
@@ -211,16 +211,16 @@
     <type>
       <types>String</types>
       <stringQualifiers>
-        <length>100</length>
+        <length>1000</length>
       </stringQualifiers>
     </type>
     <toolTip>
       <key>ru</key>
-      <value>Пусто - все возможности профиля</value>
+      <value>Инструменты, которыми ограничен токен, через запятую; пусто - все возможности профиля</value>
     </toolTip>
     <toolTip>
       <key>uk</key>
-      <value>Порожньо - усі можливості профілю</value>
+      <value>Інструменти, якими обмежено токен, через кому; порожньо - усі можливості профілю</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
