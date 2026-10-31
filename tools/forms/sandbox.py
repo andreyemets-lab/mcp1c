@@ -66,5 +66,6 @@ FORM = Form(
     ],
     parameters=[
         Param("Клиент", "CatalogRef.mcp1c_КлиентыДоступа"),
+        Param("Инструмент", "String(64)"),
     ],
 )

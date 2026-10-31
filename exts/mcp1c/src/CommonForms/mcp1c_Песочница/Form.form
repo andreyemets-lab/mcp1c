@@ -862,6 +862,15 @@
       <types>CatalogRef.mcp1c_КлиентыДоступа</types>
     </valueType>
   </parameters>
+  <parameters>
+    <name>Инструмент</name>
+    <valueType>
+      <types>String</types>
+      <stringQualifiers>
+        <length>64</length>
+      </stringQualifiers>
+    </valueType>
+  </parameters>
   <commandInterface>
     <navigationPanel/>
     <commandBar/>
