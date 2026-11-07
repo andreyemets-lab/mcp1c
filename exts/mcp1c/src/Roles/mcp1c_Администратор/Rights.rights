@@ -295,7 +295,7 @@
 		</right>
 	</object>
 	<object>
-		<name>CommonCommand.mcp1c_СостояниеСервера</name>
+		<name>CommonForm.mcp1c_РабочееМесто</name>
 		<right>
 			<name>View</name>
 			<value>true</value>

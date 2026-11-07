@@ -5,6 +5,7 @@
 *.mdo     text eol=crlf
 *.rights  text eol=crlf
 *.form    text eol=crlf
+*.cmi     text eol=crlf
 *.dcs     text eol=crlf
 *.mxlx    text eol=crlf
 *.schedule text eol=crlf

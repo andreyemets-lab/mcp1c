@@ -49,6 +49,7 @@
   <commonModules>CommonModule.mcp1c_Маскирование</commonModules>
   <commonModules>CommonModule.mcp1c_Метаданные</commonModules>
   <commonModules>CommonModule.mcp1c_МетодыMCP</commonModules>
+  <commonModules>CommonModule.mcp1c_Мониторинг</commonModules>
   <commonModules>CommonModule.mcp1c_Настройки</commonModules>
   <commonModules>CommonModule.mcp1c_ОбменНастройками</commonModules>
   <commonModules>CommonModule.mcp1c_ОписанияИнструментов</commonModules>
@@ -63,6 +64,7 @@
   <commonModules>CommonModule.mcp1c_Сериализация</commonModules>
   <commonModules>CommonModule.mcp1c_Сеть</commonModules>
   <commonModules>CommonModule.mcp1c_Служебный</commonModules>
+  <commonModules>CommonModule.mcp1c_Статистика</commonModules>
   <commonModules>CommonModule.mcp1c_СхемаJSON</commonModules>
   <commonModules>CommonModule.mcp1c_ФорматОбмена</commonModules>
   <commonModules>CommonModule.mcp1c_ЧувствительныеДанные</commonModules>
@@ -74,8 +76,8 @@
   <commonCommands>CommonCommand.mcp1c_ЗагрузитьНастройки</commonCommands>
   <commonCommands>CommonCommand.mcp1c_ОтозватьТокен</commonCommands>
   <commonCommands>CommonCommand.mcp1c_Песочница</commonCommands>
-  <commonCommands>CommonCommand.mcp1c_СостояниеСервера</commonCommands>
   <commonCommands>CommonCommand.mcp1c_ЧувствительныеПоля</commonCommands>
+  <commonForms>CommonForm.mcp1c_РабочееМесто</commonForms>
   <catalogs>Catalog.mcp1c_КлиентыДоступа</catalogs>
   <catalogs>Catalog.mcp1c_ПользовательскиеИнструменты</catalogs>
   <catalogs>Catalog.mcp1c_Промпты</catalogs>
