@@ -189,6 +189,20 @@ class Checker:
             for required in ("Form.form", "Module.bsl"):
                 if not (self.src / folder / name / required).is_file():
                     self.error(f"{self.rel(self.src / folder / name / required)}: missing")
+        forms = {form.findtext("name") for form in root.findall("forms")}
+        for form in sorted(forms):
+            for required in ("Form.form", "Module.bsl"):
+                if not (self.src / folder / name / "Forms" / form / required).is_file():
+                    self.error(f"{self.rel(self.src / folder / name / 'Forms' / form / required)}: missing")
+        forms_dir = self.src / folder / name / "Forms"
+        if forms_dir.is_dir():
+            for child in sorted(forms_dir.iterdir()):
+                if child.is_dir() and child.name not in forms:
+                    self.error(f"{self.rel(child)}: form is not listed in {name}.mdo <forms>")
+        for tag in ("defaultObjectForm", "defaultListForm", "defaultChoiceForm"):
+            default = root.findtext(tag)
+            if default and default.split(".")[-1] not in forms:
+                self.error(f"{self.rel(mdo)}: <{tag}> {default} is not a form of the object")
 
     # --- Roles ---------------------------------------------------------------
     def http_methods(self) -> set[str]:

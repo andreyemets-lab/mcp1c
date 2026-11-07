@@ -58,6 +58,7 @@
   <commonModules>CommonModule.mcp1c_ОбменНастройками</commonModules>
   <commonModules>CommonModule.mcp1c_ОписанияИнструментов</commonModules>
   <commonModules>CommonModule.mcp1c_ОписанияРесурсов</commonModules>
+  <commonModules>CommonModule.mcp1c_ПодключениеКлиентов</commonModules>
   <commonModules>CommonModule.mcp1c_Песочница</commonModules>
   <commonModules>CommonModule.mcp1c_Политики</commonModules>
   <commonModules>CommonModule.mcp1c_ПользовательскиеИнструменты</commonModules>
@@ -81,6 +82,8 @@
   <commonCommands>CommonCommand.mcp1c_ОтозватьТокен</commonCommands>
   <commonCommands>CommonCommand.mcp1c_Песочница</commonCommands>
   <commonCommands>CommonCommand.mcp1c_ЧувствительныеПоля</commonCommands>
+  <commonForms>CommonForm.mcp1c_ВыпускТокена</commonForms>
+  <commonForms>CommonForm.mcp1c_Песочница</commonForms>
   <commonForms>CommonForm.mcp1c_РабочееМесто</commonForms>
   <catalogs>Catalog.mcp1c_КлиентыДоступа</catalogs>
   <catalogs>Catalog.mcp1c_ПользовательскиеИнструменты</catalogs>

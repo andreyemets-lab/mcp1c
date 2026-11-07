@@ -50,6 +50,7 @@
   <defaultPresentation>AsDescription</defaultPresentation>
   <editType>InDialog</editType>
   <choiceMode>BothWays</choiceMode>
+  <defaultObjectForm>Catalog.mcp1c_КлиентыДоступа.Form.ФормаЭлемента</defaultObjectForm>
   <attributes uuid="6bbb5bc9-d69c-4704-8b96-f71fc5b3ea2a">
     <name>Профиль</name>
     <synonym>
@@ -485,4 +486,17 @@
       <dataHistory>DontUse</dataHistory>
     </attributes>
   </tabularSections>
+  <forms uuid="522eb7b3-b69e-4759-943b-8cf0987bd04e">
+    <name>ФормаЭлемента</name>
+    <synonym>
+      <key>ru</key>
+      <value>Форма элемента</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Форма елемента</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
 </mdclass:Catalog>
