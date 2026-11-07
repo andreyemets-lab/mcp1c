@@ -2,12 +2,19 @@
 """Static checks for the mcp1c EDT extension project (no 1C platform needed).
 
 Checks:
-  * every .mdo / .rights / .project file is well-formed XML;
+  * every .mdo / .rights / .form / .cmi / .project file is well-formed XML;
+  * user texts (synonyms, tooltips, form titles) have a "uk" value next to "ru": a session in Ukrainian
+    (BAS) does not fall back to "ru" and shows object or item names instead;
   * every object referenced in Configuration.mdo has a folder and an .mdo with the same name,
     and every object folder is referenced in Configuration.mdo;
   * own objects use the extension name prefix;
   * identifiers (uuid, typeId, valueTypeId, objectId) are well-formed and unique;
   * common modules and HTTP services have Module.bsl; HTTP handlers exist in the module;
+  * role rights refer to existing objects, and the service role (<prefix>Сервис, the only role of
+    the publication's technical user) may use every HTTP service method;
+  * managed forms (Form.form): unique item names and ids, data paths point to form attributes and their
+    columns, buttons point to form commands, event and command handlers exist in the form module;
+  * subsystem command interfaces (CommandInterface.cmi) refer to existing objects;
   * BSL block keywords are balanced (Функция/КонецФункции, Если/КонецЕсли, ...);
   * calls like mcp1c_Module.Method( point to an existing exported method.
 
@@ -32,11 +39,14 @@ COLLECTIONS = {
     "informationRegisters": ("InformationRegister", "InformationRegisters"),
     "dataProcessors": ("DataProcessor", "DataProcessors"),
     "commonForms": ("CommonForm", "CommonForms"),
+    "commonCommands": ("CommonCommand", "CommonCommands"),
     "commonTemplates": ("CommonTemplate", "CommonTemplates"),
     "enums": ("Enum", "Enums"),
 }
 
 ID_ATTRS = ("uuid", "typeId", "valueTypeId", "objectId")
+ROLES_NS = "{http://v8.1c.ru/8.2/roles}"
+SERVICE_ROLE = "Сервис"  # suffix after the name prefix
 UUID_RE = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
 
 # (opening keyword, closing keyword); counted as whole words outside strings and comments.
@@ -60,6 +70,7 @@ class Checker:
         self.src = project / "src"
         self.errors: list[str] = []
         self.prefix = ""
+        self.objects: set[str] = set()  # "Catalog.mcp1c_X" for every object in Configuration.mdo
 
     def error(self, message: str) -> None:
         self.errors.append(message)
@@ -82,11 +93,13 @@ class Checker:
     def check_xml_files(self) -> None:
         """Parses every XML file once and checks that identifiers are unique."""
         seen: dict[str, str] = {}
-        for pattern in ("*.mdo", "*.rights", ".project"):
+        for pattern in ("*.mdo", "*.rights", "*.form", "*.cmi", ".project"):
             for path in sorted(self.project.rglob(pattern)):
                 root = self.parse(path)
                 if root is None:
                     continue
+                if path.suffix in (".mdo", ".form"):
+                    self.check_languages(path, root)
                 for element in root.iter():
                     for attr in ID_ATTRS:
                         value = element.get(attr)
@@ -99,6 +112,22 @@ class Checker:
                             self.error(f"{where}: identifier {value} duplicates {seen[value]}")
                         else:
                             seen[value] = where
+
+    def check_languages(self, path: Path, root: ET.Element) -> None:
+        """Every multilingual string with a "ru" value also has a "uk" value. Synonyms of common modules and
+        HTTP services are seen only in the designer and are not checked."""
+        if path.parent.parent.name in ("CommonModules", "HTTPServices"):
+            return
+        for element in root.iter():
+            keys: dict[str, set[str]] = {}
+            for child in element:
+                key = child.findtext("key")
+                if key is not None and child.find("value") is not None:
+                    keys.setdefault(child.tag, set()).add(key)
+            for tag, found in keys.items():
+                if "ru" in found and "uk" not in found:
+                    owner = element.findtext("name") or element.tag.split("}")[-1]
+                    self.error(f"{self.rel(path)}: <{tag}> of {owner} has no uk value")
 
     # --- Configuration -------------------------------------------------------
     def check_configuration(self) -> None:
@@ -120,6 +149,7 @@ class Checker:
                     continue
                 name = text[len(ref_prefix) + 1 :]
                 referenced.add((folder, name))
+                self.objects.add(text)
                 self.check_object(folder, name)
 
         for tag, (_, folder) in COLLECTIONS.items():
@@ -155,6 +185,132 @@ class Checker:
                     self.error(f"{self.rel(module)}: handler {handler.text} is not defined")
         if folder == "Roles" and not (self.src / folder / name / "Rights.rights").is_file():
             self.error(f"{self.rel(self.src / folder / name)}: Rights.rights missing")
+        if folder == "CommonForms":
+            for required in ("Form.form", "Module.bsl"):
+                if not (self.src / folder / name / required).is_file():
+                    self.error(f"{self.rel(self.src / folder / name / required)}: missing")
+        forms = {form.findtext("name") for form in root.findall("forms")}
+        for form in sorted(forms):
+            for required in ("Form.form", "Module.bsl"):
+                if not (self.src / folder / name / "Forms" / form / required).is_file():
+                    self.error(f"{self.rel(self.src / folder / name / 'Forms' / form / required)}: missing")
+        forms_dir = self.src / folder / name / "Forms"
+        if forms_dir.is_dir():
+            for child in sorted(forms_dir.iterdir()):
+                if child.is_dir() and child.name not in forms:
+                    self.error(f"{self.rel(child)}: form is not listed in {name}.mdo <forms>")
+        for tag in ("defaultObjectForm", "defaultListForm", "defaultChoiceForm"):
+            default = root.findtext(tag)
+            if default and default.split(".")[-1] not in forms:
+                self.error(f"{self.rel(mdo)}: <{tag}> {default} is not a form of the object")
+
+    # --- Roles ---------------------------------------------------------------
+    def http_methods(self) -> set[str]:
+        """Rights object names of all HTTP service methods: HTTPService.S.URLTemplate.T.Method.M."""
+        methods: set[str] = set()
+        for mdo in sorted((self.src / "HTTPServices").glob("*/*.mdo")):
+            root = self.parse(mdo)
+            if root is None:
+                continue
+            service = root.findtext("name")
+            for template in root.findall("urlTemplates"):
+                for method in template.findall("methods"):
+                    methods.add(
+                        f"HTTPService.{service}.URLTemplate.{template.findtext('name')}.Method.{method.findtext('name')}"
+                    )
+        return methods
+
+    def check_roles(self) -> None:
+        methods = self.http_methods()
+        for path in sorted((self.src / "Roles").glob("*/Rights.rights")):
+            root = self.parse(path)
+            if root is None:
+                continue
+            used: set[str] = set()
+            for element in root.findall(ROLES_NS + "object"):
+                name = element.findtext(ROLES_NS + "name") or ""
+                parts = name.split(".")
+                if parts[0] == "Configuration":
+                    pass
+                elif ".".join(parts[:2]) not in self.objects:
+                    self.error(f"{self.rel(path)}: rights for unknown object {name}")
+                elif parts[0] == "HTTPService" and name not in methods:
+                    self.error(f"{self.rel(path)}: rights for unknown HTTP service method {name}")
+                for right in element.findall(ROLES_NS + "right"):
+                    if right.findtext(ROLES_NS + "name") == "Use" and right.findtext(ROLES_NS + "value") == "true":
+                        used.add(name)
+            # Without the Use right the platform answers 403 before the service module runs.
+            if path.parent.name == self.prefix + SERVICE_ROLE:
+                for name in sorted(methods - used):
+                    self.error(f"{self.rel(path)}: service role has no Use right for {name}")
+
+    # --- Forms ---------------------------------------------------------------
+    def check_forms(self) -> None:
+        for path in sorted(self.src.rglob("Form.form")):
+            root = self.parse(path)
+            if root is not None:
+                self.check_form(path, root)
+
+    def check_form(self, path: Path, root: ET.Element) -> None:
+        where = self.rel(path)
+        names: set[str] = set()
+        ids: set[str] = set()
+        # Items, their extended tooltips, context menus, command bars and table additions share one id space.
+        for element in root.iter():
+            tag = element.tag
+            if tag not in ("items", "extendedTooltip", "contextMenu", "autoCommandBar", "searchStringAddition",
+                           "viewStatusAddition", "searchControlAddition"):
+                continue
+            name, ident = element.findtext("name"), element.findtext("id")
+            if name is None or ident is None:
+                continue
+            if name in names:
+                self.error(f"{where}: item name {name} is used twice")
+            names.add(name)
+            if ident != "-1":
+                if ident in ids:
+                    self.error(f"{where}: item id {ident} is used twice ({name})")
+                ids.add(ident)
+
+        attributes: dict[str, set[str]] = {}
+        for attribute in root.findall("attributes"):
+            attributes[attribute.findtext("name") or ""] = {c.findtext("name") or "" for c in attribute.findall("columns")}
+        for data_path in root.iter("dataPath"):
+            segments = (data_path.findtext("segments") or "").split(".")
+            if segments[0] not in attributes:
+                self.error(f"{where}: data path {'.'.join(segments)} - no form attribute {segments[0]}")
+            elif len(segments) > 1 and attributes[segments[0]] and segments[1] not in attributes[segments[0]]:
+                self.error(f"{where}: data path {'.'.join(segments)} - attribute has no column {segments[1]}")
+
+        commands = {command.findtext("name") for command in root.findall("formCommands")}
+        for command in root.iter("commandName"):
+            text = command.text or ""
+            if text.startswith("Form.Command.") and text[len("Form.Command."):] not in commands:
+                self.error(f"{where}: button refers to unknown form command {text}")
+
+        module = path.parent / "Module.bsl"
+        defined = set()
+        if module.is_file():
+            defined = {m.group(2) for m in METHOD_DEF.finditer(self.strip_code(module.read_text(encoding="utf-8")))}
+        handlers = [h.findtext("name") for h in root.iter("handlers")]
+        handlers += [h.findtext("name") for h in root.iter("handler")]
+        for handler in handlers:
+            if handler and handler not in defined:
+                self.error(f"{self.rel(module)}: form handler {handler} is not defined")
+
+    def check_command_interfaces(self) -> None:
+        for path in sorted(self.src.rglob("CommandInterface.cmi")):
+            root = self.parse(path)
+            if root is None:
+                continue
+            for element in root.iter():
+                if element.tag not in ("command", "commands") or not element.text:
+                    continue
+                # "CommonForm.X.StandardCommand.Open", "Catalog.X.StandardCommand.OpenList", "CommonCommand.X"
+                parts = element.text.split(".")
+                owner = ".".join(parts[:2])
+                if len(parts) >= 2 and parts[1].startswith(self.prefix) and owner not in self.objects:
+                    self.error(f"{self.rel(path)}: command {element.text} - unknown object {owner}")
 
     # --- BSL -----------------------------------------------------------------
     @staticmethod
@@ -237,6 +393,9 @@ class Checker:
 
     def run(self) -> int:
         self.check_configuration()
+        self.check_roles()
+        self.check_forms()
+        self.check_command_interfaces()
         self.check_xml_files()
         self.check_bsl()
         for message in self.errors:

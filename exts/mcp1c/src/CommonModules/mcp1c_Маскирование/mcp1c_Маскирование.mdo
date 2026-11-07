@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="5844b9f1-e2f2-46f4-acdf-4e0ca0b13bed">
+  <name>mcp1c_Маскирование</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: маскирование значений</value>
+  </synonym>
+  <comment>Чистая логика без обращений к данным; покрыта тестами OneScript</comment>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>

@@ -10,6 +10,10 @@
     <key>ru</key>
     <value>Типы клиентов доступа (MCP)</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Типи клієнтів доступу (MCP)</value>
+  </synonym>
   <useStandardCommands>true</useStandardCommands>
   <quickChoice>true</quickChoice>
   <choiceMode>BothWays</choiceMode>
@@ -19,11 +23,19 @@
       <key>ru</key>
       <value>Человек</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Людина</value>
+    </synonym>
   </enumValues>
   <enumValues uuid="4737e609-edd5-496b-b4c5-9919faf99cde">
     <name>Агент</name>
     <synonym>
       <key>ru</key>
+      <value>AI-агент</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
       <value>AI-агент</value>
     </synonym>
   </enumValues>
@@ -32,6 +44,10 @@
     <synonym>
       <key>ru</key>
       <value>Сервис</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Сервіс</value>
     </synonym>
   </enumValues>
 </mdclass:Enum>

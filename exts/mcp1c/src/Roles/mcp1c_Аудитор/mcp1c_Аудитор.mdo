@@ -5,5 +5,9 @@
     <key>ru</key>
     <value>MCP: аудитор</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>MCP: аудитор</value>
+  </synonym>
   <comment>Просмотр журнала, клиентов и профилей без изменений и без выпуска токенов</comment>
 </mdclass:Role>

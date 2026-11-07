@@ -14,6 +14,10 @@
     <key>ru</key>
     <value>Журнал вызовов MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Журнал викликів MCP</value>
+  </synonym>
   <comment>Аудит каждого вызова, включая отказы (п. 8.1 ТЗ); пишется только сервером</comment>
   <useStandardCommands>true</useStandardCommands>
   <editType>InDialog</editType>
@@ -22,11 +26,19 @@
     <key>ru</key>
     <value>Вызов MCP</value>
   </recordPresentation>
+  <recordPresentation>
+    <key>uk</key>
+    <value>Виклик MCP</value>
+  </recordPresentation>
   <resources uuid="3e400e30-db26-4aec-9113-2a845d4598b6">
     <name>КоличествоСтрок</name>
     <synonym>
       <key>ru</key>
       <value>Количество строк</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Кількість рядків</value>
     </synonym>
     <type>
       <types>Number</types>
@@ -47,6 +59,10 @@
       <key>ru</key>
       <value>Размер ответа</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Розмір відповіді</value>
+    </synonym>
     <type>
       <types>Number</types>
       <numberQualifiers>
@@ -65,6 +81,10 @@
     <synonym>
       <key>ru</key>
       <value>Длительность, мс</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Тривалість, мс</value>
     </synonym>
     <type>
       <types>Number</types>
@@ -85,6 +105,10 @@
       <key>ru</key>
       <value>Клиент</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Клієнт</value>
+    </synonym>
     <type>
       <types>CatalogRef.mcp1c_КлиентыДоступа</types>
     </type>
@@ -100,6 +124,10 @@
     <synonym>
       <key>ru</key>
       <value>Идентификатор токена</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Ідентифікатор токена</value>
     </synonym>
     <type>
       <types>String</types>
@@ -120,6 +148,10 @@
       <key>ru</key>
       <value>IP-адрес</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>IP-адреса</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -139,6 +171,10 @@
       <key>ru</key>
       <value>Программа клиента</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Програма клієнта</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -157,6 +193,10 @@
       <key>ru</key>
       <value>Версия протокола</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Версія протоколу</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -173,6 +213,10 @@
     <name>Метод</name>
     <synonym>
       <key>ru</key>
+      <value>Метод</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
       <value>Метод</value>
     </synonym>
     <type>
@@ -193,6 +237,10 @@
       <key>ru</key>
       <value>Инструмент</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Інструмент</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -211,6 +259,10 @@
       <key>ru</key>
       <value>Аргументы</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Аргументи</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers/>
@@ -227,6 +279,10 @@
     <synonym>
       <key>ru</key>
       <value>Объекты</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Об'єкти</value>
     </synonym>
     <type>
       <types>String</types>
@@ -246,6 +302,10 @@
       <key>ru</key>
       <value>Результат</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Результат</value>
+    </synonym>
     <type>
       <types>EnumRef.mcp1c_РезультатыВызовов</types>
     </type>
@@ -259,6 +319,10 @@
     <name>КодСостояния</name>
     <synonym>
       <key>ru</key>
+      <value>Код HTTP</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
       <value>Код HTTP</value>
     </synonym>
     <type>
@@ -280,6 +344,10 @@
       <key>ru</key>
       <value>Код ошибки</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Код помилки</value>
+    </synonym>
     <type>
       <types>Number</types>
       <numberQualifiers>
@@ -296,6 +364,10 @@
     <name>Причина</name>
     <synonym>
       <key>ru</key>
+      <value>Причина</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
       <value>Причина</value>
     </synonym>
     <type>
@@ -316,6 +388,10 @@
       <key>ru</key>
       <value>Момент (UTC)</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Момент (UTC)</value>
+    </synonym>
     <type>
       <types>Date</types>
       <dateQualifiers>
@@ -334,6 +410,10 @@
     <synonym>
       <key>ru</key>
       <value>Идентификатор запроса</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Ідентифікатор запиту</value>
     </synonym>
     <type>
       <types>String</types>

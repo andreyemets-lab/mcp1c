@@ -5,6 +5,10 @@
     <key>ru</key>
     <value>Отозвать токен</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Відкликати токен</value>
+  </synonym>
   <group>FormCommandBarImportant</group>
   <commandParameterType>
     <types>CatalogRef.mcp1c_ТокеныДоступа</types>
@@ -14,5 +18,9 @@
   <toolTip>
     <key>ru</key>
     <value>Отозвать токен с немедленным действием</value>
+  </toolTip>
+  <toolTip>
+    <key>uk</key>
+    <value>Відкликати токен; діє з наступного запиту</value>
   </toolTip>
 </mdclass:CommonCommand>

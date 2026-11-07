@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="461a53fb-d94e-4970-9981-aaf6c67aa960">
+  <name>mcp1c_ЧувствительныеДанные</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: чувствительные данные</value>
+  </synonym>
+  <comment>Чистая логика без обращений к данным; покрыта тестами OneScript</comment>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonForm xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="0de94475-018d-402d-9258-2ed7b56adce9">
+  <name>mcp1c_Песочница</name>
+  <synonym>
+    <key>ru</key>
+    <value>Песочница MCP</value>
+  </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Пісочниця MCP</value>
+  </synonym>
+  <comment>Вызов от имени клиента доступа: точный ответ модели и примененные правила (п. 9.2 ТЗ)</comment>
+  <usePurposes>PersonalComputer</usePurposes>
+  <usePurposes>MobileDevice</usePurposes>
+</mdclass:CommonForm>

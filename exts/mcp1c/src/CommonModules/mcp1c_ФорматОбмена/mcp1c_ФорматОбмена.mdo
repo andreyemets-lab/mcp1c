@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="f5ea3cdb-b50d-46d7-a853-23b37aad941c">
+  <name>mcp1c_ФорматОбмена</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: формат выгрузки настроек</value>
+  </synonym>
+  <comment>Чистая логика без обращений к данным; покрыта тестами OneScript</comment>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>

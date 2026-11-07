@@ -12,6 +12,10 @@
     <key>ru</key>
     <value>Профили доступа MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Профілі доступу MCP</value>
+  </synonym>
   <comment>Что получает клиент: инструменты, объекты, поля, ограничения строк, лимиты (п. 7.3 ТЗ)</comment>
   <useStandardCommands>true</useStandardCommands>
   <inputByString>Catalog.mcp1c_ПрофилиДоступа.StandardAttribute.Description</inputByString>
@@ -23,9 +27,17 @@
     <key>ru</key>
     <value>Профиль доступа MCP</value>
   </objectPresentation>
+  <objectPresentation>
+    <key>uk</key>
+    <value>Профіль доступу MCP</value>
+  </objectPresentation>
   <listPresentation>
     <key>ru</key>
     <value>Профили доступа MCP</value>
+  </listPresentation>
+  <listPresentation>
+    <key>uk</key>
+    <value>Профілі доступу MCP</value>
   </listPresentation>
   <levelCount>2</levelCount>
   <foldersOnTop>true</foldersOnTop>
@@ -38,11 +50,16 @@
   <defaultPresentation>AsDescription</defaultPresentation>
   <editType>InDialog</editType>
   <choiceMode>BothWays</choiceMode>
+  <defaultObjectForm>Catalog.mcp1c_ПрофилиДоступа.Form.ФормаЭлемента</defaultObjectForm>
   <attributes uuid="52aef349-82ab-4d57-96e5-b54aa3858eb1">
     <name>Описание</name>
     <synonym>
       <key>ru</key>
       <value>Описание</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Опис</value>
     </synonym>
     <type>
       <types>String</types>
@@ -61,6 +78,10 @@
       <key>ru</key>
       <value>Версия</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Версія</value>
+    </synonym>
     <type>
       <types>Number</types>
       <numberQualifiers>
@@ -71,6 +92,10 @@
     <toolTip>
       <key>ru</key>
       <value>Увеличивается при каждой записи профиля</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Збільшується під час кожного запису профілю</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -84,6 +109,10 @@
       <key>ru</key>
       <value>Строк за вызов</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Рядків за виклик</value>
+    </synonym>
     <type>
       <types>Number</types>
       <numberQualifiers>
@@ -94,6 +123,10 @@
     <toolTip>
       <key>ru</key>
       <value>Максимум строк в ответе одного инструмента (не более 1000)</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Максимум рядків у відповіді одного інструмента (не більше 1000)</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -108,6 +141,10 @@
     <synonym>
       <key>ru</key>
       <value>Вызовов в минуту</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Викликів за хвилину</value>
     </synonym>
     <type>
       <types>Number</types>
@@ -130,6 +167,10 @@
       <key>ru</key>
       <value>Строк в сутки</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Рядків за добу</value>
+    </synonym>
     <type>
       <types>Number</types>
       <numberQualifiers>
@@ -151,6 +192,10 @@
       <key>ru</key>
       <value>Глубина периода, дней</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Глибина періоду, днів</value>
+    </synonym>
     <type>
       <types>Number</types>
       <numberQualifiers>
@@ -161,6 +206,10 @@
     <toolTip>
       <key>ru</key>
       <value>Максимальная длина периода в запросах оборотов и выборок с отбором по периоду</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Максимальна довжина періоду в запитах оборотів і вибірок з відбором за періодом</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -175,6 +224,10 @@
     <synonym>
       <key>ru</key>
       <value>Размер ответа, КБ</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Розмір відповіді, КБ</value>
     </synonym>
     <type>
       <types>Number</types>
@@ -197,6 +250,10 @@
       <key>ru</key>
       <value>Глубина разыменования</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Глибина розіменування</value>
+    </synonym>
     <type>
       <types>Number</types>
       <numberQualifiers>
@@ -207,6 +264,10 @@
     <toolTip>
       <key>ru</key>
       <value>Сколько точек допускается в пути поля (Контрагент.ГоловнойКонтрагент.Наименование - 2)</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Скільки крапок допускається в шляху поля (Контрагент.ГоловнойКонтрагент.Наименование - 2)</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -221,6 +282,10 @@
     <synonym>
       <key>ru</key>
       <value>Разрешить помеченные на удаление</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Дозволити позначені на вилучення</value>
     </synonym>
     <type>
       <types>Boolean</types>
@@ -241,11 +306,19 @@
       <key>ru</key>
       <value>Инструменты</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Інструменти</value>
+    </synonym>
     <attributes uuid="be92fb30-5b87-4311-a467-9b576f9921bc">
       <name>Инструмент</name>
       <synonym>
         <key>ru</key>
         <value>Инструмент</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Інструмент</value>
       </synonym>
       <type>
         <types>String</types>
@@ -256,6 +329,10 @@
       <toolTip>
         <key>ru</key>
         <value>Имя инструмента MCP, например query_records</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Ім'я інструмента MCP, наприклад query_records</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -274,11 +351,19 @@
       <key>ru</key>
       <value>Объекты</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Об'єкти</value>
+    </synonym>
     <attributes uuid="fd8aa40f-5f02-4b5d-a474-7e4720229ffc">
       <name>Объект</name>
       <synonym>
         <key>ru</key>
         <value>Объект</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Об'єкт</value>
       </synonym>
       <type>
         <types>String</types>
@@ -290,6 +375,10 @@
         <key>ru</key>
         <value>Полное имя (Справочник.Контрагенты), шаблон вида (Документ.*) или * для всех объектов</value>
       </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Повне ім'я (Справочник.Контрагенты), шаблон виду (Документ.*) або * для всіх об'єктів</value>
+      </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
       <fillValue xsi:type="core:UndefinedValue"/>
@@ -300,6 +389,10 @@
       <name>Режим</name>
       <synonym>
         <key>ru</key>
+        <value>Режим</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
         <value>Режим</value>
       </synonym>
       <type>
@@ -317,6 +410,10 @@
         <key>ru</key>
         <value>Политика полей</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Політика полів</value>
+      </synonym>
       <type>
         <types>EnumRef.mcp1c_ПолитикиПолей</types>
       </type>
@@ -332,9 +429,44 @@
         <key>ru</key>
         <value>Обязательный отбор по периоду</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Обов'язковий відбір за періодом</value>
+      </synonym>
       <type>
         <types>Boolean</types>
       </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="b1c34870-db37-40a7-96e4-da73d245f62b">
+      <name>МинимальныйРазмерГруппы</name>
+      <synonym>
+        <key>ru</key>
+        <value>Минимальный размер группы</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Мінімальний розмір групи</value>
+      </synonym>
+      <type>
+        <types>Number</types>
+        <numberQualifiers>
+          <precision>5</precision>
+          <nonNegative>true</nonNegative>
+        </numberQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Для режима «Только агрегаты»: группы, в которых меньше записей, не выдаются (ИМЕЮЩИЕ КОЛИЧЕСТВО(*) &gt;= k); 0 - 5 записей</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Для режиму «Лише агрегати»: групи, у яких менше записів, не видаються (ИМЕЮЩИЕ КОЛИЧЕСТВО(*) &gt;= k); 0 - 5 записів</value>
+      </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
       <fillValue xsi:type="core:UndefinedValue"/>
@@ -352,11 +484,19 @@
       <key>ru</key>
       <value>Поля</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Поля</value>
+    </synonym>
     <attributes uuid="d8a60fb5-05ec-4182-be2a-3a02df24fee5">
       <name>Объект</name>
       <synonym>
         <key>ru</key>
         <value>Объект</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Об'єкт</value>
       </synonym>
       <type>
         <types>String</types>
@@ -376,6 +516,10 @@
         <key>ru</key>
         <value>Поле</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Поле</value>
+      </synonym>
       <type>
         <types>String</types>
         <stringQualifiers>
@@ -385,6 +529,10 @@
       <toolTip>
         <key>ru</key>
         <value>Имя поля или ТабличнаяЧасть.Поле</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Ім'я поля або ТабличнаяЧасть.Поле</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -398,9 +546,72 @@
         <key>ru</key>
         <value>Действие</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Дія</value>
+      </synonym>
       <type>
         <types>EnumRef.mcp1c_ДействияСПолями</types>
       </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="3188b51a-dfcb-4ebd-a1dd-83574c3db755">
+      <name>ВидМаски</name>
+      <synonym>
+        <key>ru</key>
+        <value>Вид маски</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Вид маски</value>
+      </synonym>
+      <type>
+        <types>EnumRef.mcp1c_ВидыМасок</types>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Для действия «Маскировать»; не задан - полная маска</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Для дії «Маскувати»; не задано - повна маска</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="8bc05f71-8227-45a6-9d5e-258a57e361b2">
+      <name>ПараметрМаски</name>
+      <synonym>
+        <key>ru</key>
+        <value>Параметр маски</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Параметр маски</value>
+      </synonym>
+      <type>
+        <types>Number</types>
+        <numberQualifiers>
+          <precision>15</precision>
+          <scale>2</scale>
+          <nonNegative>true</nonNegative>
+        </numberQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Частичная маска - сколько последних символов показать (0 - 4); округление - шаг (0 - 1000)</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Часткова маска - скільки останніх символів показати (0 - 4); округлення - крок (0 - 1000)</value>
+      </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
       <fillValue xsi:type="core:UndefinedValue"/>
@@ -418,11 +629,19 @@
       <key>ru</key>
       <value>Ограничения строк</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Обмеження рядків</value>
+    </synonym>
     <attributes uuid="6a605516-ff5b-4660-9e2b-331acd904647">
       <name>Объект</name>
       <synonym>
         <key>ru</key>
         <value>Объект</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Об'єкт</value>
       </synonym>
       <type>
         <types>String</types>
@@ -440,6 +659,10 @@
       <name>Поле</name>
       <synonym>
         <key>ru</key>
+        <value>Поле</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
         <value>Поле</value>
       </synonym>
       <type>
@@ -460,6 +683,10 @@
         <key>ru</key>
         <value>Вид сравнения</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Вид порівняння</value>
+      </synonym>
       <type>
         <types>EnumRef.mcp1c_ВидыСравнения</types>
       </type>
@@ -475,6 +702,10 @@
         <key>ru</key>
         <value>Значение</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Значення</value>
+      </synonym>
       <type>
         <types>String</types>
         <stringQualifiers>
@@ -484,6 +715,40 @@
       <toolTip>
         <key>ru</key>
         <value>Значение в формате JSON, как в аргументах инструментов: {"type": "Справочник.Организации", "ref": "&lt;uuid&gt;"}, "ИмяЗначенияПеречисления", число, строка в кавычках</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Значення у форматі JSON, як в аргументах інструментів: {"type": "Справочник.Организации", "ref": "&lt;uuid&gt;"}, "ИмяЗначенияПеречисления", число, рядок у лапках</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="3a53207a-19ac-4d1a-8bcf-500db823ddcd">
+      <name>Параметр</name>
+      <synonym>
+        <key>ru</key>
+        <value>Параметр профиля</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Параметр профілю</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>64</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Имя параметра с вкладки «Параметры»: значения берутся из клиента доступа вместо поля «Значение»; несколько значений - условие В (В ИЕРАРХИИ, НЕ В)</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Ім'я параметра з вкладки «Параметри»: значення беруться з клієнта доступу замість поля «Значення»; кілька значень - умова В (В ИЕРАРХИИ, НЕ В)</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -496,6 +761,10 @@
       <synonym>
         <key>ru</key>
         <value>Комментарий</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Коментар</value>
       </synonym>
       <type>
         <types>String</types>
@@ -510,4 +779,122 @@
       <dataHistory>DontUse</dataHistory>
     </attributes>
   </tabularSections>
+  <tabularSections uuid="567eceeb-1a3e-4d66-8317-f85cbf6ea6bc">
+    <producedTypes>
+      <objectType typeId="c821ff74-c12b-45d3-8d56-112c3df7aad3" valueTypeId="144ed7f2-1ebb-4060-a6ae-c4e19e7fbca8"/>
+      <rowType typeId="2757b0d8-afe3-4127-839d-6e27f1f1c20e" valueTypeId="e6b6e7f9-26c7-442d-8379-320512ec61cd"/>
+    </producedTypes>
+    <name>Параметры</name>
+    <synonym>
+      <key>ru</key>
+      <value>Параметры</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Параметри</value>
+    </synonym>
+    <toolTip>
+      <key>ru</key>
+      <value>Параметры профиля для ограничений строк; значения задаются в клиенте доступа (п. 7.3 ТЗ)</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Параметри профілю для обмежень рядків; значення задаються в клієнті доступу (п. 7.3 ТЗ)</value>
+    </toolTip>
+    <attributes uuid="bcd84f7d-c596-4069-83da-75784d9547a5">
+      <name>Имя</name>
+      <synonym>
+        <key>ru</key>
+        <value>Имя</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Ім'я</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>64</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Имя параметра, например РазрешенныеОрганизации</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Ім'я параметра, наприклад РазрешенныеОрганизации</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="845ad96b-0178-4be1-914e-a74a69593662">
+      <name>ТипЗначения</name>
+      <synonym>
+        <key>ru</key>
+        <value>Тип значения</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Тип значення</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Полное имя объекта (Справочник.Организации) или Строка, Число, Дата, Булево; несколько типов - через запятую</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Повне ім'я об'єкта (Справочник.Организации) або Строка, Число, Дата, Булево; кілька типів - через кому</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+    <attributes uuid="3c8bca68-4d25-4ba2-9423-5aa41f12dace">
+      <name>Описание</name>
+      <synonym>
+        <key>ru</key>
+        <value>Описание</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Опис</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>DontUse</fullTextSearch>
+      <dataHistory>DontUse</dataHistory>
+    </attributes>
+  </tabularSections>
+  <forms uuid="7303019d-dfe8-4a7a-b4d1-c9c538057554">
+    <name>ФормаЭлемента</name>
+    <synonym>
+      <key>ru</key>
+      <value>Форма элемента</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Форма елемента</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
 </mdclass:Catalog>

@@ -10,6 +10,10 @@
     <key>ru</key>
     <value>Результаты вызовов (MCP)</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Результати викликів (MCP)</value>
+  </synonym>
   <useStandardCommands>true</useStandardCommands>
   <quickChoice>true</quickChoice>
   <choiceMode>BothWays</choiceMode>
@@ -19,12 +23,20 @@
       <key>ru</key>
       <value>Успех</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Успіх</value>
+    </synonym>
   </enumValues>
   <enumValues uuid="c17a5d9c-b7bf-453e-9345-0d71d8369cf0">
     <name>ОшибкаЗапроса</name>
     <synonym>
       <key>ru</key>
       <value>Ошибка запроса</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Помилка запиту</value>
     </synonym>
   </enumValues>
   <enumValues uuid="11d54b37-9688-4c1c-b313-458259a5d998">
@@ -33,12 +45,20 @@
       <key>ru</key>
       <value>Отказ аутентификации</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Відмова автентифікації</value>
+    </synonym>
   </enumValues>
   <enumValues uuid="9d7f695b-5a4b-479b-8f47-de53687ad618">
     <name>ОтказДоступа</name>
     <synonym>
       <key>ru</key>
       <value>Отказ доступа</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Відмова доступу</value>
     </synonym>
   </enumValues>
   <enumValues uuid="ce3ca022-0d44-4575-ac19-e848efcdae42">
@@ -47,12 +67,20 @@
       <key>ru</key>
       <value>Превышение лимита</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Перевищення ліміту</value>
+    </synonym>
   </enumValues>
   <enumValues uuid="3ede16d2-0e50-43aa-9739-acf9ce39a074">
     <name>ОшибкаИнструмента</name>
     <synonym>
       <key>ru</key>
       <value>Ошибка инструмента</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Помилка інструмента</value>
     </synonym>
   </enumValues>
   <enumValues uuid="4ed283b4-b7a0-44e7-92ec-25c4a7522772">
@@ -61,12 +89,20 @@
       <key>ru</key>
       <value>Сервер недоступен</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Сервер недоступний</value>
+    </synonym>
   </enumValues>
   <enumValues uuid="3bf4e19d-3aad-4a97-b759-383a53f336ab">
     <name>ВнутренняяОшибка</name>
     <synonym>
       <key>ru</key>
       <value>Внутренняя ошибка</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Внутрішня помилка</value>
     </synonym>
   </enumValues>
 </mdclass:Enum>
