@@ -35,7 +35,7 @@ FORM = Form(
     events={"OnCreateAtServer": "ПриСозданииНаСервере"},
     auto_fill=False,
     buttons=[
-        Button("ФормаНазад", "Назад"),
+        Button("ФормаНазад", "Назад", enabled=False),
         Button("ФормаДалее", "Далее", default=True),
         Button("ФормаЗакрыть", "Form.StandardCommand.Close"),
     ],

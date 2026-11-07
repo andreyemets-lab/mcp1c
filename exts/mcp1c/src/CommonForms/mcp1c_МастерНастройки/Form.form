@@ -1079,7 +1079,6 @@
       <name>ФормаНазад</name>
       <id>73</id>
       <visible>true</visible>
-      <enabled>true</enabled>
       <userVisible>
         <common>true</common>
       </userVisible>
