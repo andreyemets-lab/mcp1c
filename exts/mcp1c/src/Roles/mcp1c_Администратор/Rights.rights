@@ -316,6 +316,13 @@
 		</right>
 	</object>
 	<object>
+		<name>CommonForm.mcp1c_МастерНастройки</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>CommonCommand.mcp1c_Песочница</name>
 		<right>
 			<name>View</name>
