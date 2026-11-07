@@ -2965,6 +2965,31 @@
       <placementArea>UserCmds</placementArea>
       <representationInContextMenu>Auto</representationInContextMenu>
     </items>
+    <items xsi:type="form:Button">
+      <name>ФормаОткрытьМастер</name>
+      <id>224</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <extendedTooltip>
+        <name>ФормаОткрытьМастерРасширеннаяПодсказка</name>
+        <id>225</id>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+      <commandName>Form.Command.ОткрытьМастер</commandName>
+      <representation>Auto</representation>
+      <autoMaxWidth>true</autoMaxWidth>
+      <autoMaxHeight>true</autoMaxHeight>
+      <placementArea>UserCmds</placementArea>
+      <representationInContextMenu>Auto</representationInContextMenu>
+    </items>
     <horizontalAlign>Left</horizontalAlign>
     <autoFill>true</autoFill>
   </autoCommandBar>
@@ -3869,6 +3894,35 @@
     <action xsi:type="form:FormCommandHandlerContainer">
       <handler>
         <name>СнятьБлокировку</name>
+      </handler>
+    </action>
+    <currentRowUse>DontUse</currentRowUse>
+  </formCommands>
+  <formCommands>
+    <name>ОткрытьМастер</name>
+    <title>
+      <key>ru</key>
+      <value>Майстер налаштування</value>
+    </title>
+    <title>
+      <key>uk</key>
+      <value>Майстер налаштування</value>
+    </title>
+    <id>8</id>
+    <toolTip>
+      <key>ru</key>
+      <value>Публікація і проксі, чутливі поля, профіль «Тільки метадані» і перший клієнт</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Публікація і проксі, чутливі поля, профіль «Тільки метадані» і перший клієнт</value>
+    </toolTip>
+    <use>
+      <common>true</common>
+    </use>
+    <action xsi:type="form:FormCommandHandlerContainer">
+      <handler>
+        <name>ОткрытьМастер</name>
       </handler>
     </action>
     <currentRowUse>DontUse</currentRowUse>
