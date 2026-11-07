@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "onec": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.company.ua/mcp",
+        "--header",
+        "Authorization:${MCP1C_AUTH}"
+      ],
+      "env": {
+        "MCP1C_AUTH": "Bearer mcp1c_XXXXXXXXXXXX_YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"
+      }
+    }
+  }
+}

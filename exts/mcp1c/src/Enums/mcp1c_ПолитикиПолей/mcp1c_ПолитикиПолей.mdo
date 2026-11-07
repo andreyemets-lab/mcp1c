@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="d64475aa-8a19-427d-b101-3add53bf10d0">
+  <producedTypes>
+    <refType typeId="a5376d7a-e17b-4219-bd86-897ab403b462" valueTypeId="5833a755-52e4-4c9c-8e46-49c3de0bbbe1"/>
+    <listType typeId="61973bfd-8659-49a1-bc1b-23c956c15f71" valueTypeId="e7606e62-d788-44c9-8502-6a1972dafafe"/>
+    <managerType typeId="8cbe0c10-d690-40db-9aee-22d72147fa82" valueTypeId="0445b4a2-86b1-405c-9ee5-c8dbd39de4f9"/>
+  </producedTypes>
+  <name>mcp1c_ПолитикиПолей</name>
+  <synonym>
+    <key>ru</key>
+    <value>Политики полей (MCP)</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <enumValues uuid="d661a589-2ffb-4d78-a7e7-3d6d1e16acdb">
+    <name>ВсеКромеЗапрещенных</name>
+    <synonym>
+      <key>ru</key>
+      <value>Все, кроме запрещенных</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="03b795b6-1a9e-4bf7-9609-c67e9c7bf12a">
+    <name>ТолькоРазрешенные</name>
+    <synonym>
+      <key>ru</key>
+      <value>Только разрешенные</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

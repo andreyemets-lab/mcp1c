@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="336bdbb8-133d-477e-b43e-6e25ae36f395">
+  <producedTypes>
+    <refType typeId="f20ce7d3-94c7-41fe-b99e-64a4fcebfcaa" valueTypeId="253ed640-58e0-4537-a538-6028eaf6817f"/>
+    <listType typeId="81d355a5-7859-44c7-88e4-b509b631e90c" valueTypeId="508325f2-66a7-413b-832f-93ece8090f23"/>
+    <managerType typeId="f36a2207-af54-41e0-9891-ef6c4d38a78c" valueTypeId="02652aa3-3d55-4a99-aef3-e67f8bd7938b"/>
+  </producedTypes>
+  <name>mcp1c_ТипыКлиентов</name>
+  <synonym>
+    <key>ru</key>
+    <value>Типы клиентов доступа (MCP)</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <enumValues uuid="97671c21-25c8-4e52-ae83-eed22bf6c63d">
+    <name>Человек</name>
+    <synonym>
+      <key>ru</key>
+      <value>Человек</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="4737e609-edd5-496b-b4c5-9919faf99cde">
+    <name>Агент</name>
+    <synonym>
+      <key>ru</key>
+      <value>AI-агент</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="fc3a687f-d0cc-4cb4-8009-45510a487a11">
+    <name>Сервис</name>
+    <synonym>
+      <key>ru</key>
+      <value>Сервис</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

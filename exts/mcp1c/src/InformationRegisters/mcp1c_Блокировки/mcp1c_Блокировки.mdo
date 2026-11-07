@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="a641b935-b307-4b47-8ec8-365707e3ac62">
+  <producedTypes>
+    <selectionType typeId="1b076e13-6e2b-4073-8af7-2c5d9fe57820" valueTypeId="c57bc213-99a4-4458-929a-d702480fe10d"/>
+    <listType typeId="7564b75f-10de-4ae9-9892-d53402c01933" valueTypeId="bdfac18e-92e8-4e9d-bf53-9761ba2bd9a1"/>
+    <managerType typeId="a2a62283-8d5b-4aec-884f-d289f2ab325c" valueTypeId="8badba32-c836-46bc-a014-c70ff969cc9d"/>
+    <recordSetType typeId="ae15a999-3f71-4f89-931d-a5b5e045ff85" valueTypeId="cfb49d33-e96a-47a1-b791-61c3419c4a4e"/>
+    <recordKeyType typeId="1d043e96-8a07-4715-9e5d-ebe5c8d12122" valueTypeId="327632aa-eddc-4714-9476-7cb9a11bbeb3"/>
+    <recordType typeId="a497cfc0-4d16-4ad9-b6f1-f838c7097b45" valueTypeId="31a69dce-f7c8-4931-a4ad-71683820e502"/>
+    <recordManagerType typeId="7ad494f5-a1c2-4ab5-a1e2-bc24bf617b83" valueTypeId="af3ea7ad-f73f-458a-ab3f-dd605b0e9dbc"/>
+  </producedTypes>
+  <name>mcp1c_Блокировки</name>
+  <synonym>
+    <key>ru</key>
+    <value>Блокировки MCP</value>
+  </synonym>
+  <comment>Временные блокировки IP-адресов после неудачных попыток аутентификации (п. 6.5 ТЗ)</comment>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <recordPresentation>
+    <key>ru</key>
+    <value>Блокировка MCP</value>
+  </recordPresentation>
+  <resources uuid="579816f0-7b1b-42f7-8cbf-2072582996bf">
+    <name>ДействуетДо</name>
+    <synonym>
+      <key>ru</key>
+      <value>Действует до (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </resources>
+  <attributes uuid="8ac7e2e4-53c1-49fd-8439-8fb99b9e04ca">
+    <name>Причина</name>
+    <synonym>
+      <key>ru</key>
+      <value>Причина</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>500</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="010d404e-bd74-4356-bb10-8d5e9e804801">
+    <name>ДатаУстановки</name>
+    <synonym>
+      <key>ru</key>
+      <value>Дата установки (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <dimensions uuid="08c90de2-4eb6-483e-bce1-56f9f813eea3">
+    <name>Вид</name>
+    <synonym>
+      <key>ru</key>
+      <value>Вид</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>20</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="93b02768-9efc-4abf-9945-625c436c5a5c">
+    <name>Ключ</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ключ</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

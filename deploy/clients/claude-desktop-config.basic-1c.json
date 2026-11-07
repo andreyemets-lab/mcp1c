@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "onec-test": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "http://localhost/base/hs/mcp1c",
+        "--allow-http",
+        "--transport",
+        "http-only",
+        "--header",
+        "Authorization:${MCP1C_BASIC}",
+        "--header",
+        "X-MCP-Authorization:${MCP1C_BEARER}"
+      ],
+      "env": {
+        "MCP1C_BASIC": "Basic <base64 від «користувач:пароль» 1С у UTF-8>",
+        "MCP1C_BEARER": "Bearer mcp1c_XXXXXXXXXXXX_YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"
+      }
+    }
+  }
+}

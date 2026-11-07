@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="672ee248-9105-4be7-882c-d73398cd54f7">
+  <name>mcp1c_ПравилаДоступа</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: правила доступа</value>
+  </synonym>
+  <comment>Чистая логика без обращений к данным; покрыта тестами OneScript</comment>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>

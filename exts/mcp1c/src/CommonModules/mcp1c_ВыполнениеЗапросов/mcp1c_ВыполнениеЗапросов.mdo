@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="03e6d52b-8bf3-4000-b355-1a4668c9fa94">
+  <name>mcp1c_ВыполнениеЗапросов</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: выполнение запросов</value>
+  </synonym>
+  <comment>Не привилегированный: привилегированный режим включается только на время запроса</comment>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>

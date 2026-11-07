@@ -15,9 +15,8 @@
   <containedObjects classId="51f2d5d8-ea4d-4064-8892-82951750031e" objectId="5a0b0694-051e-4916-905f-da1308174a9d"/>
   <containedObjects classId="e68182ea-4237-4383-967f-90c1e3370bc7" objectId="ea90e622-e3b0-4a8a-bf88-60a421880e32"/>
   <containedObjects classId="fb282519-d103-4dd3-bc12-cb271d631dfc" objectId="6e0f6bfc-6094-45cd-b073-630ee600fd9b"/>
-  <keepMappingToExtendedConfigurationObjectsByIDs>false</keepMappingToExtendedConfigurationObjectsByIDs>
   <namePrefix>mcp1c_</namePrefix>
-  <configurationExtensionCompatibilityMode>8.3.10</configurationExtensionCompatibilityMode>
+  <configurationExtensionCompatibilityMode>8.3.14</configurationExtensionCompatibilityMode>
   <configurationExtensionPurpose>AddOn</configurationExtensionPurpose>
   <scriptVariant>Russian</scriptVariant>
   <version>0.1.0</version>
@@ -29,17 +28,48 @@
     </extension>
     <languageCode>ru</languageCode>
   </languages>
+  <subsystems>Subsystem.mcp1c_MCPСервер</subsystems>
   <roles>Role.mcp1c_Администратор</roles>
+  <roles>Role.mcp1c_Аудитор</roles>
   <roles>Role.mcp1c_Сервис</roles>
   <commonModules>CommonModule.mcp1c_Администрирование</commonModules>
+  <commonModules>CommonModule.mcp1c_АдминистрированиеВызовСервера</commonModules>
+  <commonModules>CommonModule.mcp1c_АдминистрированиеКлиент</commonModules>
   <commonModules>CommonModule.mcp1c_Аудит</commonModules>
   <commonModules>CommonModule.mcp1c_Аутентификация</commonModules>
+  <commonModules>CommonModule.mcp1c_ВыполнениеЗапросов</commonModules>
+  <commonModules>CommonModule.mcp1c_ЗапросыДанных</commonModules>
+  <commonModules>CommonModule.mcp1c_Значения</commonModules>
   <commonModules>CommonModule.mcp1c_Инструменты</commonModules>
+  <commonModules>CommonModule.mcp1c_ИнструментыДанных</commonModules>
+  <commonModules>CommonModule.mcp1c_КонструкторЗапросов</commonModules>
+  <commonModules>CommonModule.mcp1c_Курсор</commonModules>
+  <commonModules>CommonModule.mcp1c_Лимиты</commonModules>
   <commonModules>CommonModule.mcp1c_Метаданные</commonModules>
   <commonModules>CommonModule.mcp1c_Настройки</commonModules>
+  <commonModules>CommonModule.mcp1c_ОписанияИнструментов</commonModules>
+  <commonModules>CommonModule.mcp1c_Политики</commonModules>
+  <commonModules>CommonModule.mcp1c_ПравилаДоступа</commonModules>
   <commonModules>CommonModule.mcp1c_Протокол</commonModules>
+  <commonModules>CommonModule.mcp1c_ПутиПолей</commonModules>
   <commonModules>CommonModule.mcp1c_Сериализация</commonModules>
+  <commonModules>CommonModule.mcp1c_Сеть</commonModules>
   <commonModules>CommonModule.mcp1c_Служебный</commonModules>
+  <commonModules>CommonModule.mcp1c_СхемаJSON</commonModules>
   <httpServices>HTTPService.mcp1c_Сервер</httpServices>
-  <constants>Constant.mcp1c_НастройкиСервера</constants>
+  <commonCommands>CommonCommand.mcp1c_ВыпуститьТокен</commonCommands>
+  <commonCommands>CommonCommand.mcp1c_ОтозватьТокен</commonCommands>
+  <commonCommands>CommonCommand.mcp1c_СостояниеСервера</commonCommands>
+  <catalogs>Catalog.mcp1c_КлиентыДоступа</catalogs>
+  <catalogs>Catalog.mcp1c_ПрофилиДоступа</catalogs>
+  <catalogs>Catalog.mcp1c_ТокеныДоступа</catalogs>
+  <enums>Enum.mcp1c_ВидыСравнения</enums>
+  <enums>Enum.mcp1c_ДействияСПолями</enums>
+  <enums>Enum.mcp1c_ПолитикиПолей</enums>
+  <enums>Enum.mcp1c_РежимыДоступаКОбъектам</enums>
+  <enums>Enum.mcp1c_РезультатыВызовов</enums>
+  <enums>Enum.mcp1c_ТипыКлиентов</enums>
+  <informationRegisters>InformationRegister.mcp1c_Блокировки</informationRegisters>
+  <informationRegisters>InformationRegister.mcp1c_ЖурналВызовов</informationRegisters>
+  <informationRegisters>InformationRegister.mcp1c_НастройкиСервера</informationRegisters>
 </mdclass:Configuration>

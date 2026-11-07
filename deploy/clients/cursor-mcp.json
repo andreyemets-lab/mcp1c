@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "onec": {
+      "url": "https://mcp.company.ua/mcp",
+      "headers": {
+        "Authorization": "Bearer mcp1c_XXXXXXXXXXXX_YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"
+      }
+    }
+  }
+}

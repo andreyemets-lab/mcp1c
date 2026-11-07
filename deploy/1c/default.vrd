@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Окрема публікація 1С лише для MCP-сервера (ТЗ, п. 11.1, модель B).
+
+  - ib: рядок з'єднання з ІБ з технічним користувачем (роль mcp1c_Сервис, без інтерактивних прав,
+    довгий випадковий пароль). Файл має бути доступний лише обліковому запису веб-сервера.
+  - Усі публікації однієї ІБ мають використовувати однаковий Srvr і Ref (п. 6.6 ТЗ: прив'язка до ІБ).
+  - Публікуються лише HTTP-сервіси розширень; OData, веб-сервіси й клієнтський доступ вимкнені
+    (enable="false" у кореневому елементі вимикає вхід тонким і веб-клієнтом).
+  - reuseSessions/poolSize: пул сеансів зменшує накладні витрати на старт сеансу (п. 10.2 ТЗ);
+    кожен сеанс пулу займає клієнтську ліцензію (п. 10.3 ТЗ).
+  - sessionMaxAge: сеанс пулу, що простояв цей час, завершується. Запит, який потрапляє на сеанс
+    саме в момент завершення, отримує від платформи 500 («Тип не визначений ...»), а паузи
+    AI-клієнта між викликами часто близькі до 20 с за замовчуванням, тому тут 300 с.
+  - Синтаксис звірте з документацією вашої версії платформи.
+-->
+<point xmlns="http://v8.1c.ru/8.2/virtual-resource-system"
+       xmlns:xs="http://www.w3.org/2001/XMLSchema"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       base="/erp-mcp"
+       ib="Srvr=&quot;app01&quot;;Ref=&quot;erp&quot;;Usr=&quot;mcp1c_gateway&quot;;Pwd=&quot;CHANGE-ME&quot;;"
+       enable="false">
+  <standardOdata enable="false"/>
+  <!-- Розділу ws (веб-сервіси) у цій публікації немає; якщо webinst його додав - вимкніть усі точки. -->
+  <httpServices publishByDefault="false" publishExtensionsByDefault="false">
+    <service name="mcp1c_Сервер"
+             rootUrl="mcp1c"
+             enable="true"
+             reuseSessions="autouse"
+             sessionMaxAge="300"
+             poolSize="10"
+             poolTimeout="5"/>
+  </httpServices>
+</point>

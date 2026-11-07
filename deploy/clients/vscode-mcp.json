@@ -1,0 +1,19 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "mcp1c-token",
+      "description": "Токен MCP-сервера 1С (mcp1c_...)",
+      "password": true
+    }
+  ],
+  "servers": {
+    "onec": {
+      "type": "http",
+      "url": "https://mcp.company.ua/mcp",
+      "headers": {
+        "Authorization": "Bearer ${input:mcp1c-token}"
+      }
+    }
+  }
+}

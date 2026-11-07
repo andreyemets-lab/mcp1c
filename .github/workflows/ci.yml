@@ -23,7 +23,7 @@ jobs:
         run: python tools/check_metadata.py exts/mcp1c
 
       - name: Скрипти Python компілюються
-        run: python -m py_compile tools/check_metadata.py tools/mcp_smoke_test.py tools/bsl_ls_report.py
+        run: python -m py_compile tools/check_metadata.py tools/mcp_smoke_test.py tools/bsl_ls_report.py tools/run_unit_tests.py
 
       - uses: actions/setup-node@v4
         with:
@@ -36,6 +36,87 @@ jobs:
         run: |
           npm ci --no-audit --no-fund
           node check.mjs ../../exts/mcp1c/src
+
+  unit-tests:
+    name: Модульні тести (OneScript)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      ONESCRIPT_VERSION: v2.2.0
+      REPORT_DIR: build/unit
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Кеш OneScript
+        id: onescript-cache
+        uses: actions/cache@v4
+        with:
+          path: build/onescript
+          key: onescript-${{ env.ONESCRIPT_VERSION }}-${{ runner.os }}-net8
+
+      - name: Зібрати OneScript
+        if: steps.onescript-cache.outputs.cache-hit != 'true'
+        run: |
+          set -o pipefail
+          mkdir -p "$REPORT_DIR"
+          git clone --depth 1 --branch "$ONESCRIPT_VERSION" https://github.com/EvilBeaver/OneScript.git build/onescript-src
+          dotnet publish build/onescript-src/src/oscript/oscript.csproj -f net8.0 -c Release \
+            -p:Platform="Any CPU" -p:UseAppHost=false -o build/onescript 2>&1 | tail -n 40 | tee "$REPORT_DIR/build.log"
+
+      - name: Тести
+        run: |
+          set -o pipefail
+          mkdir -p "$REPORT_DIR"
+          python tools/run_unit_tests.py --oscript "dotnet build/onescript/oscript.dll" 2>&1 | tee "$REPORT_DIR/output.log"
+
+      - name: Коментар у PR
+        if: always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          marker='<!-- unit-tests-report -->'
+          {
+            echo "$marker"
+            echo "### Модульні тести (OneScript $ONESCRIPT_VERSION)"
+            echo
+            if [ -f "$REPORT_DIR/output.log" ]; then
+              grep -E "^(Пройдено|FAIL )" "$REPORT_DIR/output.log" | head -n 80 || true
+              echo
+              echo '<details><summary>Вивід</summary>'
+              echo
+              echo '```'
+              tail -n 200 "$REPORT_DIR/output.log"
+              echo '```'
+              echo '</details>'
+            else
+              echo "Тести не запускалися. Кінець журналу збірки OneScript:"
+              echo
+              echo '```'
+              tail -n 40 "$REPORT_DIR/build.log" 2>/dev/null || echo "журнал відсутній"
+              echo '```'
+            fi
+            echo
+            echo "_Коміт ${HEAD_SHA::7}_"
+          } > "$REPORT_DIR/comment.md"
+          id=$(gh api "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments" --paginate \
+            --jq ".[] | select(.body | startswith(\"$marker\")) | .id" | head -n 1)
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$id" -F body=@"$REPORT_DIR/comment.md" > /dev/null
+          else
+            gh api -X POST "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments" -F body=@"$REPORT_DIR/comment.md" > /dev/null
+          fi
 
   bsl-language-server:
     name: BSL Language Server

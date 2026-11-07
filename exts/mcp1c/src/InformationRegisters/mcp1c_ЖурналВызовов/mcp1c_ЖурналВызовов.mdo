@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="54d93ddc-bd3f-45ad-b727-7825941b4bd9">
+  <producedTypes>
+    <selectionType typeId="3e06a023-a7a4-4fc8-acc6-c59dbcb80808" valueTypeId="77405d1c-bb1a-4cae-82e6-931404ddaabe"/>
+    <listType typeId="d3acf41b-1948-49a9-a2ba-e2bcd0b33f54" valueTypeId="3ac24253-f305-4c50-bd8e-3a262676d229"/>
+    <managerType typeId="214c6a58-02a6-43da-aba8-7704540d75c0" valueTypeId="2a77ff0b-19c8-4668-9181-8c0d2b875202"/>
+    <recordSetType typeId="f6178b10-0b1f-4788-8b9d-ca115be1f6ee" valueTypeId="1ecdd5a0-c2f0-451f-a4d4-551a77ac1dc4"/>
+    <recordKeyType typeId="e07ca585-5b33-429d-be32-f1014240fd25" valueTypeId="a977fa4b-3fa0-455a-9da2-e34278c3fec2"/>
+    <recordType typeId="23173fa8-ceaf-41ef-94b5-b3aa06d04d27" valueTypeId="355927fd-d22f-4d63-988a-40aa329df850"/>
+    <recordManagerType typeId="d526e468-d856-4820-b451-2c5c25b08cd1" valueTypeId="944b374d-96bd-4ab2-a0d7-f8885668ce8f"/>
+  </producedTypes>
+  <name>mcp1c_ЖурналВызовов</name>
+  <synonym>
+    <key>ru</key>
+    <value>Журнал вызовов MCP</value>
+  </synonym>
+  <comment>Аудит каждого вызова, включая отказы (п. 8.1 ТЗ); пишется только сервером</comment>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <recordPresentation>
+    <key>ru</key>
+    <value>Вызов MCP</value>
+  </recordPresentation>
+  <resources uuid="3e400e30-db26-4aec-9113-2a845d4598b6">
+    <name>КоличествоСтрок</name>
+    <synonym>
+      <key>ru</key>
+      <value>Количество строк</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </resources>
+  <resources uuid="30f002d1-bdcf-41b8-908a-5e2d045e03f3">
+    <name>РазмерОтвета</name>
+    <synonym>
+      <key>ru</key>
+      <value>Размер ответа</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </resources>
+  <resources uuid="4d4458df-8995-4eb2-b965-1f67df81ee28">
+    <name>ДлительностьМс</name>
+    <synonym>
+      <key>ru</key>
+      <value>Длительность, мс</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </resources>
+  <attributes uuid="fbf87d50-e151-4635-8fa6-1168a79c5812">
+    <name>Клиент</name>
+    <synonym>
+      <key>ru</key>
+      <value>Клиент</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.mcp1c_КлиентыДоступа</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>IndexWithAdditionalOrder</indexing>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="110b72ce-934f-4f4d-94ef-093a7d43f0fd">
+    <name>ИдентификаторТокена</name>
+    <synonym>
+      <key>ru</key>
+      <value>Идентификатор токена</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>12</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>IndexWithAdditionalOrder</indexing>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="8de61389-1450-466b-ab75-c763db9dcb1c">
+    <name>АдресКлиента</name>
+    <synonym>
+      <key>ru</key>
+      <value>IP-адрес</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>45</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>IndexWithAdditionalOrder</indexing>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="44f8ddbc-920c-4454-8ff4-1f8e33b223c1">
+    <name>ИнформацияКлиента</name>
+    <synonym>
+      <key>ru</key>
+      <value>Программа клиента</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>200</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="7fae7485-2aff-49a6-a8cc-2a491026686a">
+    <name>ВерсияПротокола</name>
+    <synonym>
+      <key>ru</key>
+      <value>Версия протокола</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>10</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="547cbdcf-5df9-497b-a4ed-8bd8417c45b4">
+    <name>Метод</name>
+    <synonym>
+      <key>ru</key>
+      <value>Метод</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>50</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="33cc9d3a-9cd8-4bfa-b522-0c56cf2a649a">
+    <name>Инструмент</name>
+    <synonym>
+      <key>ru</key>
+      <value>Инструмент</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="6e126474-9b70-4ce0-b160-ce4029f0621d">
+    <name>Аргументы</name>
+    <synonym>
+      <key>ru</key>
+      <value>Аргументы</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="a83fefb8-cca5-41c7-9571-7d30fb13fb31">
+    <name>Объекты</name>
+    <synonym>
+      <key>ru</key>
+      <value>Объекты</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>1000</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="96428fad-9a5e-4fcb-8a94-85e64104777f">
+    <name>Результат</name>
+    <synonym>
+      <key>ru</key>
+      <value>Результат</value>
+    </synonym>
+    <type>
+      <types>EnumRef.mcp1c_РезультатыВызовов</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="ace17c3d-69e1-4fec-bee2-60d9b480ecff">
+    <name>КодСостояния</name>
+    <synonym>
+      <key>ru</key>
+      <value>Код HTTP</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>3</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="906a1900-fd4b-49dd-8ae3-9556e605485b">
+    <name>КодОшибки</name>
+    <synonym>
+      <key>ru</key>
+      <value>Код ошибки</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="1581a9b3-dacb-4a49-84cb-3d6e0d9a85c5">
+    <name>Причина</name>
+    <synonym>
+      <key>ru</key>
+      <value>Причина</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>500</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <dimensions uuid="bbe29a1d-edbb-4fc9-a626-f098f4f90f6d">
+    <name>Момент</name>
+    <synonym>
+      <key>ru</key>
+      <value>Момент (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="8565b68a-b63b-4f88-aaee-d81b9929d4f9">
+    <name>ИдентификаторЗапроса</name>
+    <synonym>
+      <key>ru</key>
+      <value>Идентификатор запроса</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>36</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="0f4ba913-963b-4424-b872-5be7f68f03bf">
+  <name>mcp1c_ПутиПолей</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: пути полей</value>
+  </synonym>
+  <comment>Чистая логика без обращений к данным; покрыта тестами OneScript</comment>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>

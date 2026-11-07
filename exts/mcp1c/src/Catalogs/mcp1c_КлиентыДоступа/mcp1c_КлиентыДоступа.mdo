@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="e0ff96ab-809f-440d-a5d0-fcad058eb1cb">
+  <producedTypes>
+    <objectType typeId="cd4e66af-ce6d-4655-8275-4a780f44e4c9" valueTypeId="916d78d9-60eb-4022-b354-59cef16ad994"/>
+    <refType typeId="a8a8a2e5-0bca-4dab-90ec-b0c1936a7356" valueTypeId="44195332-f153-422e-a07b-4aa8f3ad7404"/>
+    <selectionType typeId="a8421431-633a-4415-92cb-84b9a2f5f036" valueTypeId="55aac64b-2efd-469c-b6ec-c6c7621931ac"/>
+    <listType typeId="5ff82c33-a4b3-4b05-a3b1-c6d7eed8f0a9" valueTypeId="536c6c9b-e75e-4af6-b404-e38bd5b0280c"/>
+    <managerType typeId="4c7e3b9d-e3d3-4b1a-b774-f67ed2b92870" valueTypeId="b2a0b8a3-04d1-454a-bd0c-aca4e4cdf44d"/>
+  </producedTypes>
+  <name>mcp1c_КлиентыДоступа</name>
+  <synonym>
+    <key>ru</key>
+    <value>Клиенты доступа MCP</value>
+  </synonym>
+  <comment>Кому выдан доступ: профиль, ограничения, состояние (п. 7.1 ТЗ)</comment>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.mcp1c_КлиентыДоступа.StandardAttribute.Description</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>DontUse</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>DontUse</fullTextSearch>
+  <objectPresentation>
+    <key>ru</key>
+    <value>Клиент доступа MCP</value>
+  </objectPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Клиенты доступа MCP</value>
+  </listPresentation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>0</codeLength>
+  <descriptionLength>100</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>false</checkUnique>
+  <autonumbering>false</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="6bbb5bc9-d69c-4704-8b96-f71fc5b3ea2a">
+    <name>Профиль</name>
+    <synonym>
+      <key>ru</key>
+      <value>Профиль</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.mcp1c_ПрофилиДоступа</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="5c4b0da7-4593-458f-a677-3728221f1b48">
+    <name>ТипКлиента</name>
+    <synonym>
+      <key>ru</key>
+      <value>Тип клиента</value>
+    </synonym>
+    <type>
+      <types>EnumRef.mcp1c_ТипыКлиентов</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="af4c344d-59f2-4518-992e-d993dd6402c0">
+    <name>ВнешнийПровайдер</name>
+    <synonym>
+      <key>ru</key>
+      <value>Внешний AI-провайдер</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Данные уходят внешнему AI-провайдеру (облачная модель)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="6f5c54d7-2c01-465b-8a15-85e9ca0c2bb3">
+    <name>Ответственный</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ответственный</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="f3dfe703-fb39-461b-8fef-1005e09d8ea1">
+    <name>ИмяПользователяИБ</name>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь ИБ</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>255</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Имя пользователя информационной базы; его права ограничивают профиль сверху</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="165b9c99-c577-4f19-af12-8a9a8ab65dac">
+    <name>Заблокирован</name>
+    <synonym>
+      <key>ru</key>
+      <value>Заблокирован</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="9e850b24-aee2-4d76-8c82-630f8f2e18ee">
+    <name>РазрешенныеАдреса</name>
+    <synonym>
+      <key>ru</key>
+      <value>Разрешенные IP-адреса</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Адреса и подсети CIDR через запятую или с новой строки; пусто - без ограничения</value>
+    </toolTip>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="0ebc2099-1d71-40df-9e91-dc14cfcc5308">
+    <name>РазрешенныеИсточники</name>
+    <synonym>
+      <key>ru</key>
+      <value>Разрешенные Origin</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Дополнительные значения заголовка Origin через запятую или с новой строки</value>
+    </toolTip>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="fa0d9937-1dfb-4b93-ba36-b03b9efd724e">
+    <name>ДоступС</name>
+    <synonym>
+      <key>ru</key>
+      <value>Доступ с</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>Time</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="cde96c63-52d7-4466-9ca3-5526726ca141">
+    <name>ДоступПо</name>
+    <synonym>
+      <key>ru</key>
+      <value>Доступ по</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>Time</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="9bde734e-42e5-4044-b9b6-5cfcb9d88047">
+    <name>ЛимитСтрок</name>
+    <synonym>
+      <key>ru</key>
+      <value>Строк за вызов</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>4</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>0 - по профилю; больше профиля не действует</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="778fea1b-f528-481b-a68e-46e14deb8243">
+    <name>ВызововВМинуту</name>
+    <synonym>
+      <key>ru</key>
+      <value>Вызовов в минуту</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>5</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>0 - по профилю; больше профиля не действует</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="798ecacd-701a-4001-899a-db724a43e02e">
+    <name>СтрокВСутки</name>
+    <synonym>
+      <key>ru</key>
+      <value>Строк в сутки</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>0 - по профилю; больше профиля не действует</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="e21fafc8-f263-4f61-b5b0-4c39a498b463">
+    <name>Комментарий</name>
+    <synonym>
+      <key>ru</key>
+      <value>Комментарий</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+</mdclass:Catalog>

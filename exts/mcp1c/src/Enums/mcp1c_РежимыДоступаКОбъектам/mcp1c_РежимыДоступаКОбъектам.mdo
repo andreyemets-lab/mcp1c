@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="63c4d942-139b-498c-976f-d8fcaf531924">
+  <producedTypes>
+    <refType typeId="00471055-d634-466f-898c-a787ebaaf32d" valueTypeId="bbc4ff25-e699-42ff-a105-fea18b80b3ac"/>
+    <listType typeId="802fedf4-bb51-4ff0-85c1-e96be9edb867" valueTypeId="e076a5ed-6dae-4a0b-ae28-b42e138900b4"/>
+    <managerType typeId="821ebd42-a5c5-4a4d-8d31-02ebe054d942" valueTypeId="cb7f4f21-e5b4-468f-ab51-320297bc27d8"/>
+  </producedTypes>
+  <name>mcp1c_РежимыДоступаКОбъектам</name>
+  <synonym>
+    <key>ru</key>
+    <value>Режимы доступа к объектам (MCP)</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <enumValues uuid="d85cc272-c1ad-485e-a2c4-d854fe629152">
+    <name>Чтение</name>
+    <synonym>
+      <key>ru</key>
+      <value>Чтение</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="3e1b46c2-cce0-4857-a7fc-9a88ff513dcd">
+    <name>Запрещено</name>
+    <synonym>
+      <key>ru</key>
+      <value>Запрещено</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

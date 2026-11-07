@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="01b48883-d09a-41a2-a9b5-d6c760c8f375">
+  <producedTypes>
+    <refType typeId="f46afe76-19e8-4da2-aa79-0e68c145ee38" valueTypeId="ee8392c1-b664-42dd-8cf8-60b6f5421c21"/>
+    <listType typeId="88796373-be47-478a-bd5b-1a211a2568c3" valueTypeId="cee1c4f0-582d-4fa6-b87c-ec886c964e8c"/>
+    <managerType typeId="496e3db4-97dd-4e17-bbec-31874a88b496" valueTypeId="4a15f8a6-6818-4d36-b598-e190a26c4538"/>
+  </producedTypes>
+  <name>mcp1c_РезультатыВызовов</name>
+  <synonym>
+    <key>ru</key>
+    <value>Результаты вызовов (MCP)</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <enumValues uuid="ebe64639-db25-48af-883a-c10ed2b0f134">
+    <name>Успех</name>
+    <synonym>
+      <key>ru</key>
+      <value>Успех</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="c17a5d9c-b7bf-453e-9345-0d71d8369cf0">
+    <name>ОшибкаЗапроса</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ошибка запроса</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="11d54b37-9688-4c1c-b313-458259a5d998">
+    <name>ОтказАутентификации</name>
+    <synonym>
+      <key>ru</key>
+      <value>Отказ аутентификации</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="9d7f695b-5a4b-479b-8f47-de53687ad618">
+    <name>ОтказДоступа</name>
+    <synonym>
+      <key>ru</key>
+      <value>Отказ доступа</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="ce3ca022-0d44-4575-ac19-e848efcdae42">
+    <name>ПревышениеЛимита</name>
+    <synonym>
+      <key>ru</key>
+      <value>Превышение лимита</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="3ede16d2-0e50-43aa-9739-acf9ce39a074">
+    <name>ОшибкаИнструмента</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ошибка инструмента</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="4ed283b4-b7a0-44e7-92ec-25c4a7522772">
+    <name>СерверНедоступен</name>
+    <synonym>
+      <key>ru</key>
+      <value>Сервер недоступен</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="3bf4e19d-3aad-4a97-b759-383a53f336ab">
+    <name>ВнутренняяОшибка</name>
+    <synonym>
+      <key>ru</key>
+      <value>Внутренняя ошибка</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>
