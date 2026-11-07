@@ -337,7 +337,8 @@ class Field(Item):
                  list_choice: bool = False, choice_list: Sequence[tuple[object, str]] = (),
                  input_hint: str | None = None, hyperlink: bool = False, format: str | None = None,
                  columns_count: int | None = None, spin_button: bool | None = None,
-                 min_value: int | None = None, max_value: int | None = None, auto_max_width: bool = True) -> None:
+                 min_value: int | None = None, max_value: int | None = None,
+                 auto_max_width: bool | None = None) -> None:
         super().__init__(name, title, tooltip, visible, enabled)
         if type not in self.EXT:
             raise ValueError(f"{name}: unknown field type {type}")
@@ -369,7 +370,9 @@ class Field(Item):
         self.spin_button = spin_button
         self.min_value = min_value
         self.max_value = max_value
-        self.auto_max_width = auto_max_width
+        # Without an explicit choice a stretched multi-line field fills the width: an automatic maximum width
+        # stops it at the width the platform picks for the attribute type.
+        self.auto_max_width = auto_max_width if auto_max_width is not None else not (multiline and hstretch)
 
     def handlers(self) -> list[str]:
         return list(self.events.values())

@@ -372,7 +372,6 @@
       <headerHorizontalAlign>Left</headerHorizontalAlign>
       <showInFooter>true</showInFooter>
       <extInfo xsi:type="form:InputFieldExtInfo">
-        <autoMaxWidth>true</autoMaxWidth>
         <height>10</height>
         <autoMaxHeight>true</autoMaxHeight>
         <horizontalStretch>true</horizontalStretch>
@@ -449,7 +448,6 @@
         <headerHorizontalAlign>Left</headerHorizontalAlign>
         <showInFooter>true</showInFooter>
         <extInfo xsi:type="form:InputFieldExtInfo">
-          <autoMaxWidth>true</autoMaxWidth>
           <height>14</height>
           <autoMaxHeight>true</autoMaxHeight>
           <horizontalStretch>true</horizontalStretch>
@@ -527,7 +525,6 @@
         <headerHorizontalAlign>Left</headerHorizontalAlign>
         <showInFooter>true</showInFooter>
         <extInfo xsi:type="form:InputFieldExtInfo">
-          <autoMaxWidth>true</autoMaxWidth>
           <height>14</height>
           <autoMaxHeight>true</autoMaxHeight>
           <horizontalStretch>true</horizontalStretch>
@@ -800,8 +797,24 @@
     </edit>
   </attributes>
   <attributes>
-    <name>Ответ</name>
+    <name>ВызовАргументов</name>
     <id>5</id>
+    <valueType>
+      <types>String</types>
+      <stringQualifiers>
+        <length>200</length>
+      </stringQualifiers>
+    </valueType>
+    <view>
+      <common>true</common>
+    </view>
+    <edit>
+      <common>true</common>
+    </edit>
+  </attributes>
+  <attributes>
+    <name>Ответ</name>
+    <id>6</id>
     <valueType>
       <types>String</types>
       <stringQualifiers/>
@@ -815,7 +828,7 @@
   </attributes>
   <attributes>
     <name>Правила</name>
-    <id>6</id>
+    <id>7</id>
     <valueType>
       <types>String</types>
       <stringQualifiers/>

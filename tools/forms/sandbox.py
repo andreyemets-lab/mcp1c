@@ -57,6 +57,7 @@ FORM = Form(
             Col("Пример", "String"),
         ]),
         Attr("Аргументы", "String", title="Аргументи"),
+        Attr("ВызовАргументов", "String(200)"),
         Attr("Ответ", "String"),
         Attr("Правила", "String"),
     ],
