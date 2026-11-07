@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="4482e097-0236-4219-a93e-efc295462506">
+  <name>mcp1c_Сериализация</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: сериализация</value>
+  </synonym>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

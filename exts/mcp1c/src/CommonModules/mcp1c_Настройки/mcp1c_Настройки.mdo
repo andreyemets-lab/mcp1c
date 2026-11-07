@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="7c053586-d06d-416c-a46f-80d7c0d248a9">
+  <name>mcp1c_Настройки</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: настройки</value>
+  </synonym>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <privileged>true</privileged>
+</mdclass:CommonModule>

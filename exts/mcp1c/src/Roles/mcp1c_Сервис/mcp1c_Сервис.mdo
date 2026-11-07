@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Role xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="05dcc82a-4cbc-448e-b460-f4b25cbee4d8">
+  <name>mcp1c_Сервис</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: технический пользователь сервиса</value>
+  </synonym>
+  <comment>Назначается техническому пользователю веб-публикации MCP. Прав на данные не дает: служебные данные читаются только через привилегированные модули.</comment>
+</mdclass:Role>

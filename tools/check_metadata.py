@@ -1,0 +1,257 @@
+#!/usr/bin/env python3
+"""Static checks for the mcp1c EDT extension project (no 1C platform needed).
+
+Checks:
+  * every .mdo / .rights / .project file is well-formed XML;
+  * every object referenced in Configuration.mdo has a folder and an .mdo with the same name,
+    and every object folder is referenced in Configuration.mdo;
+  * own objects use the extension name prefix;
+  * identifiers (uuid, typeId, valueTypeId, objectId) are well-formed and unique;
+  * common modules and HTTP services have Module.bsl; HTTP handlers exist in the module;
+  * BSL block keywords are balanced (Функция/КонецФункции, Если/КонецЕсли, ...);
+  * calls like mcp1c_Module.Method( point to an existing exported method.
+
+Usage: python tools/check_metadata.py [exts/mcp1c]
+"""
+from __future__ import annotations
+
+import re
+import sys
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+# Configuration.mdo element -> (reference prefix, folder name)
+COLLECTIONS = {
+    "subsystems": ("Subsystem", "Subsystems"),
+    "roles": ("Role", "Roles"),
+    "commonModules": ("CommonModule", "CommonModules"),
+    "httpServices": ("HTTPService", "HTTPServices"),
+    "scheduledJobs": ("ScheduledJob", "ScheduledJobs"),
+    "constants": ("Constant", "Constants"),
+    "catalogs": ("Catalog", "Catalogs"),
+    "informationRegisters": ("InformationRegister", "InformationRegisters"),
+    "dataProcessors": ("DataProcessor", "DataProcessors"),
+    "commonForms": ("CommonForm", "CommonForms"),
+    "commonTemplates": ("CommonTemplate", "CommonTemplates"),
+    "enums": ("Enum", "Enums"),
+}
+
+ID_ATTRS = ("uuid", "typeId", "valueTypeId", "objectId")
+UUID_RE = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
+
+# (opening keyword, closing keyword); counted as whole words outside strings and comments.
+BLOCKS = [
+    ("функция", "конецфункции"),
+    ("процедура", "конецпроцедуры"),
+    ("если", "конецесли"),
+    ("попытка", "конецпопытки"),
+    ("цикл", "конеццикла"),
+]
+WORD = re.compile(r"[A-Za-zА-Яа-яЁё_][A-Za-zА-Яа-яЁё_0-9]*")
+METHOD_DEF = re.compile(
+    r"^[ \t]*(?:&\S+[ \t]+)?(Функция|Процедура)[ \t]+([^\s(]+)[ \t]*\(([^)]*)\)[ \t]*(Экспорт)?",
+    re.IGNORECASE | re.MULTILINE,
+)
+
+
+class Checker:
+    def __init__(self, project: Path) -> None:
+        self.project = project
+        self.src = project / "src"
+        self.errors: list[str] = []
+        self.prefix = ""
+
+    def error(self, message: str) -> None:
+        self.errors.append(message)
+
+    @staticmethod
+    def rel(path: Path) -> str:
+        try:
+            return str(path.relative_to(Path.cwd()))
+        except ValueError:
+            return str(path)
+
+    # --- XML -----------------------------------------------------------------
+    def parse(self, path: Path) -> ET.Element | None:
+        try:
+            return ET.parse(path).getroot()
+        except ET.ParseError as exc:
+            self.error(f"{self.rel(path)}: invalid XML: {exc}")
+            return None
+
+    def check_xml_files(self) -> None:
+        """Parses every XML file once and checks that identifiers are unique."""
+        seen: dict[str, str] = {}
+        for pattern in ("*.mdo", "*.rights", ".project"):
+            for path in sorted(self.project.rglob(pattern)):
+                root = self.parse(path)
+                if root is None:
+                    continue
+                for element in root.iter():
+                    for attr in ID_ATTRS:
+                        value = element.get(attr)
+                        if value is None:
+                            continue
+                        where = f"{self.rel(path)} <{element.tag.split('}')[-1]} {attr}>"
+                        if not UUID_RE.fullmatch(value):
+                            self.error(f"{where}: malformed identifier {value}")
+                        elif value in seen:
+                            self.error(f"{where}: identifier {value} duplicates {seen[value]}")
+                        else:
+                            seen[value] = where
+
+    # --- Configuration -------------------------------------------------------
+    def check_configuration(self) -> None:
+        path = self.src / "Configuration" / "Configuration.mdo"
+        root = self.parse(path)
+        if root is None:
+            return
+        prefix = root.find("namePrefix")
+        self.prefix = prefix.text if prefix is not None and prefix.text else ""
+        if not self.prefix:
+            self.error(f"{self.rel(path)}: namePrefix is empty")
+
+        referenced: set[tuple[str, str]] = set()
+        for tag, (ref_prefix, folder) in COLLECTIONS.items():
+            for element in root.findall(tag):
+                text = (element.text or "").strip()
+                if not text.startswith(ref_prefix + "."):
+                    self.error(f"{self.rel(path)}: <{tag}> {text!r} must start with {ref_prefix}.")
+                    continue
+                name = text[len(ref_prefix) + 1 :]
+                referenced.add((folder, name))
+                self.check_object(folder, name)
+
+        for tag, (_, folder) in COLLECTIONS.items():
+            folder_path = self.src / folder
+            if not folder_path.is_dir():
+                continue
+            for child in sorted(folder_path.iterdir()):
+                if child.is_dir() and (folder, child.name) not in referenced:
+                    self.error(f"{self.rel(child)}: object is not listed in Configuration.mdo <{tag}>")
+
+    def check_object(self, folder: str, name: str) -> None:
+        mdo = self.src / folder / name / f"{name}.mdo"
+        if not mdo.is_file():
+            self.error(f"{self.rel(mdo)}: missing")
+            return
+        root = self.parse(mdo)
+        if root is None:
+            return
+        name_element = root.find("name")
+        if name_element is None or name_element.text != name:
+            self.error(f"{self.rel(mdo)}: <name> must be {name!r}")
+        if self.prefix and not name.startswith(self.prefix):
+            self.error(f"{self.rel(mdo)}: own object name must start with {self.prefix!r}")
+
+        module = self.src / folder / name / "Module.bsl"
+        if folder in ("CommonModules", "HTTPServices") and not module.is_file():
+            self.error(f"{self.rel(module)}: missing")
+        if folder == "HTTPServices" and module.is_file():
+            code = self.strip_code(module.read_text(encoding="utf-8"))
+            defined = {m.group(2) for m in METHOD_DEF.finditer(code)}
+            for handler in root.iter("handler"):
+                if handler.text not in defined:
+                    self.error(f"{self.rel(module)}: handler {handler.text} is not defined")
+        if folder == "Roles" and not (self.src / folder / name / "Rights.rights").is_file():
+            self.error(f"{self.rel(self.src / folder / name)}: Rights.rights missing")
+
+    # --- BSL -----------------------------------------------------------------
+    @staticmethod
+    def strip_code(text: str) -> str:
+        """Removes comments and string literals, keeps line structure."""
+        out_lines = []
+        in_string = False
+        for line in text.splitlines():
+            result = []
+            i = 0
+            if in_string:
+                stripped = line.lstrip()
+                if stripped.startswith("|"):
+                    i = len(line) - len(stripped) + 1
+                else:
+                    in_string = False
+            while i < len(line):
+                ch = line[i]
+                if in_string:
+                    if ch == '"':
+                        if i + 1 < len(line) and line[i + 1] == '"':
+                            i += 2
+                            continue
+                        in_string = False
+                    i += 1
+                    continue
+                if ch == '"':
+                    in_string = True
+                    i += 1
+                    continue
+                if line.startswith("//", i):
+                    break
+                result.append(ch)
+                i += 1
+            out_lines.append("".join(result))
+        return "\n".join(out_lines)
+
+    def check_bsl(self) -> None:
+        modules: dict[str, dict[str, bool]] = {}
+        sources: dict[Path, str] = {}
+        for path in sorted(self.src.rglob("*.bsl")):
+            try:
+                text = path.read_text(encoding="utf-8")
+            except UnicodeDecodeError:
+                self.error(f"{self.rel(path)}: not UTF-8")
+                continue
+            code = self.strip_code(text)
+            sources[path] = code
+            words = [w.lower() for w in WORD.findall(code)]
+            for opening, closing in BLOCKS:
+                if words.count(opening) != words.count(closing):
+                    self.error(
+                        f"{self.rel(path)}: {opening}={words.count(opening)} vs {closing}={words.count(closing)}"
+                    )
+            regions = len(re.findall(r"^\s*#Область\b", code, re.MULTILINE))
+            end_regions = len(re.findall(r"^\s*#КонецОбласти\b", code, re.MULTILINE))
+            if regions != end_regions:
+                self.error(f"{self.rel(path)}: #Область={regions} vs #КонецОбласти={end_regions}")
+            methods: dict[str, bool] = {}
+            for match in METHOD_DEF.finditer(code):
+                method = match.group(2)
+                if method.lower() in (m.lower() for m in methods):
+                    self.error(f"{self.rel(path)}: method {method} is defined twice")
+                methods[method] = bool(match.group(4))
+            if path.parent.parent.name == "CommonModules":
+                modules[path.parent.name] = methods
+
+        if not self.prefix:
+            return
+        call = re.compile(r"(?<![\w.])(" + re.escape(self.prefix) + r"[^\s.(]+)\.([^\s.(]+)\s*\(")
+        for path, code in sources.items():
+            for match in call.finditer(code):
+                module, method = match.group(1), match.group(2)
+                if module not in modules:
+                    self.error(f"{self.rel(path)}: unknown module {module}")
+                elif method not in modules[module]:
+                    self.error(f"{self.rel(path)}: {module}.{method} is not defined")
+                elif not modules[module][method]:
+                    self.error(f"{self.rel(path)}: {module}.{method} is not exported")
+
+    def run(self) -> int:
+        self.check_configuration()
+        self.check_xml_files()
+        self.check_bsl()
+        for message in self.errors:
+            print(f"ERROR {message}")
+        print(f"{len(self.errors)} error(s)")
+        return 1 if self.errors else 0
+
+
+def main() -> int:
+    project = Path(sys.argv[1] if len(sys.argv) > 1 else "exts/mcp1c").resolve()
+    if not (project / "src" / "Configuration" / "Configuration.mdo").is_file():
+        print(f"{project}: not an EDT project", file=sys.stderr)
+        return 2
+    return Checker(project).run()
+
+
+if __name__ == "__main__":
+    sys.exit(main())

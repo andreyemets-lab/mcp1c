@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="c294bf4c-eeb4-41e4-b10b-fc0890e75c7c">
+  <name>mcp1c_Протокол</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: протокол</value>
+  </synonym>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>
