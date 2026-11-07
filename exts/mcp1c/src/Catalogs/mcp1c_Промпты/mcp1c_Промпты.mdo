@@ -12,6 +12,10 @@
     <key>ru</key>
     <value>Промпты MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Промпти MCP</value>
+  </synonym>
   <comment>Шаблоны запросов для AI-клиентов: prompts/list и prompts/get (п. 5.6 ТЗ)</comment>
   <useStandardCommands>true</useStandardCommands>
   <inputByString>Catalog.mcp1c_Промпты.StandardAttribute.Description</inputByString>
@@ -23,9 +27,17 @@
     <key>ru</key>
     <value>Промпт MCP</value>
   </objectPresentation>
+  <objectPresentation>
+    <key>uk</key>
+    <value>Промпт MCP</value>
+  </objectPresentation>
   <listPresentation>
     <key>ru</key>
     <value>Промпты MCP</value>
+  </listPresentation>
+  <listPresentation>
+    <key>uk</key>
+    <value>Промпти MCP</value>
   </listPresentation>
   <levelCount>2</levelCount>
   <foldersOnTop>true</foldersOnTop>
@@ -44,6 +56,10 @@
       <key>ru</key>
       <value>Имя</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Ім'я</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -53,6 +69,10 @@
     <toolTip>
       <key>ru</key>
       <value>Имя промпта для клиента: латинские строчные буквы, цифры и _, начинается с буквы, от 3 до 64 символов (debtors_on_date)</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Ім'я промпту для клієнта: малі латинські літери, цифри й _, починається з літери, від 3 до 64 символів (debtors_on_date)</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -66,6 +86,10 @@
       <key>ru</key>
       <value>Описание</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Опис</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers/>
@@ -73,6 +97,10 @@
     <toolTip>
       <key>ru</key>
       <value>Для чего промпт: показывается пользователю AI-клиента в списке промптов</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Для чого промпт: показується користувачу AI-клієнта у списку промптів</value>
     </toolTip>
     <multiLine>true</multiLine>
     <minValue xsi:type="core:UndefinedValue"/>
@@ -87,6 +115,10 @@
       <key>ru</key>
       <value>Текст</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Текст</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers/>
@@ -94,6 +126,10 @@
     <toolTip>
       <key>ru</key>
       <value>Текст сообщения для модели; {{имя}} заменяется значением аргумента, {{today}} - текущей датой сервера</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Текст повідомлення для моделі; {{имя}} замінюється значенням аргумента, {{today}} - поточною датою сервера</value>
     </toolTip>
     <multiLine>true</multiLine>
     <minValue xsi:type="core:UndefinedValue"/>
@@ -112,11 +148,19 @@
       <key>ru</key>
       <value>Аргументы</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Аргументи</value>
+    </synonym>
     <attributes uuid="df63aed5-6ac3-4264-8e90-4bfdd3ed4d1a">
       <name>Имя</name>
       <synonym>
         <key>ru</key>
         <value>Имя</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Ім'я</value>
       </synonym>
       <type>
         <types>String</types>
@@ -127,6 +171,10 @@
       <toolTip>
         <key>ru</key>
         <value>Имя аргумента: латинские буквы, цифры и _ (date, counterparty); в тексте - {{date}}</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Ім'я аргумента: латинські літери, цифри й _ (date, counterparty); у тексті - {{date}}</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -139,6 +187,10 @@
       <synonym>
         <key>ru</key>
         <value>Описание</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Опис</value>
       </synonym>
       <type>
         <types>String</types>
@@ -158,6 +210,10 @@
         <key>ru</key>
         <value>Обязательный</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Обов'язковий</value>
+      </synonym>
       <type>
         <types>Boolean</types>
       </type>
@@ -173,6 +229,10 @@
         <key>ru</key>
         <value>Значение по умолчанию</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Значення за замовчуванням</value>
+      </synonym>
       <type>
         <types>String</types>
         <stringQualifiers>
@@ -182,6 +242,10 @@
       <toolTip>
         <key>ru</key>
         <value>Подставляется, если клиент не передал аргумент; {{today}} - текущая дата сервера</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Підставляється, якщо клієнт не передав аргумент; {{today}} - поточна дата сервера</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -200,15 +264,27 @@
       <key>ru</key>
       <value>Профили</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Профілі</value>
+    </synonym>
     <toolTip>
       <key>ru</key>
       <value>Профили доступа, клиентам которых доступен промпт; пусто - всем профилям</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Профілі доступу, клієнтам яких доступний промпт; порожньо - усім профілям</value>
     </toolTip>
     <attributes uuid="8d027418-6258-475a-b584-0a7c950d3bf3">
       <name>Профиль</name>
       <synonym>
         <key>ru</key>
         <value>Профиль</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Профіль</value>
       </synonym>
       <type>
         <types>CatalogRef.mcp1c_ПрофилиДоступа</types>

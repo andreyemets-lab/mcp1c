@@ -12,6 +12,10 @@
     <key>ru</key>
     <value>Инструменты MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Інструменти MCP</value>
+  </synonym>
   <comment>Предметные инструменты администратора: запрос, схема компоновки или метод модуля (п. 5.5 ТЗ)</comment>
   <useStandardCommands>true</useStandardCommands>
   <inputByString>Catalog.mcp1c_ПользовательскиеИнструменты.StandardAttribute.Description</inputByString>
@@ -23,9 +27,17 @@
     <key>ru</key>
     <value>Инструмент MCP</value>
   </objectPresentation>
+  <objectPresentation>
+    <key>uk</key>
+    <value>Інструмент MCP</value>
+  </objectPresentation>
   <listPresentation>
     <key>ru</key>
     <value>Инструменты MCP</value>
+  </listPresentation>
+  <listPresentation>
+    <key>uk</key>
+    <value>Інструменти MCP</value>
   </listPresentation>
   <levelCount>2</levelCount>
   <foldersOnTop>true</foldersOnTop>
@@ -44,6 +56,10 @@
       <key>ru</key>
       <value>Имя</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Ім'я</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -53,6 +69,10 @@
     <toolTip>
       <key>ru</key>
       <value>Имя инструмента для клиента: латинские строчные буквы, цифры и _, начинается с буквы, от 3 до 64 символов (customer_debt)</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Ім'я інструмента для клієнта: малі латинські літери, цифри й _, починається з літери, від 3 до 64 символів (customer_debt)</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -64,6 +84,10 @@
     <name>Вид</name>
     <synonym>
       <key>ru</key>
+      <value>Вид</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
       <value>Вид</value>
     </synonym>
     <type>
@@ -81,6 +105,10 @@
       <key>ru</key>
       <value>Описание для модели</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Опис для моделі</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers/>
@@ -88,6 +116,10 @@
     <toolTip>
       <key>ru</key>
       <value>Что возвращает инструмент, когда его вызывать и как понимать результат (например, что положительный остаток - долг клиента)</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Що повертає інструмент, коли його викликати і як розуміти результат (наприклад, що додатний залишок - борг клієнта)</value>
     </toolTip>
     <multiLine>true</multiLine>
     <minValue xsi:type="core:UndefinedValue"/>
@@ -102,6 +134,10 @@
       <key>ru</key>
       <value>Текст запроса</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Текст запиту</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers/>
@@ -109,6 +145,10 @@
     <toolTip>
       <key>ru</key>
       <value>Запрос с параметрами &amp;Имя; последний запрос пакета возвращает результат</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Запит з параметрами &amp;Имя; останній запит пакета повертає результат</value>
     </toolTip>
     <multiLine>true</multiLine>
     <minValue xsi:type="core:UndefinedValue"/>
@@ -123,6 +163,10 @@
       <key>ru</key>
       <value>Схема компоновки данных</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Схема компонування даних</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers/>
@@ -130,6 +174,10 @@
     <toolTip>
       <key>ru</key>
       <value>Схема компоновки данных в XML; результат - по настройкам схемы по умолчанию</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Схема компонування даних у XML; результат - за налаштуваннями схеми за замовчуванням</value>
     </toolTip>
     <multiLine>true</multiLine>
     <minValue xsi:type="core:UndefinedValue"/>
@@ -144,6 +192,10 @@
       <key>ru</key>
       <value>Общий модуль</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Загальний модуль</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -153,6 +205,10 @@
     <toolTip>
       <key>ru</key>
       <value>Серверный общий модуль конфигурации или расширения</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Серверний загальний модуль конфігурації або розширення</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -166,6 +222,10 @@
       <key>ru</key>
       <value>Метод</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Метод</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -175,6 +235,10 @@
     <toolTip>
       <key>ru</key>
       <value>Экспортная функция модуля: Функция Метод(Параметры, Контекст)</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Експортна функція модуля: Функция Метод(Параметры, Контекст)</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -188,6 +252,10 @@
       <key>ru</key>
       <value>Строк за вызов</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Рядків за виклик</value>
+    </synonym>
     <type>
       <types>Number</types>
       <numberQualifiers>
@@ -198,6 +266,10 @@
     <toolTip>
       <key>ru</key>
       <value>Максимум строк результата; 0 - лимит профиля (лимит профиля действует всегда)</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Максимум рядків результату; 0 - ліміт профілю (ліміт профілю діє завжди)</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -211,6 +283,10 @@
       <key>ru</key>
       <value>Колонки результата</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Колонки результату</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -220,6 +296,10 @@
     <toolTip>
       <key>ru</key>
       <value>Заполняется при записи по тексту запроса</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Заповнюється під час запису за текстом запиту</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -237,14 +317,26 @@
       <key>ru</key>
       <value>Параметры</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Параметри</value>
+    </synonym>
     <toolTip>
       <key>ru</key>
       <value>Аргументы инструмента: из них строится схема аргументов для модели</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Аргументи інструмента: з них будується схема аргументів для моделі</value>
     </toolTip>
     <attributes uuid="a9b89723-250e-4ec4-8204-1d7dce5e9312">
       <name>Имя</name>
       <synonym>
         <key>ru</key>
+        <value>Аргумент</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
         <value>Аргумент</value>
       </synonym>
       <type>
@@ -256,6 +348,10 @@
       <toolTip>
         <key>ru</key>
         <value>Имя аргумента для модели: латинские буквы, цифры и _ (counterparty, date)</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Ім'я аргумента для моделі: латинські літери, цифри й _ (counterparty, date)</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -269,6 +365,10 @@
         <key>ru</key>
         <value>Параметр</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Параметр</value>
+      </synonym>
       <type>
         <types>String</types>
         <stringQualifiers>
@@ -278,6 +378,10 @@
       <toolTip>
         <key>ru</key>
         <value>Имя параметра запроса или схемы без &amp;, ключ структуры Параметры метода; пусто - как аргумент</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Ім'я параметра запиту або схеми без &amp;, ключ структури Параметры методу; порожньо - як аргумент</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -291,6 +395,10 @@
         <key>ru</key>
         <value>Тип значения</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Тип значення</value>
+      </synonym>
       <type>
         <types>String</types>
         <stringQualifiers>
@@ -300,6 +408,10 @@
       <toolTip>
         <key>ru</key>
         <value>Типы через запятую: Справочник.Контрагенты, Дата, Строка, Число, Булево</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Типи через кому: Справочник.Контрагенты, Дата, Строка, Число, Булево</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -313,6 +425,10 @@
         <key>ru</key>
         <value>Описание</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Опис</value>
+      </synonym>
       <type>
         <types>String</types>
         <stringQualifiers>
@@ -322,6 +438,10 @@
       <toolTip>
         <key>ru</key>
         <value>Что передать в аргумент: показывается модели</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Що передати в аргумент: показується моделі</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -334,6 +454,10 @@
       <synonym>
         <key>ru</key>
         <value>Обязательный</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Обов'язковий</value>
       </synonym>
       <type>
         <types>Boolean</types>
@@ -350,12 +474,20 @@
         <key>ru</key>
         <value>Список</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Список</value>
+      </synonym>
       <type>
         <types>Boolean</types>
       </type>
       <toolTip>
         <key>ru</key>
         <value>Значение - массив (для условия В (&amp;Параметр))</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Значення - масив (для умови В (&amp;Параметр))</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -369,6 +501,10 @@
         <key>ru</key>
         <value>Значение по умолчанию</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Значення за замовчуванням</value>
+      </synonym>
       <type>
         <types>String</types>
         <stringQualifiers>
@@ -378,6 +514,10 @@
       <toolTip>
         <key>ru</key>
         <value>JSON: "2026-01-01", 10, true или {"type": "Справочник.Склады", "ref": "&lt;uuid&gt;"}</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>JSON: "2026-01-01", 10, true або {"type": "Справочник.Склады", "ref": "&lt;uuid&gt;"}</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -391,6 +531,10 @@
         <key>ru</key>
         <value>Допустимые значения</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Допустимі значення</value>
+      </synonym>
       <type>
         <types>String</types>
         <stringQualifiers>
@@ -400,6 +544,10 @@
       <toolTip>
         <key>ru</key>
         <value>JSON-массив строк или чисел</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>JSON-масив рядків або чисел</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -413,6 +561,10 @@
         <key>ru</key>
         <value>Параметр профиля</value>
       </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Параметр профілю</value>
+      </synonym>
       <type>
         <types>String</types>
         <stringQualifiers>
@@ -422,6 +574,10 @@
       <toolTip>
         <key>ru</key>
         <value>Значение берется из параметра профиля, заданного в клиенте доступа; модель его не передает</value>
+      </toolTip>
+      <toolTip>
+        <key>uk</key>
+        <value>Значення береться з параметра профілю, заданого в клієнті доступу; модель його не передає</value>
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
@@ -440,15 +596,27 @@
       <key>ru</key>
       <value>Профили</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Профілі</value>
+    </synonym>
     <toolTip>
       <key>ru</key>
       <value>Профили доступа, клиентам которых доступен инструмент</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Профілі доступу, клієнтам яких доступний інструмент</value>
     </toolTip>
     <attributes uuid="e118a7a5-fd78-474e-9019-63aea6c545f2">
       <name>Профиль</name>
       <synonym>
         <key>ru</key>
         <value>Профиль</value>
+      </synonym>
+      <synonym>
+        <key>uk</key>
+        <value>Профіль</value>
       </synonym>
       <type>
         <types>CatalogRef.mcp1c_ПрофилиДоступа</types>

@@ -14,6 +14,10 @@
     <key>ru</key>
     <value>Блокировки MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Блокування MCP</value>
+  </synonym>
   <comment>Временные блокировки IP-адресов после неудачных попыток аутентификации (п. 6.5 ТЗ)</comment>
   <useStandardCommands>true</useStandardCommands>
   <editType>InDialog</editType>
@@ -22,11 +26,19 @@
     <key>ru</key>
     <value>Блокировка MCP</value>
   </recordPresentation>
+  <recordPresentation>
+    <key>uk</key>
+    <value>Блокування MCP</value>
+  </recordPresentation>
   <resources uuid="579816f0-7b1b-42f7-8cbf-2072582996bf">
     <name>ДействуетДо</name>
     <synonym>
       <key>ru</key>
       <value>Действует до (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Діє до (UTC)</value>
     </synonym>
     <type>
       <types>Date</types>
@@ -44,6 +56,10 @@
     <name>Причина</name>
     <synonym>
       <key>ru</key>
+      <value>Причина</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
       <value>Причина</value>
     </synonym>
     <type>
@@ -64,6 +80,10 @@
       <key>ru</key>
       <value>Дата установки (UTC)</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Дата встановлення (UTC)</value>
+    </synonym>
     <type>
       <types>Date</types>
       <dateQualifiers>
@@ -80,6 +100,10 @@
     <name>Вид</name>
     <synonym>
       <key>ru</key>
+      <value>Вид</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
       <value>Вид</value>
     </synonym>
     <type>
@@ -99,6 +123,10 @@
     <name>Ключ</name>
     <synonym>
       <key>ru</key>
+      <value>Ключ</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
       <value>Ключ</value>
     </synonym>
     <type>

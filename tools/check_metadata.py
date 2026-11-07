@@ -2,7 +2,9 @@
 """Static checks for the mcp1c EDT extension project (no 1C platform needed).
 
 Checks:
-  * every .mdo / .rights / .project file is well-formed XML;
+  * every .mdo / .rights / .form / .cmi / .project file is well-formed XML;
+  * user texts (synonyms, tooltips, form titles) have a "uk" value next to "ru": a session in Ukrainian
+    (BAS) does not fall back to "ru" and shows object or item names instead;
   * every object referenced in Configuration.mdo has a folder and an .mdo with the same name,
     and every object folder is referenced in Configuration.mdo;
   * own objects use the extension name prefix;
@@ -96,6 +98,8 @@ class Checker:
                 root = self.parse(path)
                 if root is None:
                     continue
+                if path.suffix in (".mdo", ".form"):
+                    self.check_languages(path, root)
                 for element in root.iter():
                     for attr in ID_ATTRS:
                         value = element.get(attr)
@@ -108,6 +112,22 @@ class Checker:
                             self.error(f"{where}: identifier {value} duplicates {seen[value]}")
                         else:
                             seen[value] = where
+
+    def check_languages(self, path: Path, root: ET.Element) -> None:
+        """Every multilingual string with a "ru" value also has a "uk" value. Synonyms of common modules and
+        HTTP services are seen only in the designer and are not checked."""
+        if path.parent.parent.name in ("CommonModules", "HTTPServices"):
+            return
+        for element in root.iter():
+            keys: dict[str, set[str]] = {}
+            for child in element:
+                key = child.findtext("key")
+                if key is not None and child.find("value") is not None:
+                    keys.setdefault(child.tag, set()).add(key)
+            for tag, found in keys.items():
+                if "ru" in found and "uk" not in found:
+                    owner = element.findtext("name") or element.tag.split("}")[-1]
+                    self.error(f"{self.rel(path)}: <{tag}> of {owner} has no uk value")
 
     # --- Configuration -------------------------------------------------------
     def check_configuration(self) -> None:

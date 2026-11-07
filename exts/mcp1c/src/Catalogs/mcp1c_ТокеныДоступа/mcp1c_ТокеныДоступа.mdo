@@ -12,6 +12,10 @@
     <key>ru</key>
     <value>Токены доступа MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Токени доступу MCP</value>
+  </synonym>
   <comment>Персональные токены (п. 6.3 ТЗ): код - идентификатор токена, хранится только SHA-256 секрета</comment>
   <useStandardCommands>true</useStandardCommands>
   <inputByString>Catalog.mcp1c_ТокеныДоступа.StandardAttribute.Code</inputByString>
@@ -23,6 +27,10 @@
     <synonym>
       <key>ru</key>
       <value>Клиент</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Клієнт</value>
     </synonym>
     <fillValue xsi:type="core:UndefinedValue"/>
     <fullTextSearch>Use</fullTextSearch>
@@ -36,9 +44,17 @@
     <key>ru</key>
     <value>Токен доступа MCP</value>
   </objectPresentation>
+  <objectPresentation>
+    <key>uk</key>
+    <value>Токен доступу MCP</value>
+  </objectPresentation>
   <listPresentation>
     <key>ru</key>
     <value>Токены доступа MCP</value>
+  </listPresentation>
+  <listPresentation>
+    <key>uk</key>
+    <value>Токени доступу MCP</value>
   </listPresentation>
   <levelCount>2</levelCount>
   <foldersOnTop>true</foldersOnTop>
@@ -59,6 +75,10 @@
       <key>ru</key>
       <value>Хеш секрета</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Хеш секрету</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -76,6 +96,10 @@
     <synonym>
       <key>ru</key>
       <value>Действует до (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Діє до (UTC)</value>
     </synonym>
     <type>
       <types>Date</types>
@@ -95,6 +119,10 @@
       <key>ru</key>
       <value>Отозван</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Відкликано</value>
+    </synonym>
     <type>
       <types>Boolean</types>
     </type>
@@ -109,6 +137,10 @@
     <synonym>
       <key>ru</key>
       <value>Дата отзыва (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Дата відкликання (UTC)</value>
     </synonym>
     <type>
       <types>Date</types>
@@ -128,6 +160,10 @@
       <key>ru</key>
       <value>Дата выпуска (UTC)</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Дата видачі (UTC)</value>
+    </synonym>
     <type>
       <types>Date</types>
       <dateQualifiers>
@@ -145,6 +181,10 @@
     <synonym>
       <key>ru</key>
       <value>Выпустил</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Видав</value>
     </synonym>
     <type>
       <types>String</types>
@@ -164,6 +204,10 @@
       <key>ru</key>
       <value>Область</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Область</value>
+    </synonym>
     <type>
       <types>String</types>
       <stringQualifiers>
@@ -173,6 +217,10 @@
     <toolTip>
       <key>ru</key>
       <value>Пусто - все возможности профиля</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Порожньо - усі можливості профілю</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>

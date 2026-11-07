@@ -5,11 +5,19 @@
     <key>ru</key>
     <value>Выгрузить настройки MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Вивантажити налаштування MCP</value>
+  </synonym>
   <group>ActionsPanelTools</group>
   <commandParameterType/>
   <representation>Auto</representation>
   <toolTip>
     <key>ru</key>
     <value>Профили, пользовательские инструменты, промпты, инструкции и глоссарий в JSON (без токенов и клиентов)</value>
+  </toolTip>
+  <toolTip>
+    <key>uk</key>
+    <value>Профілі, користувацькі інструменти, промпти, інструкції й глосарій у JSON (без токенів і клієнтів)</value>
   </toolTip>
 </mdclass:CommonCommand>

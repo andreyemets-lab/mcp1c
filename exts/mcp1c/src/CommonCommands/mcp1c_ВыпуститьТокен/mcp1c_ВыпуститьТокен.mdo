@@ -5,6 +5,10 @@
     <key>ru</key>
     <value>Выпустить токен MCP</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Видати токен MCP</value>
+  </synonym>
   <group>FormCommandBarImportant</group>
   <commandParameterType>
     <types>CatalogRef.mcp1c_КлиентыДоступа</types>
@@ -14,5 +18,9 @@
   <toolTip>
     <key>ru</key>
     <value>Выпустить персональный токен доступа для клиента</value>
+  </toolTip>
+  <toolTip>
+    <key>uk</key>
+    <value>Видати персональний токен доступу для клієнта</value>
   </toolTip>
 </mdclass:CommonCommand>

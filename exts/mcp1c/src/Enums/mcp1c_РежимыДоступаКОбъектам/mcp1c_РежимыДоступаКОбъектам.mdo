@@ -10,6 +10,10 @@
     <key>ru</key>
     <value>Режимы доступа к объектам (MCP)</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Режими доступу до об'єктів (MCP)</value>
+  </synonym>
   <useStandardCommands>true</useStandardCommands>
   <quickChoice>true</quickChoice>
   <choiceMode>BothWays</choiceMode>
@@ -19,12 +23,20 @@
       <key>ru</key>
       <value>Чтение</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Читання</value>
+    </synonym>
   </enumValues>
   <enumValues uuid="4dad783f-8e14-4016-b34c-7096c0ed50b1">
     <name>ТолькоАгрегаты</name>
     <synonym>
       <key>ru</key>
       <value>Только агрегаты</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Лише агрегати</value>
     </synonym>
     <comment>Только группировки и агрегаты; группы с числом записей меньше минимального размера не выдаются</comment>
   </enumValues>
@@ -33,6 +45,10 @@
     <synonym>
       <key>ru</key>
       <value>Запрещено</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Заборонено</value>
     </synonym>
   </enumValues>
 </mdclass:Enum>

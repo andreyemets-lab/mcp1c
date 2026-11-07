@@ -10,6 +10,10 @@
     <key>ru</key>
     <value>Виды сравнения (MCP)</value>
   </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Види порівняння (MCP)</value>
+  </synonym>
   <useStandardCommands>true</useStandardCommands>
   <quickChoice>true</quickChoice>
   <choiceMode>BothWays</choiceMode>
@@ -19,6 +23,10 @@
       <key>ru</key>
       <value>Равно</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Дорівнює</value>
+    </synonym>
   </enumValues>
   <enumValues uuid="cfc4195a-fde0-4da0-ad1a-0188ab1373b1">
     <name>НеРавно</name>
@@ -26,12 +34,20 @@
       <key>ru</key>
       <value>Не равно</value>
     </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Не дорівнює</value>
+    </synonym>
   </enumValues>
   <enumValues uuid="98bed4eb-b26d-46bc-a937-f0fd282a0135">
     <name>ВИерархии</name>
     <synonym>
       <key>ru</key>
       <value>В иерархии</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>В ієрархії</value>
     </synonym>
   </enumValues>
 </mdclass:Enum>
