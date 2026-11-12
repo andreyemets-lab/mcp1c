@@ -37,6 +37,13 @@ TOOLS = ["get_context", "list_objects", "describe_object", "query_records"]
 TARGETS = {"get_context": 150, "list_objects": 300, "describe_object": 300, "query_records": 2000}
 SLOWDOWN = 0.30
 NOISE_MS = 20
+# Prefix of a full object name -> kind code of list_objects.
+KINDS = {"справочник": "catalog", "catalog": "catalog", "документ": "document", "document": "document",
+         "перечисление": "enum", "enum": "enum", "плансчетов": "chart_of_accounts",
+         "chartofaccounts": "chart_of_accounts", "планвидовхарактеристик": "chart_of_characteristic_types",
+         "chartofcharacteristictypes": "chart_of_characteristic_types", "регистрсведений": "information_register",
+         "informationregister": "information_register", "регистрнакопления": "accumulation_register",
+         "accumulationregister": "accumulation_register"}
 
 
 def percentile(values: list[float], share: float) -> float:
@@ -94,7 +101,8 @@ def sequence(args: argparse.Namespace) -> list[tuple[str, dict[str, Any]]]:
     query: dict[str, Any] = {"object": args.object, "limit": args.limit}
     if args.filter:
         query["filters"] = [json.loads(args.filter)]
-    return [("get_context", {}), ("list_objects", {"kinds": [args.object.split(".")[0]], "limit": 50}),
+    kind = KINDS.get(args.object.split(".")[0].lower(), "catalog")
+    return [("get_context", {}), ("list_objects", {"kinds": [kind], "limit": 50}),
             ("describe_object", {"object": args.object}), ("query_records", query)]
 
 
