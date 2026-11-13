@@ -811,8 +811,9 @@ def check_reports(c: Client) -> str:
         if not result.get("isError"):
             described = result["structuredContent"]
             expect(isinstance(described.get("parameters"), list), "describe_report: parameters missing")
-            return f"{data['total']} report(s); {item['report']}: {len(described.get('variants', []))} variant(s)"
-    return f"{data['total']} report(s); first five refused by checks of their data sets"
+            return (f"{data['returned']} report(s) of {data.get('candidates')}; {item['report']}: "
+                    f"{len(described.get('variants', []))} variant(s)")
+    return f"{data['returned']} report(s); describe_report failed for the first five (composition errors)"
 
 
 CHECKS: list[tuple[str, str, Callable[[Client], str]]] = [
