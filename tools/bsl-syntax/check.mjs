@@ -26,8 +26,13 @@ function position(text, offset) {
   return { line, column };
 }
 
+// Граматика вважає «Область» ключовим словом (#Область) і не розбирає виклик методу
+// ТабличныйДокумент.Область(...): перед розбором ім'я методу замінюється іменем тієї ж довжини,
+// щоб позиції помилок не зсувалися.
+const METHOD_AREA = /\.(Область|область)\(/g;
+
 export function syntaxErrors(text) {
-  const tree = parser.parse(text);
+  const tree = parser.parse(text.replace(METHOD_AREA, ".Oblast_("));
   const errors = [];
   tree.iterate({
     enter(node) {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="aa389d64-3d8d-4e77-9e98-5cda6a18cdcd">
+  <name>mcp1c_ИнструментыОтчетов</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: отчеты на СКД</value>
+  </synonym>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>
