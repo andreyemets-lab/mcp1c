@@ -776,6 +776,45 @@ def check_custom_tools(c: Client) -> str:
     return f"{custom[0]}: {len(data['rows'])} row(s)"
 
 
+def check_execute_query(c: Client) -> str:
+    require_tools(c, "execute_query")
+    name = sample_catalog(c)["object"]
+    data = tool_data(c, "execute_query", {"query": f"ВЫБРАТЬ Т.Ссылка КАК Ссылка ИЗ {name} КАК Т", "limit": 1})
+    expect(data.get("row_count") == 1 and data.get("has_more") is True,
+           f"execute_query: expected 1 row and has_more, got {str(data)[:200]}")
+    refused = {
+        "«*»": f"ВЫБРАТЬ * ИЗ {name}",
+        "ПРЕДСТАВЛЕНИЕ": f"ВЫБРАТЬ ПРЕДСТАВЛЕНИЕ(Т.Ссылка) КАК П ИЗ {name} КАК Т",
+        "ДЛЯ ИЗМЕНЕНИЯ": f"ВЫБРАТЬ Т.Ссылка КАК С ИЗ {name} КАК Т ДЛЯ ИЗМЕНЕНИЯ",
+        "не знайдено": "ВЫБРАТЬ Т.Ссылка КАК С ИЗ Справочник.mcp1c_ТокеныДоступа КАК Т",
+        "не джерело": f"ВЫБРАТЬ Т.Ссылка КАК С ИЗ {name} КАК Т ГДЕ Т.Ссылка В "
+                      f"(ВЫБРАТЬ Д.Ссылка ИЗ {name} КАК Д)",
+    }
+    for expected, query in refused.items():
+        text = tool_error(c, "execute_query", {"query": query})
+        expect(expected in text, f"execute_query must refuse ({expected}): {text[:200]}")
+    if c.denied_object:
+        text = tool_error(c, "execute_query", {"query": f"ВЫБРАТЬ 1 КАК Х ИЗ {c.denied_object} КАК Т"})
+        expect("не знайдено" in text, f"object outside the profile must look absent: {text[:200]}")
+    return f"{name}: 1 row; refused: {', '.join(refused)}"
+
+
+def check_reports(c: Client) -> str:
+    require_tools(c, "list_reports", "describe_report", "run_report")
+    data = tool_data(c, "list_reports", {"limit": 200})
+    text = tool_error(c, "describe_report", {"report": "Отчет.mcp1c_НетТакогоОтчета"})
+    expect("не знайдено" in text, f"unknown report must look absent: {text[:200]}")
+    if not data.get("items"):
+        raise Skipped("the profile opens no reports (rule «Отчет.<Name>» or «Отчет.*»)")
+    for item in data["items"][:5]:
+        result = tool_payload(c.call_tool("describe_report", {"report": item["report"]}))
+        if not result.get("isError"):
+            described = result["structuredContent"]
+            expect(isinstance(described.get("parameters"), list), "describe_report: parameters missing")
+            return f"{data['total']} report(s); {item['report']}: {len(described.get('variants', []))} variant(s)"
+    return f"{data['total']} report(s); first five refused by checks of their data sets"
+
+
 CHECKS: list[tuple[str, str, Callable[[Client], str]]] = [
     ("Б1", "запит без токена", check_no_token),
     ("Б2", "недійсний токен", check_invalid_token),
@@ -818,6 +857,8 @@ CHECKS: list[tuple[str, str, Callable[[Client], str]]] = [
     ("R4", "невідомий ресурс", check_resource_not_found),
     ("P1", "prompts/list і prompts/get", check_prompts),
     ("U1", "користувацький інструмент", check_custom_tools),
+    ("Q1", "execute_query: вибірка і відмови", check_execute_query),
+    ("Q2", "звіти на СКД", check_reports),
 ]
 
 
