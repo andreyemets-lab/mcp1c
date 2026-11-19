@@ -81,6 +81,32 @@
 		</right>
 	</object>
 	<object>
+		<name>Catalog.mcp1c_КлиентыOAuth</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>Insert</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>Update</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Catalog.mcp1c_ПодключенияOAuth</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>Update</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>InformationRegister.mcp1c_Блокировки</name>
 		<right>
 			<name>Read</name>

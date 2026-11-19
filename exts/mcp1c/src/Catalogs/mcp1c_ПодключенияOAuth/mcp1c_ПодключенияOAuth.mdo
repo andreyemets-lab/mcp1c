@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="e6c58483-dc1b-4b8d-a695-56a22f714539">
+  <producedTypes>
+    <objectType typeId="a0e6da70-6d3b-4861-bbe4-8cd6aea8f3dd" valueTypeId="94447758-3a3f-4b01-80ad-847dad977229"/>
+    <refType typeId="e9bbb832-a3b0-41f5-bf87-dd817f5bc23c" valueTypeId="15517ca5-29bf-4a0c-9b3f-54bcdbcc9099"/>
+    <selectionType typeId="95cfd9cc-0fb9-4397-aca2-af32cbd46b6e" valueTypeId="98b0e4b0-3245-4819-9766-4166bee984e6"/>
+    <listType typeId="dcdaf622-c8df-4cae-9dab-ff2453411729" valueTypeId="504a42cf-db91-470d-a5e0-64328bee66e5"/>
+    <managerType typeId="a58af4c9-eed8-4854-8730-1aef59ec7b0b" valueTypeId="23d13d0a-48d9-4f8b-b1f2-f7fff3145f4d"/>
+  </producedTypes>
+  <name>mcp1c_ПодключенияOAuth</name>
+  <synonym>
+    <key>ru</key>
+    <value>Подключения OAuth MCP</value>
+  </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Підключення OAuth MCP</value>
+  </synonym>
+  <comment>Подключения AI-клиентов по OAuth (п. 6.4 ТЗ): код подключения, код авторизации, токены доступа и обновления; код - идентификатор подключения, хранятся только SHA-256 секретов</comment>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.mcp1c_ПодключенияOAuth.StandardAttribute.Code</inputByString>
+  <inputByString>Catalog.mcp1c_ПодключенияOAuth.StandardAttribute.Description</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Owner</name>
+    <synonym>
+      <key>ru</key>
+      <value>Клиент доступа</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Клієнт доступу</value>
+    </synonym>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <createOnInput>DontUse</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>DontUse</fullTextSearch>
+  <objectPresentation>
+    <key>ru</key>
+    <value>Подключение OAuth MCP</value>
+  </objectPresentation>
+  <objectPresentation>
+    <key>uk</key>
+    <value>Підключення OAuth MCP</value>
+  </objectPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Подключения OAuth MCP</value>
+  </listPresentation>
+  <listPresentation>
+    <key>uk</key>
+    <value>Підключення OAuth MCP</value>
+  </listPresentation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <owners>Catalog.mcp1c_КлиентыДоступа</owners>
+  <codeLength>12</codeLength>
+  <descriptionLength>150</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <codeSeries>WholeCatalog</codeSeries>
+  <checkUnique>true</checkUnique>
+  <autonumbering>false</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="be9cec31-342a-446f-b48e-6f9daf84a85f">
+    <name>КлиентOAuth</name>
+    <synonym>
+      <key>ru</key>
+      <value>Клиент OAuth</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Клієнт OAuth</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.mcp1c_КлиентыOAuth</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="92f0fc49-50c1-4ebb-9b03-14bf74f5276b">
+    <name>ИдентификаторКлиентаOAuth</name>
+    <synonym>
+      <key>ru</key>
+      <value>Идентификатор клиента OAuth</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Ідентифікатор клієнта OAuth</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>500</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="a812b65d-b874-4f25-878e-be1e0adad477">
+    <name>ИмяКлиентаOAuth</name>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Застосунок</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>150</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="b2a04060-da7b-46bc-a568-d623c0a85fc7">
+    <name>АдресВозврата</name>
+    <synonym>
+      <key>ru</key>
+      <value>Адрес возврата</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Адреса повернення</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>1024</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="e66de113-a39b-4060-a541-71d19df27867">
+    <name>Области</name>
+    <synonym>
+      <key>ru</key>
+      <value>Области</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Області</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="1c1d21d0-b2f7-4a78-aadb-ca367895b2d7">
+    <name>Ресурс</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ресурс</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Ресурс</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>1024</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="0b51f239-0b65-4837-ab37-b8b2757d5439">
+    <name>Автор</name>
+    <synonym>
+      <key>ru</key>
+      <value>Выдал код</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Видав код</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="a3b86866-0e17-4661-8c9f-f806d475d985">
+    <name>ДатаВыпускаКода</name>
+    <synonym>
+      <key>ru</key>
+      <value>Код выдан (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Код видано (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="5754a935-eeee-425f-9f82-1ebea2d83aca">
+    <name>ХешКодаПодключения</name>
+    <synonym>
+      <key>ru</key>
+      <value>Хеш кода подключения</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Хеш коду підключення</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>64</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="52b90de8-8f5d-4cb7-91cf-57dc9499a67d">
+    <name>КодПодключенияДо</name>
+    <synonym>
+      <key>ru</key>
+      <value>Код подключения действует до (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Код підключення діє до (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="50760940-abee-4c21-80d5-49545ba2be88">
+    <name>ДатаПодключения</name>
+    <synonym>
+      <key>ru</key>
+      <value>Подключено (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Підключено (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="412d5a20-ce2c-40eb-bbfe-b97bfe795ca7">
+    <name>ДействуетДо</name>
+    <synonym>
+      <key>ru</key>
+      <value>Действует до (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Діє до (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="4828e0f8-02a2-41a7-8050-dfa001640ac7">
+    <name>Отозвано</name>
+    <synonym>
+      <key>ru</key>
+      <value>Отозвано</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Відкликано</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="07ab8703-52f3-4bfa-9397-54ab8c5f0958">
+    <name>ДатаОтзыва</name>
+    <synonym>
+      <key>ru</key>
+      <value>Дата отзыва (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Дата відкликання (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="9dcfd70c-95c0-4d14-b38a-ab0f59ecdbe9">
+    <name>ПричинаОтзыва</name>
+    <synonym>
+      <key>ru</key>
+      <value>Причина отзыва</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Причина відкликання</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>200</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="3243ba9d-ebfe-4bc3-8939-637915bcb832">
+    <name>ХешКодаАвторизации</name>
+    <synonym>
+      <key>ru</key>
+      <value>Хеш кода авторизации</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Хеш коду авторизації</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>64</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="b7416f6b-c603-4f84-9ddc-1242a558c2a5">
+    <name>КодАвторизацииДо</name>
+    <synonym>
+      <key>ru</key>
+      <value>Код авторизации действует до (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Код авторизації діє до (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="078d5682-440b-470f-b9d0-cedb2902cd6f">
+    <name>ВызовPKCE</name>
+    <synonym>
+      <key>ru</key>
+      <value>Вызов PKCE</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Виклик PKCE</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>128</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="f40d3fd0-9bbc-485e-8751-ec61f9d037d1">
+    <name>КодАвторизацииИспользован</name>
+    <synonym>
+      <key>ru</key>
+      <value>Код авторизации использован</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Код авторизації використано</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="f29a5a85-7db6-4391-a233-3e02e2220604">
+    <name>ХешДоступа</name>
+    <synonym>
+      <key>ru</key>
+      <value>Хеш токена доступа</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Хеш токена доступу</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>64</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="92b643b3-87f8-4890-b528-7905d306f168">
+    <name>ДоступДо</name>
+    <synonym>
+      <key>ru</key>
+      <value>Токен доступа действует до (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Токен доступу діє до (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="c01dfa3b-92b6-4819-ace2-6982d7db50f2">
+    <name>ХешПредыдущегоДоступа</name>
+    <synonym>
+      <key>ru</key>
+      <value>Хеш предыдущего токена доступа</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Хеш попереднього токена доступу</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>64</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="24f79cc0-e030-4fdb-be33-a7976fa0f074">
+    <name>ПредыдущийДоступДо</name>
+    <synonym>
+      <key>ru</key>
+      <value>Предыдущий токен доступа действует до (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Попередній токен доступу діє до (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="a9e991a6-9143-40b2-9665-50dfb0c8d896">
+    <name>ХешОбновления</name>
+    <synonym>
+      <key>ru</key>
+      <value>Хеш токена обновления</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Хеш токена оновлення</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>64</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="5306ffe8-a4fe-4295-a95b-baa8c8fc1a24">
+    <name>ОбновлениеДо</name>
+    <synonym>
+      <key>ru</key>
+      <value>Токен обновления действует до (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Токен оновлення діє до (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="f248b5ba-b034-4d2b-91cd-d043aa395408">
+    <name>ХешПредыдущегоОбновления</name>
+    <synonym>
+      <key>ru</key>
+      <value>Хеш предыдущего токена обновления</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Хеш попереднього токена оновлення</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>64</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="ea88499a-fb47-475d-bb3f-0a016eb7055c">
+    <name>ДатаОбновления</name>
+    <synonym>
+      <key>ru</key>
+      <value>Токены обновлены (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Токени оновлено (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="32475225-0376-4fe2-9a0c-7d7a09186a41">
+    <name>ПоследнийАдрес</name>
+    <synonym>
+      <key>ru</key>
+      <value>Последний IP-адрес</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Остання IP-адреса</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>64</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+</mdclass:Catalog>

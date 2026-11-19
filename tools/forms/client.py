@@ -1,4 +1,5 @@
-"""Клієнт доступу (ТЗ п. 9.2): «Основне», «Обмеження», «Токени» (видача й відкликання), «Журнал»."""
+"""Клієнт доступу (ТЗ п. 9.2): «Основне», «Обмеження», «Токени» (видача й відкликання), «OAuth» (код підключення
+веб-коннектора і підключення, ТЗ п. 6.4), «Журнал»."""
 from formxml import Attr, Button, Col, Command, Field, Form, Group, Label, Page, Pages, Table
 
 PATH = "Catalogs/mcp1c_КлиентыДоступа/Forms/ФормаЭлемента/Form.form"
@@ -121,6 +122,35 @@ FORM = Form(
                 ),
             ),
             Page(
+                "СтраницаOAuth", "OAuth",
+                Label("ДекорацияOAuth", "Веб-коннектори (claude.ai, ChatGPT) і Claude Code підключаються через браузер: "
+                      "видайте код підключення й передайте його користувачу разом з адресою сервера. Код одноразовий "
+                      "і діє кілька хвилин; підключення працює з правами цього клієнта доступу.", hstretch=True),
+                Label("ДекорацияOAuthНовыйКлиент", "Запишіть клієнта, щоб видати код підключення.", hstretch=True,
+                      visible=False),
+                Field("КодПодключенияOAuth", "КодПодключенияOAuth", title="Код підключення (показується один раз)",
+                      title_location="Top", read_only=True, multiline=True, height=7, auto_max_width=False,
+                      hstretch=True, vstretch=False, visible=False),
+                Table(
+                    "ПодключенияOAuth", "ПодключенияOAuth",
+                    column("ПодключенияOAuth", "Идентификатор", "Ідентифікатор", width=14),
+                    column("ПодключенияOAuth", "Приложение", "Застосунок"),
+                    column("ПодключенияOAuth", "Состояние", "Стан"),
+                    column("ПодключенияOAuth", "ДатаПодключения", "Підключено"),
+                    column("ПодключенияOAuth", "ДействуетДо", "Діє до"),
+                    column("ПодключенияOAuth", "ПоследнееИспользование", "Останнє використання"),
+                    column("ПодключенияOAuth", "Области", "Області"),
+                    column("ПодключенияOAuth", "ХостВозврата", "Повернення на"),
+                    column("ПодключенияOAuth", "Автор", "Видав код"),
+                    read_only=True, change_row_set=False, height_rows=6,
+                    buttons=[
+                        Button("ПодключенияOAuthВыдатьКод", "ВыдатьКодПодключенияOAuth", representation="PictureAndText"),
+                        Button("ПодключенияOAuthОтозвать", "ОтозватьПодключениеOAuth"),
+                        Button("ПодключенияOAuthОбновить", "ОбновитьПодключенияOAuth"),
+                    ],
+                ),
+            ),
+            Page(
                 "СтраницаЖурнал", "Журнал",
                 Table(
                     "Журнал", "Журнал",
@@ -152,6 +182,19 @@ FORM = Form(
             Col("ОбластьДоступа", "String(1000)"),
             Col("Автор", "String(100)"),
         ]),
+        Attr("КодПодключенияOAuth", "String"),
+        Attr("ПодключенияOAuth", "ValueTable", columns=[
+            Col("Ссылка", "CatalogRef.mcp1c_ПодключенияOAuth"),
+            Col("Идентификатор", "String(12)"),
+            Col("Приложение", "String(150)"),
+            Col("Состояние", "String(50)"),
+            Col("ДатаПодключения", "Date"),
+            Col("ДействуетДо", "Date"),
+            Col("ПоследнееИспользование", "Date"),
+            Col("Области", "String(100)"),
+            Col("ХостВозврата", "String(255)"),
+            Col("Автор", "String(100)"),
+        ]),
         Attr("Журнал", "DynamicList", dynamic_list={
             "query": JOURNAL_QUERY, "main_table": "InformationRegister.mcp1c_ЖурналВызовов"}),
     ],
@@ -162,5 +205,10 @@ FORM = Form(
         Command("ОбновитьТокены", "Оновити", "Оновити список токенів і час останнього використання",
                 picture="StdPicture.Refresh"),
         Command("СнятьБлокировку", "Зняти блокування", "Зняти автоматичне блокування клієнта"),
+        Command("ВыдатьКодПодключенияOAuth", "Видати код підключення", "Видати одноразовий код для підключення "
+                "AI-клієнта через OAuth (claude.ai, ChatGPT, Claude Code)", picture="StdPicture.CreateListItem"),
+        Command("ОтозватьПодключениеOAuth", "Відкликати", "Відкликати вибране підключення: його токени перестають "
+                "діяти з наступного запиту"),
+        Command("ОбновитьПодключенияOAuth", "Оновити", "Оновити список підключень OAuth", picture="StdPicture.Refresh"),
     ],
 )

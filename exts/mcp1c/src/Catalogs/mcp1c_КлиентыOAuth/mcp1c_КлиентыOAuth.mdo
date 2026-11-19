@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="4829e919-84a3-4c10-a81e-1eef023ac573">
+  <producedTypes>
+    <objectType typeId="aa19751c-e369-4651-9471-a849ea55de37" valueTypeId="d3042af0-cfbe-4779-8ba2-d16fa51b7fb1"/>
+    <refType typeId="d7ae1e6c-b83a-4430-a341-d1e0619c4a06" valueTypeId="62c030d6-870f-4fc3-84c2-cdfae7993e46"/>
+    <selectionType typeId="304159de-d186-45e4-b3a1-943b1cc59015" valueTypeId="97cb3498-e38d-4644-b997-6aadc78222b9"/>
+    <listType typeId="823d8b60-1d6c-4d9c-a394-05aa587cc733" valueTypeId="df876e02-da84-4538-beb5-8068cbeef1bd"/>
+    <managerType typeId="0ce29947-34e8-46d9-991b-d20346a80b1f" valueTypeId="ea84ca77-48b6-4019-b5d0-00794c89f233"/>
+  </producedTypes>
+  <name>mcp1c_КлиентыOAuth</name>
+  <synonym>
+    <key>ru</key>
+    <value>Клиенты OAuth MCP</value>
+  </synonym>
+  <synonym>
+    <key>uk</key>
+    <value>Клієнти OAuth MCP</value>
+  </synonym>
+  <comment>Клиенты OAuth (п. 6.4 ТЗ): предварительная и динамическая регистрация, кеш документов CIMD</comment>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.mcp1c_КлиентыOAuth.StandardAttribute.Description</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>DontUse</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>DontUse</fullTextSearch>
+  <objectPresentation>
+    <key>ru</key>
+    <value>Клиент OAuth MCP</value>
+  </objectPresentation>
+  <objectPresentation>
+    <key>uk</key>
+    <value>Клієнт OAuth MCP</value>
+  </objectPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Клиенты OAuth MCP</value>
+  </listPresentation>
+  <listPresentation>
+    <key>uk</key>
+    <value>Клієнти OAuth MCP</value>
+  </listPresentation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>0</codeLength>
+  <descriptionLength>150</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>false</checkUnique>
+  <autonumbering>false</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="0841f65c-a43d-413f-a812-0f9fcbf814d2">
+    <name>ИдентификаторКлиента</name>
+    <synonym>
+      <key>ru</key>
+      <value>Идентификатор клиента (client_id)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Ідентифікатор клієнта (client_id)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>500</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="54a10dcf-59ae-4bbd-9d07-22128c396a68">
+    <name>Источник</name>
+    <synonym>
+      <key>ru</key>
+      <value>Источник</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Джерело</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>10</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>manual - зарегистрирован администратором, dcr - динамическая регистрация, cimd - документ метаданных клиента</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>manual - зареєстровано адміністратором, dcr - динамічна реєстрація, cimd - документ метаданих клієнта</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="f456055f-3ec7-4ffb-a7ed-ffd4f189b812">
+    <name>АдресаВозврата</name>
+    <synonym>
+      <key>ru</key>
+      <value>Адреса возврата</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Адреси повернення</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>redirect_uris, по одному в строке</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>redirect_uris, по одному в рядку</value>
+    </toolTip>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="8483f5f9-0c42-4ab6-8ee7-284fc78947bf">
+    <name>СпособАутентификации</name>
+    <synonym>
+      <key>ru</key>
+      <value>Способ аутентификации</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Спосіб автентифікації</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>30</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>none, client_secret_post или client_secret_basic</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>none, client_secret_post або client_secret_basic</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="902740b8-32f0-49ee-a6a0-f293aae026ba">
+    <name>ХешСекрета</name>
+    <synonym>
+      <key>ru</key>
+      <value>Хеш секрета клиента</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Хеш секрету клієнта</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>64</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="62f4d626-9f21-47be-8122-a0e31f816443">
+    <name>ДокументМетаданных</name>
+    <synonym>
+      <key>ru</key>
+      <value>Документ метаданных</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Документ метаданих</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="b75278b3-e2e5-4345-9521-f76fb5180c81">
+    <name>ДатаЗагрузки</name>
+    <synonym>
+      <key>ru</key>
+      <value>Дата загрузки (UTC)</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Дата завантаження (UTC)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>DateTime</dateFractions>
+      </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="d7742d72-65d0-4080-93b0-418fed390bc0">
+    <name>Заблокирован</name>
+    <synonym>
+      <key>ru</key>
+      <value>Заблокирован</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Заблоковано</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+  <attributes uuid="e9b49ab3-10ef-4116-a084-477e05ff249a">
+    <name>Комментарий</name>
+    <synonym>
+      <key>ru</key>
+      <value>Комментарий</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Коментар</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>DontUse</fullTextSearch>
+    <dataHistory>DontUse</dataHistory>
+  </attributes>
+</mdclass:Catalog>
