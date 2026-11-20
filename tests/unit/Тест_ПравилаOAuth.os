@@ -128,6 +128,28 @@
 	Утв.Равно(mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(СтрЗаменить(Текст, "http://localhost/callback",
 		"https://claude.ai/api/mcp/auth_callback"), Адрес).Ошибка, "");
 
+	// claude.ai: лишний тип разрешения (jwt-bearer) не мешает.
+	Адрес2 = "https://claude.ai/oauth/mcp-oauth-client-metadata";
+	Текст2 = "{""client_id"":""https://claude.ai/oauth/mcp-oauth-client-metadata"",""client_name"":""Claude"","
+		+ """client_uri"":""https://claude.ai"",""redirect_uris"":[""https://claude.ai/api/mcp/auth_callback""],"
+		+ """grant_types"":[""authorization_code"",""refresh_token"",""urn:ietf:params:oauth:grant-type:jwt-bearer""],"
+		+ """response_types"":[""code""],""token_endpoint_auth_method"":""none""}";
+	Утв.Равно(mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(Текст2, Адрес2).Ошибка, "");
+
+	// ChatGPT: предпочтение private_key_jwt, но none - среди поддерживаемых способов.
+	Адрес3 = "https://chatgpt.com/oauth/client.json";
+	Текст3 = "{""client_id"":""https://chatgpt.com/oauth/client.json"",""client_name"":""ChatGPT"","
+		+ """redirect_uris"":[""https://chatgpt.com/connector_platform_oauth_redirect""],"
+		+ """grant_types"":[""authorization_code"",""refresh_token""],""response_types"":[""code""],"
+		+ """token_endpoint_auth_method"":""private_key_jwt"","
+		+ """token_endpoint_auth_methods_supported"":[""none"",""private_key_jwt""],"
+		+ """jwks_uri"":""https://chatgpt.com/oauth/jwks.json""}";
+	Описание3 = mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(Текст3, Адрес3);
+	Утв.Равно(Описание3.Ошибка, "", "none в пересечении способов");
+	Утв.Равно(Описание3.СпособАутентификации, "none");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(СтрЗаменить(Текст3, """none"",", ""), Адрес3).Ошибка,
+		"лише none", "без none среди способов - отказ");
+
 	Регистрация = mcp1c_ПравилаOAuth.ПроверитьЗапросРегистрации(
 		"{""client_name"":""Inspector"",""redirect_uris"":[""http://localhost:6274/oauth/callback""]}");
 	Утв.Равно(Регистрация.Ошибка, "");
