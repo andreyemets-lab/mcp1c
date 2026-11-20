@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="3d1645fa-2fea-4b3a-80d1-46a167e4bfd7">
+  <name>mcp1c_OAuth</name>
+  <synonym>
+    <key>ru</key>
+    <value>MCP: сервер авторизации OAuth</value>
+  </synonym>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+</mdclass:CommonModule>

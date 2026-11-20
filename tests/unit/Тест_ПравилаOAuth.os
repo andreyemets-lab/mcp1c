@@ -1,0 +1,333 @@
+// Тесты mcp1c_ПравилаOAuth: области, PKCE (RFC 7636), адреса возврата (RFC 8252), CIMD, формы,
+// подписанные данные страниц, токены, метаданные RFC 8414 и RFC 9728, страницы авторизации.
+#Использовать "../../build/oslib"
+
+Функция Массив(Значения)
+
+	Возврат СтрРазделить(Значения, ",", Ложь);
+
+КонецФункции
+
+Процедура ТестОбласти() Экспорт
+
+	Утв.МассивРавен(mcp1c_ПравилаOAuth.РазобратьОбласти("mcp:query offline_access  mcp:read"), "mcp:read,mcp:query",
+		"неизвестные области пропускаются, порядок - сервера");
+	Утв.МассивРавен(mcp1c_ПравилаOAuth.РазобратьОбласти(Неопределено), "");
+	Утв.МассивРавен(mcp1c_ПравилаOAuth.РазобратьОбласти("mcp:read+mcp:reports"), "mcp:read,mcp:reports",
+		"+ из строки запроса - разделитель");
+	Утв.Равно(mcp1c_ПравилаOAuth.ОбластиСтрокой(Массив("mcp:query,mcp:read")), "mcp:read mcp:query");
+	Утв.Равно(mcp1c_ПравилаOAuth.ОбластьВызова("tools/call", "run_report"), "mcp:reports");
+	Утв.Равно(mcp1c_ПравилаOAuth.ОбластьВызова("tools/call", "execute_query"), "mcp:query");
+	Утв.Равно(mcp1c_ПравилаOAuth.ОбластьВызова("tools/call", "query_records"), "mcp:read");
+	Утв.Равно(mcp1c_ПравилаOAuth.ОбластьВызова("resources/read", ""), "mcp:read");
+	Утв.Равно(mcp1c_ПравилаOAuth.ОбластьВызова("tools/list", ""), "", "списки области не требуют");
+
+	Политика = mcp1c_ПравилаДоступа.НоваяПолитика();
+	Утв.МассивРавен(mcp1c_ПравилаOAuth.ДоступныеОбласти(Политика), "mcp:read", "профиль без инструментов по запросу");
+	Политика.Инструменты = Массив("run_report,execute_query");
+	Утв.МассивРавен(mcp1c_ПравилаOAuth.ДоступныеОбласти(Политика), "mcp:read,mcp:reports,mcp:query");
+
+	Доступные = Массив("mcp:read,mcp:reports");
+	Утв.МассивРавен(mcp1c_ПравилаOAuth.ВыданныеОбласти(Массив("mcp:reports,mcp:query"), Доступные),
+		"mcp:read,mcp:reports", "запрошенные и доступные, mcp:read - всегда");
+	Утв.МассивРавен(mcp1c_ПравилаOAuth.ВыданныеОбласти(Новый Массив, Доступные), "mcp:read,mcp:reports",
+		"без запрошенных - все доступные");
+	Утв.МассивРавен(mcp1c_ПравилаOAuth.ВыданныеОбласти(Массив("mcp:query"), Массив("mcp:read")), "mcp:read");
+
+КонецПроцедуры
+
+Процедура ТестPKCE() Экспорт
+
+	// RFC 7636, приложение B.
+	Утв.Равно(mcp1c_ПравилаOAuth.ВызовPKCE("dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"),
+		"E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM");
+	Утв.Истинно(mcp1c_ПравилаOAuth.ВерификаторPKCEКорректен("dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"));
+	Утв.Ложно(mcp1c_ПравилаOAuth.ВерификаторPKCEКорректен("короткий"), "меньше 43 символов");
+	Утв.Ложно(mcp1c_ПравилаOAuth.ВерификаторPKCEКорректен("dBjftJeZ4CVP+mB92K27uhbUJU1p1r/wW1gFWFOEjXk"), "+ и /");
+	Утв.Истинно(mcp1c_ПравилаOAuth.ВызовPKCEКорректен("E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM"));
+	Утв.Ложно(mcp1c_ПравилаOAuth.ВызовPKCEКорректен("plain"));
+
+КонецПроцедуры
+
+Процедура ТестАдреса() Экспорт
+
+	Части = mcp1c_ПравилаOAuth.РазобратьАдрес("HTTPS://User@Claude.AI:8443/api/mcp/auth_callback?x=1#frag");
+	Утв.Равно(Части.Схема, "https");
+	Утв.Равно(Части.Хост, "claude.ai");
+	Утв.Равно(Части.Порт, "8443");
+	Утв.Равно(Части.Путь, "/api/mcp/auth_callback");
+	Утв.Равно(Части.Запрос, "x=1");
+	Утв.Истинно(Части.ЕстьФрагмент И Части.ЕстьПользователь);
+	Утв.Равно(mcp1c_ПравилаOAuth.РазобратьАдрес("http://[::1]:3118/callback").Хост, "[::1]");
+	Утв.Равно(mcp1c_ПравилаOAuth.РазобратьАдрес("mcp.example.com/x"), Неопределено, "без схемы");
+
+	Утв.Истинно(mcp1c_ПравилаOAuth.АдресВозвратаДопустим("https://claude.ai/api/mcp/auth_callback"));
+	Утв.Истинно(mcp1c_ПравилаOAuth.АдресВозвратаДопустим("http://127.0.0.1:33418/callback"));
+	Утв.Ложно(mcp1c_ПравилаOAuth.АдресВозвратаДопустим("http://example.com/callback"), "http не на петлевом адресе");
+	Утв.Ложно(mcp1c_ПравилаOAuth.АдресВозвратаДопустим("cursor://anysphere/oauth"), "своя схема");
+	Утв.Ложно(mcp1c_ПравилаOAuth.АдресВозвратаДопустим("https://claude.ai/cb#x"), "фрагмент");
+
+	Claude = Массив("http://localhost/callback,http://127.0.0.1/callback");
+	Утв.Истинно(mcp1c_ПравилаOAuth.АдресВозвратаЗарегистрирован("http://localhost:3118/callback", Claude),
+		"петлевой адрес - без учета порта");
+	Утв.Ложно(mcp1c_ПравилаOAuth.АдресВозвратаЗарегистрирован("http://localhost:3118/other", Claude), "другой путь");
+	Утв.Ложно(mcp1c_ПравилаOAuth.АдресВозвратаЗарегистрирован("http://[::1]:3118/callback", Claude), "другой хост");
+	Утв.Истинно(mcp1c_ПравилаOAuth.АдресВозвратаЗарегистрирован("https://claude.ai/api/mcp/auth_callback",
+		Массив("https://claude.ai/api/mcp/auth_callback")));
+	Утв.Ложно(mcp1c_ПравилаOAuth.АдресВозвратаЗарегистрирован("https://claude.ai:444/api/mcp/auth_callback",
+		Массив("https://claude.ai/api/mcp/auth_callback")), "https - только точное совпадение");
+	Утв.Истинно(mcp1c_ПравилаOAuth.ТолькоПетлевыеАдреса(Claude));
+	Утв.Ложно(mcp1c_ПравилаOAuth.ТолькоПетлевыеАдреса(Массив("https://claude.ai/cb,http://localhost/cb")));
+
+	Утв.Истинно(mcp1c_ПравилаOAuth.ЭквивалентныеРесурсы("https://MCP.company.ua:443/mcp/", "https://mcp.company.ua/mcp"));
+	Утв.Ложно(mcp1c_ПравилаOAuth.ЭквивалентныеРесурсы("https://mcp.company.ua/mcp", "https://mcp.company.ua/other"));
+	Утв.Ложно(mcp1c_ПравилаOAuth.ЭквивалентныеРесурсы("", ""), "пустой адрес не совпадает ни с чем");
+
+КонецПроцедуры
+
+Процедура ТестАдресаCIMD() Экспорт
+
+	Префиксы = Массив("https://claude.ai,https://chatgpt.com/oauth/");
+	Утв.Равно(mcp1c_ПравилаOAuth.ОшибкаАдресаCIMD("https://claude.ai/oauth/claude-code-client-metadata", Префиксы), "");
+	Утв.Равно(mcp1c_ПравилаOAuth.ОшибкаАдресаCIMD("https://chatgpt.com/oauth/client.json", Префиксы), "");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ОшибкаАдресаCIMD("https://claude.ai.example.com/x", Префиксы), "довірених",
+		"префикс без пути не принимает другой хост");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ОшибкаАдресаCIMD("https://chatgpt.com/other/client.json", Префиксы), "довірених");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ОшибкаАдресаCIMD("http://claude.ai/x", Префиксы), "https");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ОшибкаАдресаCIMD("https://claude.ai:8443/x", Префиксы), "порт");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ОшибкаАдресаCIMD("https://claude.ai/", Префиксы), "шляху");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ОшибкаАдресаCIMD("https://10.0.0.5/client.json", Массив("https://10.0.0.5/")),
+		"доменне");
+	Утв.Истинно(mcp1c_ПравилаOAuth.ЭтоАдресCIMD("https://claude.ai/x"));
+	Утв.Ложно(mcp1c_ПравилаOAuth.ЭтоАдресCIMD("mcp1c-abc"));
+
+КонецПроцедуры
+
+Процедура ТестДокументCIMD() Экспорт
+
+	Адрес = "https://claude.ai/oauth/claude-code-client-metadata";
+	Текст = "{""client_id"":""https://claude.ai/oauth/claude-code-client-metadata"",""client_name"":""Claude Code"","
+		+ """client_uri"":""https://claude.ai"",""redirect_uris"":[""http://localhost/callback"",""http://127.0.0.1/callback""],"
+		+ """grant_types"":[""authorization_code"",""refresh_token""],""response_types"":[""code""],"
+		+ """token_endpoint_auth_method"":""none""}";
+	Описание = mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(Текст, Адрес);
+	Утв.Равно(Описание.Ошибка, "");
+	Утв.Равно(Описание.Имя, "Claude Code");
+	Утв.МассивРавен(Описание.АдресаВозврата, "http://localhost/callback,http://127.0.0.1/callback");
+
+	Утв.Содержит(mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(Текст, Адрес + "-x").Ошибка, "не збігається");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ПроверитьДокументCIMD("[1]", Адрес).Ошибка, "не об'єкт");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(СтрЗаменить(Текст, """none""", """client_secret_post"""),
+		Адрес).Ошибка, "лише none");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(СтрЗаменить(Текст, "http://localhost/callback",
+		"http://evil.example/callback"), Адрес).Ошибка, "петлевій");
+	Чужой = mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(СтрЗаменить(Текст, "http://localhost/callback",
+		"https://evil.example/callback"), Адрес);
+	Утв.Содержит(Чужой.Ошибка, "не на хості", "https-адрес возврата - только на хосте документа");
+	Утв.Равно(Чужой.АдресаВозврата.Количество(), 0);
+	Утв.Равно(mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(СтрЗаменить(Текст, "http://localhost/callback",
+		"https://claude.ai/api/mcp/auth_callback"), Адрес).Ошибка, "");
+
+	// claude.ai: лишний тип разрешения (jwt-bearer) не мешает.
+	Адрес2 = "https://claude.ai/oauth/mcp-oauth-client-metadata";
+	Текст2 = "{""client_id"":""https://claude.ai/oauth/mcp-oauth-client-metadata"",""client_name"":""Claude"","
+		+ """client_uri"":""https://claude.ai"",""redirect_uris"":[""https://claude.ai/api/mcp/auth_callback""],"
+		+ """grant_types"":[""authorization_code"",""refresh_token"",""urn:ietf:params:oauth:grant-type:jwt-bearer""],"
+		+ """response_types"":[""code""],""token_endpoint_auth_method"":""none""}";
+	Утв.Равно(mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(Текст2, Адрес2).Ошибка, "");
+
+	// ChatGPT: предпочтение private_key_jwt, но none - среди поддерживаемых способов.
+	Адрес3 = "https://chatgpt.com/oauth/client.json";
+	Текст3 = "{""client_id"":""https://chatgpt.com/oauth/client.json"",""client_name"":""ChatGPT"","
+		+ """redirect_uris"":[""https://chatgpt.com/connector_platform_oauth_redirect""],"
+		+ """grant_types"":[""authorization_code"",""refresh_token""],""response_types"":[""code""],"
+		+ """token_endpoint_auth_method"":""private_key_jwt"","
+		+ """token_endpoint_auth_methods_supported"":[""none"",""private_key_jwt""],"
+		+ """jwks_uri"":""https://chatgpt.com/oauth/jwks.json""}";
+	Описание3 = mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(Текст3, Адрес3);
+	Утв.Равно(Описание3.Ошибка, "", "none в пересечении способов");
+	Утв.Равно(Описание3.СпособАутентификации, "none");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ПроверитьДокументCIMD(СтрЗаменить(Текст3, """none"",", ""), Адрес3).Ошибка,
+		"лише none", "без none среди способов - отказ");
+
+	Регистрация = mcp1c_ПравилаOAuth.ПроверитьЗапросРегистрации(
+		"{""client_name"":""Inspector"",""redirect_uris"":[""http://localhost:6274/oauth/callback""]}");
+	Утв.Равно(Регистрация.Ошибка, "");
+	Утв.Равно(Регистрация.СпособАутентификации, "client_secret_basic", "способ по умолчанию по RFC 7591");
+	Утв.Равно(Регистрация.КодОшибки, "");
+	БезАдресов = mcp1c_ПравилаOAuth.ПроверитьЗапросРегистрации("{""client_name"":""X""}");
+	Утв.Содержит(БезАдресов.Ошибка, "redirect_uris");
+	Утв.Равно(БезАдресов.КодОшибки, "invalid_redirect_uri");
+	Утв.Равно(mcp1c_ПравилаOAuth.ПроверитьЗапросРегистрации("{""redirect_uris"":[""https://a/cb""],"
+		+ """token_endpoint_auth_method"":""private_key_jwt""}").КодОшибки, "invalid_client_metadata");
+	Утв.Равно(mcp1c_ПравилаOAuth.ПроверитьЗапросРегистрации("[]").КодОшибки, "invalid_client_metadata");
+
+	Утв.Равно(mcp1c_ПравилаOAuth.ПредставлениеКлиента("cimd", Адрес, "Claude Code"), "claude.ai",
+		"для CIMD - хост client_id, имя клиент указывает сам");
+	Утв.Равно(mcp1c_ПравилаOAuth.ПредставлениеКлиента("manual", "mcp1c-x", "claude.ai"), "claude.ai");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ПредставлениеКлиента("dcr", "mcp1c-x", "Inspector"), "самостійна");
+	Утв.МассивРавен(mcp1c_ПравилаOAuth.АдресаИзТекста(" https://a/cb" + Символы.ВК + Символы.ПС + Символы.ПС
+		+ "https://a/cb" + Символы.ПС + "http://127.0.0.1/cb "), "https://a/cb,http://127.0.0.1/cb");
+
+КонецПроцедуры
+
+Процедура ТестФормы() Экспорт
+
+	Разбор = mcp1c_ПравилаOAuth.ПараметрыФормы("grant_type=authorization_code&code=mcp1c_ac_X&redirect_uri="
+		+ "http%3A%2F%2Flocalhost%3A3118%2Fcallback&name=%D0%9A%D0%BE%D0%B4+%E2%84%961&empty=&flag");
+	Утв.Равно(Разбор.Ошибка, "");
+	Утв.Равно(Разбор.Параметры.Получить("redirect_uri"), "http://localhost:3118/callback");
+	Утв.Равно(Разбор.Параметры.Получить("name"), "Код №1", "UTF-8 и + как пробел");
+	Утв.Равно(Разбор.Параметры.Получить("empty"), "");
+	Утв.Равно(Разбор.Параметры.Получить("flag"), "");
+	Утв.Содержит(mcp1c_ПравилаOAuth.ПараметрыФормы("code=1&code=2").Ошибка, "кілька разів");
+	Утв.Равно(mcp1c_ПравилаOAuth.РаскодироватьКомпонентURL("100%"), "100%", "неполная последовательность - как есть");
+
+	Утв.Равно(mcp1c_ПравилаOAuth.КодироватьКомпонентURL("Код a+b/c~"), "%D0%9A%D0%BE%D0%B4%20a%2Bb%2Fc~");
+	Параметры = Новый Соответствие;
+	Параметры.Вставить("code", "mcp1c_ac_X");
+	Параметры.Вставить("state", "a b");
+	Параметры.Вставить("empty", "");
+	Параметры.Вставить("iss", "https://mcp.company.ua/mcp/oauth");
+	Адрес = mcp1c_ПравилаOAuth.АдресСПараметрами("http://localhost:3118/callback?x=1", Параметры);
+	Утв.Содержит(Адрес, "http://localhost:3118/callback?x=1&");
+	Утв.Содержит(Адрес, "state=a%20b");
+	Утв.Содержит(Адрес, "iss=https%3A%2F%2Fmcp.company.ua%2Fmcp%2Foauth");
+	Утв.Ложно(СтрНайти(Адрес, "empty") > 0, "пустые значения пропускаются");
+
+	Утв.Равно(mcp1c_ПравилаOAuth.ЭкранироватьHTML("<a href=""x"">O'R & Co</a>"),
+		"&lt;a href=&quot;x&quot;&gt;O&#39;R &amp; Co&lt;/a&gt;");
+
+	// RFC 6749, п. 2.3.1: client_id и секрет кодируются как поля формы, затем base64.
+	Учетные = mcp1c_ПравилаOAuth.УчетныеДанныеBasic("Basic " + Base64Строка(
+		ПолучитьДвоичныеДанныеИзСтроки("mcp1c-abc:s%3Ae+cr%2Bt", КодировкаТекста.UTF8, Ложь)));
+	Утв.Равно(Учетные.Идентификатор, "mcp1c-abc");
+	Утв.Равно(Учетные.Секрет, "s:e cr+t");
+	Утв.Равно(mcp1c_ПравилаOAuth.УчетныеДанныеBasic("Bearer abc"), Неопределено);
+	Утв.Равно(mcp1c_ПравилаOAuth.УчетныеДанныеBasic("Basic !!!"), Неопределено);
+	Утв.Равно(mcp1c_ПравилаOAuth.УчетныеДанныеBasic(Неопределено), Неопределено);
+
+КонецПроцедуры
+
+Процедура ТестПодписанныеДанные() Экспорт
+
+	Данные = Новый Соответствие;
+	Данные.Вставить("client_id", "https://claude.ai/oauth/x");
+	Данные.Вставить("n", 5);
+	Значение = mcp1c_ПравилаOAuth.ПодписанныеДанные("секрет", "request", Данные, 1000);
+	Проверенные = mcp1c_ПравилаOAuth.ПроверенныеДанные("секрет", "request", Значение, 999);
+	Утв.Равно(Проверенные.Получить("client_id"), "https://claude.ai/oauth/x");
+	Утв.Равно(Проверенные.Получить("_exp"), Неопределено, "служебные ключи удалены");
+	Утв.Равно(mcp1c_ПравилаOAuth.ПроверенныеДанные("секрет", "request", Значение, 1000), Неопределено, "просрочено");
+	Утв.Равно(mcp1c_ПравилаOAuth.ПроверенныеДанные("секрет", "approval", Значение, 999), Неопределено, "другой шаг");
+	Утв.Равно(mcp1c_ПравилаOAuth.ПроверенныеДанные("другой", "request", Значение, 999), Неопределено, "другой секрет");
+	Части = СтрРазделить(Значение, ".");
+	Подмена = mcp1c_Служебный.КодироватьСтрокуBase64URL("{""client_id"":""https://evil/"",""_use"":""request"",""_exp"":5000}");
+	Утв.Равно(mcp1c_ПравилаOAuth.ПроверенныеДанные("секрет", "request", Подмена + "." + Части[1], 999), Неопределено,
+		"подмена данных");
+
+КонецПроцедуры
+
+Процедура ТестТокены() Экспорт
+
+	Токен = mcp1c_ПравилаOAuth.НовыйТокен("at", "ABCDEFGHJKLM");
+	Утв.Равно(СтрДлина(Токен.Токен), 65);
+	Утв.Истинно(СтрНачинаетсяС(Токен.Токен, "mcp1c_at_ABCDEFGHJKLM_"));
+	Части = mcp1c_ПравилаOAuth.РазобратьТокен(Токен.Токен);
+	Утв.Равно(Части.Вид, "at");
+	Утв.Равно(Части.Подключение, "ABCDEFGHJKLM");
+	Утв.Равно(Части.Хеш, Токен.Хеш);
+	Утв.Равно(mcp1c_ПравилаOAuth.РазобратьТокен("mcp1c_xx" + Сред(Токен.Токен, 9)), Неопределено, "неизвестный вид");
+	Утв.Равно(mcp1c_ПравилаOAuth.РазобратьТокен(Лев(Токен.Токен, 64)), Неопределено, "длина");
+	Утв.Равно(mcp1c_ПравилаOAuth.РазобратьТокен("mcp1c_ABCDEFGHJKLM_" + Сред(Токен.Токен, 23)), Неопределено,
+		"персональный токен - не OAuth");
+
+	Код = mcp1c_ПравилаOAuth.НовыйКодПодключения();
+	Утв.Равно(СтрДлина(Код.Код), 9);
+	Утв.Равно(Сред(Код.Код, 5, 1), "-");
+	Утв.Равно(mcp1c_ПравилаOAuth.ХешКодаПодключения(" " + НРег(СтрЗаменить(Код.Код, "-", " ")) + " "), Код.Хеш,
+		"регистр, пробелы и дефисы не важны");
+	Утв.Равно(mcp1c_ПравилаOAuth.ХешКодаПодключения("ABC"), "");
+	Утв.Равно(mcp1c_ПравилаOAuth.ХешКодаПодключения("ABCD-EFG1"), "", "не base32");
+	Утв.Истинно(СтрНачинаетсяС(mcp1c_ПравилаOAuth.НовыйИдентификаторКлиента(), "mcp1c-"));
+	Секрет = mcp1c_ПравилаOAuth.НовыйСекретКлиента();
+	Утв.Равно(mcp1c_Служебный.ХешSHA256(Секрет.Секрет), Секрет.Хеш);
+
+КонецПроцедуры
+
+Процедура ТестМетаданные() Экспорт
+
+	Ресурс = "https://mcp.company.ua/mcp";
+	Утв.Равно(mcp1c_ПравилаOAuth.Издатель(Ресурс + "/"), "https://mcp.company.ua/mcp/oauth");
+	Утв.Равно(mcp1c_ПравилаOAuth.АдресМетаданныхРесурса(Ресурс),
+		"https://mcp.company.ua/mcp/.well-known/oauth-protected-resource");
+	Ресурса = mcp1c_ПравилаOAuth.МетаданныеРесурса(Ресурс, "MCP-сервер 1С");
+	Утв.Равно(Ресурса.Получить("resource"), Ресурс);
+	Утв.МассивРавен(Ресурса.Получить("authorization_servers"), "https://mcp.company.ua/mcp/oauth");
+	Утв.МассивРавен(Ресурса.Получить("bearer_methods_supported"), "header");
+
+	Сервера = mcp1c_ПравилаOAuth.МетаданныеСервераАвторизации(Ресурс, Ложь);
+	Утв.Равно(Сервера.Получить("issuer"), "https://mcp.company.ua/mcp/oauth");
+	Утв.Равно(Сервера.Получить("token_endpoint"), "https://mcp.company.ua/mcp/oauth/token");
+	Утв.МассивРавен(Сервера.Получить("code_challenge_methods_supported"), "S256");
+	Утв.Истинно(Сервера.Получить("client_id_metadata_document_supported"));
+	Утв.Истинно(Сервера.Получить("token_endpoint_auth_methods_supported").Найти("none") <> Неопределено,
+		"Claude выбирает CIMD только с none");
+	Утв.Истинно(Сервера.Получить("authorization_response_iss_parameter_supported"));
+	Утв.Равно(Сервера.Получить("registration_endpoint"), Неопределено, "динамическая регистрация выключена");
+	Утв.Равно(mcp1c_ПравилаOAuth.МетаданныеСервераАвторизации(Ресурс, Истина).Получить("registration_endpoint"),
+		"https://mcp.company.ua/mcp/oauth/register");
+	Утв.Равно(Сервера.Получить("jwks_uri"), Неопределено, "RFC 8414 - без полей OpenID");
+	OpenID = mcp1c_ПравилаOAuth.МетаданныеСервераАвторизации(Ресурс, Ложь, Истина);
+	Утв.Равно(OpenID.Получить("jwks_uri"), "https://mcp.company.ua/mcp/oauth/jwks");
+	Утв.МассивРавен(OpenID.Получить("subject_types_supported"), "public");
+	Утв.Равно(OpenID.Получить("issuer"), Сервера.Получить("issuer"));
+
+	Ответ = mcp1c_ПравилаOAuth.ОтветТокена("mcp1c_at_X", "mcp1c_rt_X", 3599.6, Массив("mcp:query,mcp:read"));
+	Утв.Равно(Ответ.Получить("token_type"), "Bearer");
+	Утв.Равно(Ответ.Получить("expires_in"), 3599);
+	Утв.Равно(Ответ.Получить("scope"), "mcp:read mcp:query");
+	Утв.Равно(Ответ.Получить("refresh_token"), "mcp1c_rt_X");
+	Утв.Равно(mcp1c_ПравилаOAuth.ОшибкаOAuth("invalid_grant").Получить("error_description"), Неопределено);
+	Утв.Равно(mcp1c_ПравилаOAuth.ОшибкаOAuth("invalid_grant", "expired").Получить("error_description"), "expired");
+
+	Утв.Равно(mcp1c_ПравилаOAuth.ЗначениеВызоваАутентификации(Ресурс, mcp1c_ПравилаOAuth.ОбластиСервера()),
+		"Bearer resource_metadata=""https://mcp.company.ua/mcp/.well-known/oauth-protected-resource"", "
+		+ "scope=""mcp:read mcp:reports mcp:query""");
+	Утв.Равно(mcp1c_ПравилаOAuth.ЗначениеВызоваАутентификации(Ресурс, Массив("mcp:reports"), "insufficient_scope",
+		"Потрібна ""область"""), "Bearer error=""insufficient_scope"", error_description=""Потрібна 'область'"", "
+		+ "resource_metadata=""https://mcp.company.ua/mcp/.well-known/oauth-protected-resource"", scope=""mcp:reports""");
+
+КонецПроцедуры
+
+Процедура ТестСтраницы() Экспорт
+
+	Данные = Новый Структура;
+	Данные.Вставить("Действие", "https://mcp.company.ua/mcp/oauth/authorize");
+	Данные.Вставить("Запрос", "abc.def");
+	Данные.Вставить("Согласие", "ghi.jkl");
+	Данные.Вставить("База", "Управління <торгівлею>");
+	Данные.Вставить("Приложение", "claude.ai");
+	Данные.Вставить("ИмяКлиента", "Claude ""Code""");
+	Данные.Вставить("ХостВозврата", "localhost");
+	Данные.Вставить("ТолькоПетлевые", Истина);
+	Данные.Вставить("Ошибка", "Код недійсний");
+	Данные.Вставить("КлиентДоступа", "Андрій");
+	Данные.Вставить("Профиль", "Продажі");
+	Данные.Вставить("Области", Массив("mcp:read,mcp:query"));
+
+	Страница = mcp1c_ПравилаOAuth.СтраницаКода(Данные);
+	Утв.Содержит(Страница, "Управління &lt;торгівлею&gt;", "экранирование");
+	Утв.Содержит(Страница, "(Claude &quot;Code&quot;)");
+	Утв.Содержит(Страница, "name=""request"" value=""abc.def""");
+	Утв.Содержит(Страница, "Код недійсний");
+	Утв.Содержит(Страница, "локальну адресу", "предупреждение о петлевом адресе");
+	Утв.Содержит(Страница, "width:100%;", "стили");
+
+	Страница = mcp1c_ПравилаOAuth.СтраницаСогласия(Данные);
+	Утв.Содержит(Страница, "name=""approval"" value=""ghi.jkl""");
+	Утв.Содержит(Страница, "виконувати запити");
+	Утв.Ложно(СтрНайти(Страница, "формувати звіти") > 0, "только выданные области");
+	Утв.Содержит(mcp1c_ПравилаOAuth.СтраницаОшибки("<script>"), "&lt;script&gt;");
+
+КонецПроцедуры

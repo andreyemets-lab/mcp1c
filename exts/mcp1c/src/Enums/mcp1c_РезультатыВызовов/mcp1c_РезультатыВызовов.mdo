@@ -105,4 +105,15 @@
       <value>Внутрішня помилка</value>
     </synonym>
   </enumValues>
+  <enumValues uuid="0e61a847-5fb2-4c33-8335-7b7286acaba6">
+    <name>ТребуетсяАутентификация</name>
+    <synonym>
+      <key>ru</key>
+      <value>Требуется аутентификация</value>
+    </synonym>
+    <synonym>
+      <key>uk</key>
+      <value>Потрібна автентифікація</value>
+    </synonym>
+  </enumValues>
 </mdclass:Enum>

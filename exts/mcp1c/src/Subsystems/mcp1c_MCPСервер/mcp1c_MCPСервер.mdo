@@ -22,6 +22,8 @@
   <content>Catalog.mcp1c_КлиентыДоступа</content>
   <content>Catalog.mcp1c_ПрофилиДоступа</content>
   <content>Catalog.mcp1c_ТокеныДоступа</content>
+  <content>Catalog.mcp1c_ПодключенияOAuth</content>
+  <content>Catalog.mcp1c_КлиентыOAuth</content>
   <content>Catalog.mcp1c_Промпты</content>
   <content>Catalog.mcp1c_ПользовательскиеИнструменты</content>
   <content>InformationRegister.mcp1c_ЖурналВызовов</content>

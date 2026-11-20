@@ -36,6 +36,7 @@
   <roles>Role.mcp1c_Администратор</roles>
   <roles>Role.mcp1c_Аудитор</roles>
   <roles>Role.mcp1c_Сервис</roles>
+  <commonModules>CommonModule.mcp1c_OAuth</commonModules>
   <commonModules>CommonModule.mcp1c_Администрирование</commonModules>
   <commonModules>CommonModule.mcp1c_АдминистрированиеВызовСервера</commonModules>
   <commonModules>CommonModule.mcp1c_АдминистрированиеКлиент</commonModules>
@@ -43,6 +44,7 @@
   <commonModules>CommonModule.mcp1c_Аудит</commonModules>
   <commonModules>CommonModule.mcp1c_Аутентификация</commonModules>
   <commonModules>CommonModule.mcp1c_ВыполнениеЗапросов</commonModules>
+  <commonModules>CommonModule.mcp1c_ДанныеOAuth</commonModules>
   <commonModules>CommonModule.mcp1c_ЗапросыДанных</commonModules>
   <commonModules>CommonModule.mcp1c_Значения</commonModules>
   <commonModules>CommonModule.mcp1c_Инструменты</commonModules>
@@ -63,6 +65,7 @@
   <commonModules>CommonModule.mcp1c_Песочница</commonModules>
   <commonModules>CommonModule.mcp1c_Политики</commonModules>
   <commonModules>CommonModule.mcp1c_ПользовательскиеИнструменты</commonModules>
+  <commonModules>CommonModule.mcp1c_ПравилаOAuth</commonModules>
   <commonModules>CommonModule.mcp1c_ПравилаДоступа</commonModules>
   <commonModules>CommonModule.mcp1c_ПроверкаЗапросов</commonModules>
   <commonModules>CommonModule.mcp1c_Протокол</commonModules>
@@ -88,7 +91,9 @@
   <commonForms>CommonForm.mcp1c_Песочница</commonForms>
   <commonForms>CommonForm.mcp1c_МастерНастройки</commonForms>
   <commonForms>CommonForm.mcp1c_РабочееМесто</commonForms>
+  <catalogs>Catalog.mcp1c_КлиентыOAuth</catalogs>
   <catalogs>Catalog.mcp1c_КлиентыДоступа</catalogs>
+  <catalogs>Catalog.mcp1c_ПодключенияOAuth</catalogs>
   <catalogs>Catalog.mcp1c_ПользовательскиеИнструменты</catalogs>
   <catalogs>Catalog.mcp1c_Промпты</catalogs>
   <catalogs>Catalog.mcp1c_ПрофилиДоступа</catalogs>

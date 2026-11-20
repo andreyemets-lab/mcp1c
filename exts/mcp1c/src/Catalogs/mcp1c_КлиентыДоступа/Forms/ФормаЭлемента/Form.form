@@ -1741,174 +1741,157 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormGroup">
-      <name>СтраницаЖурнал</name>
+      <name>СтраницаOAuth</name>
       <id>131</id>
-      <items xsi:type="form:Table">
-        <name>Журнал</name>
+      <items xsi:type="form:Decoration">
+        <name>ДекорацияOAuth</name>
         <id>132</id>
+        <title>
+          <key>ru</key>
+          <value>Веб-конектори (claude.ai, ChatGPT) і Claude Code підключаються через браузер: видайте код підключення й передайте його користувачу разом з адресою сервера. Код одноразовий і діє кілька хвилин; підключення працює з правами цього клієнта доступу.</value>
+        </title>
+        <title>
+          <key>uk</key>
+          <value>Веб-конектори (claude.ai, ChatGPT) і Claude Code підключаються через браузер: видайте код підключення й передайте його користувачу разом з адресою сервера. Код одноразовий і діє кілька хвилин; підключення працює з правами цього клієнта доступу.</value>
+        </title>
+        <visible>true</visible>
+        <enabled>true</enabled>
+        <userVisible>
+          <common>true</common>
+        </userVisible>
+        <extendedTooltip>
+          <name>ДекорацияOAuthРасширеннаяПодсказка</name>
+          <id>133</id>
+          <type>Label</type>
+          <autoMaxWidth>true</autoMaxWidth>
+          <autoMaxHeight>true</autoMaxHeight>
+          <extInfo xsi:type="form:LabelDecorationExtInfo">
+            <horizontalAlign>Left</horizontalAlign>
+          </extInfo>
+        </extendedTooltip>
+        <contextMenu>
+          <name>ДекорацияOAuthКонтекстноеМеню</name>
+          <id>134</id>
+          <autoFill>true</autoFill>
+        </contextMenu>
+        <type>Label</type>
+        <autoMaxHeight>true</autoMaxHeight>
+        <horizontalStretch>true</horizontalStretch>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </items>
+      <items xsi:type="form:Decoration">
+        <name>ДекорацияOAuthНовыйКлиент</name>
+        <id>135</id>
+        <title>
+          <key>ru</key>
+          <value>Запишіть клієнта, щоб видати код підключення.</value>
+        </title>
+        <title>
+          <key>uk</key>
+          <value>Запишіть клієнта, щоб видати код підключення.</value>
+        </title>
+        <enabled>true</enabled>
+        <userVisible>
+          <common>true</common>
+        </userVisible>
+        <extendedTooltip>
+          <name>ДекорацияOAuthНовыйКлиентРасширеннаяПодсказка</name>
+          <id>136</id>
+          <type>Label</type>
+          <autoMaxWidth>true</autoMaxWidth>
+          <autoMaxHeight>true</autoMaxHeight>
+          <extInfo xsi:type="form:LabelDecorationExtInfo">
+            <horizontalAlign>Left</horizontalAlign>
+          </extInfo>
+        </extendedTooltip>
+        <contextMenu>
+          <name>ДекорацияOAuthНовыйКлиентКонтекстноеМеню</name>
+          <id>137</id>
+          <autoFill>true</autoFill>
+        </contextMenu>
+        <type>Label</type>
+        <autoMaxHeight>true</autoMaxHeight>
+        <horizontalStretch>true</horizontalStretch>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </items>
+      <items xsi:type="form:FormField">
+        <name>КодПодключенияOAuth</name>
+        <id>138</id>
+        <title>
+          <key>ru</key>
+          <value>Код підключення (показується один раз)</value>
+        </title>
+        <title>
+          <key>uk</key>
+          <value>Код підключення (показується один раз)</value>
+        </title>
+        <enabled>true</enabled>
+        <userVisible>
+          <common>true</common>
+        </userVisible>
+        <dataPath xsi:type="form:DataPath">
+          <segments>КодПодключенияOAuth</segments>
+        </dataPath>
+        <titleLocation>Top</titleLocation>
+        <extendedTooltip>
+          <name>КодПодключенияOAuthРасширеннаяПодсказка</name>
+          <id>139</id>
+          <type>Label</type>
+          <autoMaxWidth>true</autoMaxWidth>
+          <autoMaxHeight>true</autoMaxHeight>
+          <extInfo xsi:type="form:LabelDecorationExtInfo">
+            <horizontalAlign>Left</horizontalAlign>
+          </extInfo>
+        </extendedTooltip>
+        <contextMenu>
+          <name>КодПодключенияOAuthКонтекстноеМеню</name>
+          <id>140</id>
+          <autoFill>true</autoFill>
+        </contextMenu>
+        <type>InputField</type>
+        <readOnly>true</readOnly>
+        <editMode>Enter</editMode>
+        <showInHeader>true</showInHeader>
+        <headerHorizontalAlign>Left</headerHorizontalAlign>
+        <showInFooter>true</showInFooter>
+        <extInfo xsi:type="form:InputFieldExtInfo">
+          <height>7</height>
+          <autoMaxHeight>true</autoMaxHeight>
+          <horizontalStretch>true</horizontalStretch>
+          <verticalStretch>false</verticalStretch>
+          <wrap>true</wrap>
+          <multiLine>true</multiLine>
+          <chooseType>true</chooseType>
+          <typeDomainEnabled>true</typeDomainEnabled>
+          <textEdit>true</textEdit>
+        </extInfo>
+      </items>
+      <items xsi:type="form:Table">
+        <name>ПодключенияOAuth</name>
+        <id>141</id>
         <visible>true</visible>
         <enabled>true</enabled>
         <userVisible>
           <common>true</common>
         </userVisible>
         <dataPath xsi:type="form:DataPath">
-          <segments>Журнал</segments>
+          <segments>ПодключенияOAuth</segments>
         </dataPath>
         <titleLocation>None</titleLocation>
         <items xsi:type="form:FormField">
-          <name>ЖурналМомент</name>
-          <id>133</id>
-          <title>
-            <key>ru</key>
-            <value>Час (UTC)</value>
-          </title>
-          <title>
-            <key>uk</key>
-            <value>Час (UTC)</value>
-          </title>
-          <visible>true</visible>
-          <enabled>true</enabled>
-          <userVisible>
-            <common>true</common>
-          </userVisible>
-          <dataPath xsi:type="form:DataPath">
-            <segments>Журнал.Момент</segments>
-          </dataPath>
-          <extendedTooltip>
-            <name>ЖурналМоментРасширеннаяПодсказка</name>
-            <id>134</id>
-            <type>Label</type>
-            <autoMaxWidth>true</autoMaxWidth>
-            <autoMaxHeight>true</autoMaxHeight>
-            <extInfo xsi:type="form:LabelDecorationExtInfo">
-              <horizontalAlign>Left</horizontalAlign>
-            </extInfo>
-          </extendedTooltip>
-          <contextMenu>
-            <name>ЖурналМоментКонтекстноеМеню</name>
-            <id>135</id>
-            <autoFill>true</autoFill>
-          </contextMenu>
-          <type>InputField</type>
-          <editMode>Enter</editMode>
-          <showInHeader>true</showInHeader>
-          <headerHorizontalAlign>Left</headerHorizontalAlign>
-          <showInFooter>true</showInFooter>
-          <extInfo xsi:type="form:InputFieldExtInfo">
-            <autoMaxWidth>true</autoMaxWidth>
-            <autoMaxHeight>true</autoMaxHeight>
-            <wrap>true</wrap>
-            <chooseType>true</chooseType>
-            <typeDomainEnabled>true</typeDomainEnabled>
-            <textEdit>true</textEdit>
-          </extInfo>
-        </items>
-        <items xsi:type="form:FormField">
-          <name>ЖурналМетод</name>
-          <id>136</id>
-          <title>
-            <key>ru</key>
-            <value>Метод</value>
-          </title>
-          <title>
-            <key>uk</key>
-            <value>Метод</value>
-          </title>
-          <visible>true</visible>
-          <enabled>true</enabled>
-          <userVisible>
-            <common>true</common>
-          </userVisible>
-          <dataPath xsi:type="form:DataPath">
-            <segments>Журнал.Метод</segments>
-          </dataPath>
-          <extendedTooltip>
-            <name>ЖурналМетодРасширеннаяПодсказка</name>
-            <id>137</id>
-            <type>Label</type>
-            <autoMaxWidth>true</autoMaxWidth>
-            <autoMaxHeight>true</autoMaxHeight>
-            <extInfo xsi:type="form:LabelDecorationExtInfo">
-              <horizontalAlign>Left</horizontalAlign>
-            </extInfo>
-          </extendedTooltip>
-          <contextMenu>
-            <name>ЖурналМетодКонтекстноеМеню</name>
-            <id>138</id>
-            <autoFill>true</autoFill>
-          </contextMenu>
-          <type>InputField</type>
-          <editMode>Enter</editMode>
-          <showInHeader>true</showInHeader>
-          <headerHorizontalAlign>Left</headerHorizontalAlign>
-          <showInFooter>true</showInFooter>
-          <extInfo xsi:type="form:InputFieldExtInfo">
-            <autoMaxWidth>true</autoMaxWidth>
-            <autoMaxHeight>true</autoMaxHeight>
-            <wrap>true</wrap>
-            <chooseType>true</chooseType>
-            <typeDomainEnabled>true</typeDomainEnabled>
-            <textEdit>true</textEdit>
-          </extInfo>
-        </items>
-        <items xsi:type="form:FormField">
-          <name>ЖурналИнструмент</name>
-          <id>139</id>
-          <title>
-            <key>ru</key>
-            <value>Інструмент або ресурс</value>
-          </title>
-          <title>
-            <key>uk</key>
-            <value>Інструмент або ресурс</value>
-          </title>
-          <visible>true</visible>
-          <enabled>true</enabled>
-          <userVisible>
-            <common>true</common>
-          </userVisible>
-          <dataPath xsi:type="form:DataPath">
-            <segments>Журнал.Инструмент</segments>
-          </dataPath>
-          <extendedTooltip>
-            <name>ЖурналИнструментРасширеннаяПодсказка</name>
-            <id>140</id>
-            <type>Label</type>
-            <autoMaxWidth>true</autoMaxWidth>
-            <autoMaxHeight>true</autoMaxHeight>
-            <extInfo xsi:type="form:LabelDecorationExtInfo">
-              <horizontalAlign>Left</horizontalAlign>
-            </extInfo>
-          </extendedTooltip>
-          <contextMenu>
-            <name>ЖурналИнструментКонтекстноеМеню</name>
-            <id>141</id>
-            <autoFill>true</autoFill>
-          </contextMenu>
-          <type>InputField</type>
-          <editMode>Enter</editMode>
-          <showInHeader>true</showInHeader>
-          <headerHorizontalAlign>Left</headerHorizontalAlign>
-          <showInFooter>true</showInFooter>
-          <extInfo xsi:type="form:InputFieldExtInfo">
-            <autoMaxWidth>true</autoMaxWidth>
-            <autoMaxHeight>true</autoMaxHeight>
-            <wrap>true</wrap>
-            <chooseType>true</chooseType>
-            <typeDomainEnabled>true</typeDomainEnabled>
-            <textEdit>true</textEdit>
-          </extInfo>
-        </items>
-        <items xsi:type="form:FormField">
-          <name>ЖурналРезультат</name>
+          <name>ПодключенияOAuthИдентификатор</name>
           <id>142</id>
           <title>
             <key>ru</key>
-            <value>Результат</value>
+            <value>Ідентифікатор</value>
           </title>
           <title>
             <key>uk</key>
-            <value>Результат</value>
+            <value>Ідентифікатор</value>
           </title>
           <visible>true</visible>
           <enabled>true</enabled>
@@ -1916,10 +1899,10 @@
             <common>true</common>
           </userVisible>
           <dataPath xsi:type="form:DataPath">
-            <segments>Журнал.Результат</segments>
+            <segments>ПодключенияOAuth.Идентификатор</segments>
           </dataPath>
           <extendedTooltip>
-            <name>ЖурналРезультатРасширеннаяПодсказка</name>
+            <name>ПодключенияOAuthИдентификаторРасширеннаяПодсказка</name>
             <id>143</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
@@ -1929,7 +1912,7 @@
             </extInfo>
           </extendedTooltip>
           <contextMenu>
-            <name>ЖурналРезультатКонтекстноеМеню</name>
+            <name>ПодключенияOAuthИдентификаторКонтекстноеМеню</name>
             <id>144</id>
             <autoFill>true</autoFill>
           </contextMenu>
@@ -1939,6 +1922,7 @@
           <headerHorizontalAlign>Left</headerHorizontalAlign>
           <showInFooter>true</showInFooter>
           <extInfo xsi:type="form:InputFieldExtInfo">
+            <width>14</width>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
             <wrap>true</wrap>
@@ -1948,15 +1932,15 @@
           </extInfo>
         </items>
         <items xsi:type="form:FormField">
-          <name>ЖурналКоличествоСтрок</name>
+          <name>ПодключенияOAuthПриложение</name>
           <id>145</id>
           <title>
             <key>ru</key>
-            <value>Рядків</value>
+            <value>Застосунок</value>
           </title>
           <title>
             <key>uk</key>
-            <value>Рядків</value>
+            <value>Застосунок</value>
           </title>
           <visible>true</visible>
           <enabled>true</enabled>
@@ -1964,10 +1948,10 @@
             <common>true</common>
           </userVisible>
           <dataPath xsi:type="form:DataPath">
-            <segments>Журнал.КоличествоСтрок</segments>
+            <segments>ПодключенияOAuth.Приложение</segments>
           </dataPath>
           <extendedTooltip>
-            <name>ЖурналКоличествоСтрокРасширеннаяПодсказка</name>
+            <name>ПодключенияOAuthПриложениеРасширеннаяПодсказка</name>
             <id>146</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
@@ -1977,7 +1961,7 @@
             </extInfo>
           </extendedTooltip>
           <contextMenu>
-            <name>ЖурналКоличествоСтрокКонтекстноеМеню</name>
+            <name>ПодключенияOAuthПриложениеКонтекстноеМеню</name>
             <id>147</id>
             <autoFill>true</autoFill>
           </contextMenu>
@@ -1996,15 +1980,15 @@
           </extInfo>
         </items>
         <items xsi:type="form:FormField">
-          <name>ЖурналДлительностьМс</name>
+          <name>ПодключенияOAuthСостояние</name>
           <id>148</id>
           <title>
             <key>ru</key>
-            <value>Тривалість, мс</value>
+            <value>Стан</value>
           </title>
           <title>
             <key>uk</key>
-            <value>Тривалість, мс</value>
+            <value>Стан</value>
           </title>
           <visible>true</visible>
           <enabled>true</enabled>
@@ -2012,10 +1996,10 @@
             <common>true</common>
           </userVisible>
           <dataPath xsi:type="form:DataPath">
-            <segments>Журнал.ДлительностьМс</segments>
+            <segments>ПодключенияOAuth.Состояние</segments>
           </dataPath>
           <extendedTooltip>
-            <name>ЖурналДлительностьМсРасширеннаяПодсказка</name>
+            <name>ПодключенияOAuthСостояниеРасширеннаяПодсказка</name>
             <id>149</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
@@ -2025,7 +2009,7 @@
             </extInfo>
           </extendedTooltip>
           <contextMenu>
-            <name>ЖурналДлительностьМсКонтекстноеМеню</name>
+            <name>ПодключенияOAuthСостояниеКонтекстноеМеню</name>
             <id>150</id>
             <autoFill>true</autoFill>
           </contextMenu>
@@ -2044,15 +2028,15 @@
           </extInfo>
         </items>
         <items xsi:type="form:FormField">
-          <name>ЖурналПричина</name>
+          <name>ПодключенияOAuthДатаПодключения</name>
           <id>151</id>
           <title>
             <key>ru</key>
-            <value>Причина</value>
+            <value>Підключено</value>
           </title>
           <title>
             <key>uk</key>
-            <value>Причина</value>
+            <value>Підключено</value>
           </title>
           <visible>true</visible>
           <enabled>true</enabled>
@@ -2060,10 +2044,10 @@
             <common>true</common>
           </userVisible>
           <dataPath xsi:type="form:DataPath">
-            <segments>Журнал.Причина</segments>
+            <segments>ПодключенияOAuth.ДатаПодключения</segments>
           </dataPath>
           <extendedTooltip>
-            <name>ЖурналПричинаРасширеннаяПодсказка</name>
+            <name>ПодключенияOAuthДатаПодключенияРасширеннаяПодсказка</name>
             <id>152</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
@@ -2073,7 +2057,7 @@
             </extInfo>
           </extendedTooltip>
           <contextMenu>
-            <name>ЖурналПричинаКонтекстноеМеню</name>
+            <name>ПодключенияOAuthДатаПодключенияКонтекстноеМеню</name>
             <id>153</id>
             <autoFill>true</autoFill>
           </contextMenu>
@@ -2092,15 +2076,15 @@
           </extInfo>
         </items>
         <items xsi:type="form:FormField">
-          <name>ЖурналАдресКлиента</name>
+          <name>ПодключенияOAuthДействуетДо</name>
           <id>154</id>
           <title>
             <key>ru</key>
-            <value>IP-адреса</value>
+            <value>Діє до</value>
           </title>
           <title>
             <key>uk</key>
-            <value>IP-адреса</value>
+            <value>Діє до</value>
           </title>
           <visible>true</visible>
           <enabled>true</enabled>
@@ -2108,10 +2092,10 @@
             <common>true</common>
           </userVisible>
           <dataPath xsi:type="form:DataPath">
-            <segments>Журнал.АдресКлиента</segments>
+            <segments>ПодключенияOAuth.ДействуетДо</segments>
           </dataPath>
           <extendedTooltip>
-            <name>ЖурналАдресКлиентаРасширеннаяПодсказка</name>
+            <name>ПодключенияOAuthДействуетДоРасширеннаяПодсказка</name>
             <id>155</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
@@ -2121,7 +2105,7 @@
             </extInfo>
           </extendedTooltip>
           <contextMenu>
-            <name>ЖурналАдресКлиентаКонтекстноеМеню</name>
+            <name>ПодключенияOAuthДействуетДоКонтекстноеМеню</name>
             <id>156</id>
             <autoFill>true</autoFill>
           </contextMenu>
@@ -2140,8 +2124,816 @@
           </extInfo>
         </items>
         <items xsi:type="form:FormField">
-          <name>ЖурналИнформацияКлиента</name>
+          <name>ПодключенияOAuthПоследнееИспользование</name>
           <id>157</id>
+          <title>
+            <key>ru</key>
+            <value>Останнє використання</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>Останнє використання</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>ПодключенияOAuth.ПоследнееИспользование</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ПодключенияOAuthПоследнееИспользованиеРасширеннаяПодсказка</name>
+            <id>158</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ПодключенияOAuthПоследнееИспользованиеКонтекстноеМеню</name>
+            <id>159</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>ПодключенияOAuthОбласти</name>
+          <id>160</id>
+          <title>
+            <key>ru</key>
+            <value>Області</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>Області</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>ПодключенияOAuth.Области</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ПодключенияOAuthОбластиРасширеннаяПодсказка</name>
+            <id>161</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ПодключенияOAuthОбластиКонтекстноеМеню</name>
+            <id>162</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>ПодключенияOAuthХостВозврата</name>
+          <id>163</id>
+          <title>
+            <key>ru</key>
+            <value>Повернення на</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>Повернення на</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>ПодключенияOAuth.ХостВозврата</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ПодключенияOAuthХостВозвратаРасширеннаяПодсказка</name>
+            <id>164</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ПодключенияOAuthХостВозвратаКонтекстноеМеню</name>
+            <id>165</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>ПодключенияOAuthАвтор</name>
+          <id>166</id>
+          <title>
+            <key>ru</key>
+            <value>Видав код</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>Видав код</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>ПодключенияOAuth.Автор</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ПодключенияOAuthАвторРасширеннаяПодсказка</name>
+            <id>167</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ПодключенияOAuthАвторКонтекстноеМеню</name>
+            <id>168</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <autoCommandBar>
+          <name>ПодключенияOAuthКоманднаяПанель</name>
+          <id>169</id>
+          <items xsi:type="form:Button">
+            <name>ПодключенияOAuthВыдатьКод</name>
+            <id>170</id>
+            <visible>true</visible>
+            <enabled>true</enabled>
+            <userVisible>
+              <common>true</common>
+            </userVisible>
+            <extendedTooltip>
+              <name>ПодключенияOAuthВыдатьКодРасширеннаяПодсказка</name>
+              <id>171</id>
+              <type>Label</type>
+              <autoMaxWidth>true</autoMaxWidth>
+              <autoMaxHeight>true</autoMaxHeight>
+              <extInfo xsi:type="form:LabelDecorationExtInfo">
+                <horizontalAlign>Left</horizontalAlign>
+              </extInfo>
+            </extendedTooltip>
+            <commandName>Form.Command.ВыдатьКодПодключенияOAuth</commandName>
+            <representation>PictureAndText</representation>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <placementArea>UserCmds</placementArea>
+            <representationInContextMenu>Auto</representationInContextMenu>
+          </items>
+          <items xsi:type="form:Button">
+            <name>ПодключенияOAuthОтозвать</name>
+            <id>172</id>
+            <visible>true</visible>
+            <enabled>true</enabled>
+            <userVisible>
+              <common>true</common>
+            </userVisible>
+            <extendedTooltip>
+              <name>ПодключенияOAuthОтозватьРасширеннаяПодсказка</name>
+              <id>173</id>
+              <type>Label</type>
+              <autoMaxWidth>true</autoMaxWidth>
+              <autoMaxHeight>true</autoMaxHeight>
+              <extInfo xsi:type="form:LabelDecorationExtInfo">
+                <horizontalAlign>Left</horizontalAlign>
+              </extInfo>
+            </extendedTooltip>
+            <commandName>Form.Command.ОтозватьПодключениеOAuth</commandName>
+            <representation>Auto</representation>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <placementArea>UserCmds</placementArea>
+            <representationInContextMenu>Auto</representationInContextMenu>
+          </items>
+          <items xsi:type="form:Button">
+            <name>ПодключенияOAuthОбновить</name>
+            <id>174</id>
+            <visible>true</visible>
+            <enabled>true</enabled>
+            <userVisible>
+              <common>true</common>
+            </userVisible>
+            <extendedTooltip>
+              <name>ПодключенияOAuthОбновитьРасширеннаяПодсказка</name>
+              <id>175</id>
+              <type>Label</type>
+              <autoMaxWidth>true</autoMaxWidth>
+              <autoMaxHeight>true</autoMaxHeight>
+              <extInfo xsi:type="form:LabelDecorationExtInfo">
+                <horizontalAlign>Left</horizontalAlign>
+              </extInfo>
+            </extendedTooltip>
+            <commandName>Form.Command.ОбновитьПодключенияOAuth</commandName>
+            <representation>Auto</representation>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <placementArea>UserCmds</placementArea>
+            <representationInContextMenu>Auto</representationInContextMenu>
+          </items>
+          <horizontalAlign>Left</horizontalAlign>
+        </autoCommandBar>
+        <searchStringAddition>
+          <name>ПодключенияOAuthСтрокаПоиска</name>
+          <id>176</id>
+          <extendedTooltip>
+            <name>ПодключенияOAuthСтрокаПоискаРасширеннаяПодсказка</name>
+            <id>177</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ПодключенияOAuthСтрокаПоискаКонтекстноеМеню</name>
+            <id>178</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <source>ПодключенияOAuth</source>
+          <extInfo xsi:type="form:SearchStringAdditionExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+          </extInfo>
+        </searchStringAddition>
+        <viewStatusAddition>
+          <name>ПодключенияOAuthСостояниеПросмотра</name>
+          <id>179</id>
+          <extendedTooltip>
+            <name>ПодключенияOAuthСостояниеПросмотраРасширеннаяПодсказка</name>
+            <id>180</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ПодключенияOAuthСостояниеПросмотраКонтекстноеМеню</name>
+            <id>181</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>ViewStatusAddition</type>
+          <source>ПодключенияOAuth</source>
+          <extInfo xsi:type="form:ViewStatusAdditionExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+          </extInfo>
+        </viewStatusAddition>
+        <searchControlAddition>
+          <name>ПодключенияOAuthУправлениеПоиском</name>
+          <id>182</id>
+          <extendedTooltip>
+            <name>ПодключенияOAuthУправлениеПоискомРасширеннаяПодсказка</name>
+            <id>183</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ПодключенияOAuthУправлениеПоискомКонтекстноеМеню</name>
+            <id>184</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>SearchControlAddition</type>
+          <source>ПодключенияOAuth</source>
+          <extInfo xsi:type="form:SearchControlAdditionExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+          </extInfo>
+        </searchControlAddition>
+        <extendedTooltip>
+          <name>ПодключенияOAuthРасширеннаяПодсказка</name>
+          <id>185</id>
+          <type>Label</type>
+          <autoMaxWidth>true</autoMaxWidth>
+          <autoMaxHeight>true</autoMaxHeight>
+          <extInfo xsi:type="form:LabelDecorationExtInfo">
+            <horizontalAlign>Left</horizontalAlign>
+          </extInfo>
+        </extendedTooltip>
+        <contextMenu>
+          <name>ПодключенияOAuthКонтекстноеМеню</name>
+          <id>186</id>
+          <autoFill>true</autoFill>
+        </contextMenu>
+        <readOnly>true</readOnly>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <heightInTableRows>6</heightInTableRows>
+        <autoMaxRowsCount>true</autoMaxRowsCount>
+        <selectionMode>SingleRow</selectionMode>
+        <header>true</header>
+        <headerHeight>1</headerHeight>
+        <footerHeight>1</footerHeight>
+        <horizontalScrollBar>AutoUse</horizontalScrollBar>
+        <verticalScrollBar>AutoUse</verticalScrollBar>
+        <horizontalLines>true</horizontalLines>
+        <verticalLines>true</verticalLines>
+        <searchOnInput>Auto</searchOnInput>
+        <initialListView>Auto</initialListView>
+        <horizontalStretch>true</horizontalStretch>
+        <verticalStretch>true</verticalStretch>
+        <searchStringLocation>None</searchStringLocation>
+        <viewStatusLocation>None</viewStatusLocation>
+        <searchControlLocation>None</searchControlLocation>
+        <rowFilter xsi:type="core:UndefinedValue"/>
+      </items>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <title>
+        <key>ru</key>
+        <value>OAuth</value>
+      </title>
+      <title>
+        <key>uk</key>
+        <value>OAuth</value>
+      </title>
+      <extendedTooltip>
+        <name>СтраницаOAuthРасширеннаяПодсказка</name>
+        <id>187</id>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+      <type>Page</type>
+      <extInfo xsi:type="form:PageGroupExtInfo">
+        <group>Vertical</group>
+        <showTitle>true</showTitle>
+      </extInfo>
+    </items>
+    <items xsi:type="form:FormGroup">
+      <name>СтраницаЖурнал</name>
+      <id>188</id>
+      <items xsi:type="form:Table">
+        <name>Журнал</name>
+        <id>189</id>
+        <visible>true</visible>
+        <enabled>true</enabled>
+        <userVisible>
+          <common>true</common>
+        </userVisible>
+        <dataPath xsi:type="form:DataPath">
+          <segments>Журнал</segments>
+        </dataPath>
+        <titleLocation>None</titleLocation>
+        <items xsi:type="form:FormField">
+          <name>ЖурналМомент</name>
+          <id>190</id>
+          <title>
+            <key>ru</key>
+            <value>Час (UTC)</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>Час (UTC)</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>Журнал.Момент</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ЖурналМоментРасширеннаяПодсказка</name>
+            <id>191</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ЖурналМоментКонтекстноеМеню</name>
+            <id>192</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>ЖурналМетод</name>
+          <id>193</id>
+          <title>
+            <key>ru</key>
+            <value>Метод</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>Метод</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>Журнал.Метод</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ЖурналМетодРасширеннаяПодсказка</name>
+            <id>194</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ЖурналМетодКонтекстноеМеню</name>
+            <id>195</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>ЖурналИнструмент</name>
+          <id>196</id>
+          <title>
+            <key>ru</key>
+            <value>Інструмент або ресурс</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>Інструмент або ресурс</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>Журнал.Инструмент</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ЖурналИнструментРасширеннаяПодсказка</name>
+            <id>197</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ЖурналИнструментКонтекстноеМеню</name>
+            <id>198</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>ЖурналРезультат</name>
+          <id>199</id>
+          <title>
+            <key>ru</key>
+            <value>Результат</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>Результат</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>Журнал.Результат</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ЖурналРезультатРасширеннаяПодсказка</name>
+            <id>200</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ЖурналРезультатКонтекстноеМеню</name>
+            <id>201</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>ЖурналКоличествоСтрок</name>
+          <id>202</id>
+          <title>
+            <key>ru</key>
+            <value>Рядків</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>Рядків</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>Журнал.КоличествоСтрок</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ЖурналКоличествоСтрокРасширеннаяПодсказка</name>
+            <id>203</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ЖурналКоличествоСтрокКонтекстноеМеню</name>
+            <id>204</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>ЖурналДлительностьМс</name>
+          <id>205</id>
+          <title>
+            <key>ru</key>
+            <value>Тривалість, мс</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>Тривалість, мс</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>Журнал.ДлительностьМс</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ЖурналДлительностьМсРасширеннаяПодсказка</name>
+            <id>206</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ЖурналДлительностьМсКонтекстноеМеню</name>
+            <id>207</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>ЖурналПричина</name>
+          <id>208</id>
+          <title>
+            <key>ru</key>
+            <value>Причина</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>Причина</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>Журнал.Причина</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ЖурналПричинаРасширеннаяПодсказка</name>
+            <id>209</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ЖурналПричинаКонтекстноеМеню</name>
+            <id>210</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>ЖурналАдресКлиента</name>
+          <id>211</id>
+          <title>
+            <key>ru</key>
+            <value>IP-адреса</value>
+          </title>
+          <title>
+            <key>uk</key>
+            <value>IP-адреса</value>
+          </title>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>Журнал.АдресКлиента</segments>
+          </dataPath>
+          <extendedTooltip>
+            <name>ЖурналАдресКлиентаРасширеннаяПодсказка</name>
+            <id>212</id>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>ЖурналАдресКлиентаКонтекстноеМеню</name>
+            <id>213</id>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>Enter</editMode>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>ЖурналИнформацияКлиента</name>
+          <id>214</id>
           <title>
             <key>ru</key>
             <value>Програма клієнта</value>
@@ -2160,7 +2952,7 @@
           </dataPath>
           <extendedTooltip>
             <name>ЖурналИнформацияКлиентаРасширеннаяПодсказка</name>
-            <id>158</id>
+            <id>215</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -2170,7 +2962,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналИнформацияКлиентаКонтекстноеМеню</name>
-            <id>159</id>
+            <id>216</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>InputField</type>
@@ -2189,16 +2981,16 @@
         </items>
         <autoCommandBar>
           <name>ЖурналКоманднаяПанель</name>
-          <id>160</id>
+          <id>217</id>
           <horizontalAlign>Left</horizontalAlign>
           <autoFill>true</autoFill>
         </autoCommandBar>
         <searchStringAddition>
           <name>ЖурналСтрокаПоиска</name>
-          <id>161</id>
+          <id>218</id>
           <extendedTooltip>
             <name>ЖурналСтрокаПоискаРасширеннаяПодсказка</name>
-            <id>162</id>
+            <id>219</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -2208,7 +3000,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналСтрокаПоискаКонтекстноеМеню</name>
-            <id>163</id>
+            <id>220</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <source>Журнал</source>
@@ -2218,10 +3010,10 @@
         </searchStringAddition>
         <viewStatusAddition>
           <name>ЖурналСостояниеПросмотра</name>
-          <id>164</id>
+          <id>221</id>
           <extendedTooltip>
             <name>ЖурналСостояниеПросмотраРасширеннаяПодсказка</name>
-            <id>165</id>
+            <id>222</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -2231,7 +3023,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналСостояниеПросмотраКонтекстноеМеню</name>
-            <id>166</id>
+            <id>223</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>ViewStatusAddition</type>
@@ -2242,10 +3034,10 @@
         </viewStatusAddition>
         <searchControlAddition>
           <name>ЖурналУправлениеПоиском</name>
-          <id>167</id>
+          <id>224</id>
           <extendedTooltip>
             <name>ЖурналУправлениеПоискомРасширеннаяПодсказка</name>
-            <id>168</id>
+            <id>225</id>
             <type>Label</type>
             <autoMaxWidth>true</autoMaxWidth>
             <autoMaxHeight>true</autoMaxHeight>
@@ -2255,7 +3047,7 @@
           </extendedTooltip>
           <contextMenu>
             <name>ЖурналУправлениеПоискомКонтекстноеМеню</name>
-            <id>169</id>
+            <id>226</id>
             <autoFill>true</autoFill>
           </contextMenu>
           <type>SearchControlAddition</type>
@@ -2266,7 +3058,7 @@
         </searchControlAddition>
         <extendedTooltip>
           <name>ЖурналРасширеннаяПодсказка</name>
-          <id>170</id>
+          <id>227</id>
           <type>Label</type>
           <autoMaxWidth>true</autoMaxWidth>
           <autoMaxHeight>true</autoMaxHeight>
@@ -2276,7 +3068,7 @@
         </extendedTooltip>
         <contextMenu>
           <name>ЖурналКонтекстноеМеню</name>
-          <id>171</id>
+          <id>228</id>
           <autoFill>true</autoFill>
         </contextMenu>
         <readOnly>true</readOnly>
@@ -2325,7 +3117,7 @@
       </title>
       <extendedTooltip>
         <name>СтраницаЖурналРасширеннаяПодсказка</name>
-        <id>172</id>
+        <id>229</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
@@ -2346,7 +3138,7 @@
     </userVisible>
     <extendedTooltip>
       <name>СтраницыРасширеннаяПодсказка</name>
-      <id>173</id>
+      <id>230</id>
       <type>Label</type>
       <autoMaxWidth>true</autoMaxWidth>
       <autoMaxHeight>true</autoMaxHeight>
@@ -2553,8 +3345,192 @@
     </columns>
   </attributes>
   <attributes>
-    <name>Журнал</name>
+    <name>КодПодключенияOAuth</name>
     <id>3</id>
+    <valueType>
+      <types>String</types>
+      <stringQualifiers/>
+    </valueType>
+    <view>
+      <common>true</common>
+    </view>
+    <edit>
+      <common>true</common>
+    </edit>
+  </attributes>
+  <attributes>
+    <name>ПодключенияOAuth</name>
+    <id>4</id>
+    <valueType>
+      <types>ValueTable</types>
+    </valueType>
+    <view>
+      <common>true</common>
+    </view>
+    <edit>
+      <common>true</common>
+    </edit>
+    <columns>
+      <name>Ссылка</name>
+      <id>1</id>
+      <valueType>
+        <types>CatalogRef.mcp1c_ПодключенияOAuth</types>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>Идентификатор</name>
+      <id>2</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers>
+          <length>12</length>
+        </stringQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>Приложение</name>
+      <id>3</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers>
+          <length>150</length>
+        </stringQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>Состояние</name>
+      <id>4</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers>
+          <length>50</length>
+        </stringQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>ДатаПодключения</name>
+      <id>5</id>
+      <valueType>
+        <types>Date</types>
+        <dateQualifiers>
+          <dateFractions>DateTime</dateFractions>
+        </dateQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>ДействуетДо</name>
+      <id>6</id>
+      <valueType>
+        <types>Date</types>
+        <dateQualifiers>
+          <dateFractions>DateTime</dateFractions>
+        </dateQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>ПоследнееИспользование</name>
+      <id>7</id>
+      <valueType>
+        <types>Date</types>
+        <dateQualifiers>
+          <dateFractions>DateTime</dateFractions>
+        </dateQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>Области</name>
+      <id>8</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers>
+          <length>100</length>
+        </stringQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>ХостВозврата</name>
+      <id>9</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers>
+          <length>255</length>
+        </stringQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>Автор</name>
+      <id>10</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers>
+          <length>100</length>
+        </stringQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+  </attributes>
+  <attributes>
+    <name>Журнал</name>
+    <id>5</id>
     <valueType>
       <types>DynamicList</types>
     </valueType>
@@ -2708,6 +3684,99 @@
     <action xsi:type="form:FormCommandHandlerContainer">
       <handler>
         <name>СнятьБлокировку</name>
+      </handler>
+    </action>
+    <currentRowUse>DontUse</currentRowUse>
+  </formCommands>
+  <formCommands>
+    <name>ВыдатьКодПодключенияOAuth</name>
+    <title>
+      <key>ru</key>
+      <value>Видати код підключення</value>
+    </title>
+    <title>
+      <key>uk</key>
+      <value>Видати код підключення</value>
+    </title>
+    <id>5</id>
+    <toolTip>
+      <key>ru</key>
+      <value>Видати одноразовий код для підключення AI-клієнта через OAuth (claude.ai, ChatGPT, Claude Code)</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Видати одноразовий код для підключення AI-клієнта через OAuth (claude.ai, ChatGPT, Claude Code)</value>
+    </toolTip>
+    <use>
+      <common>true</common>
+    </use>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.CreateListItem</picture>
+    </picture>
+    <action xsi:type="form:FormCommandHandlerContainer">
+      <handler>
+        <name>ВыдатьКодПодключенияOAuth</name>
+      </handler>
+    </action>
+    <currentRowUse>DontUse</currentRowUse>
+  </formCommands>
+  <formCommands>
+    <name>ОтозватьПодключениеOAuth</name>
+    <title>
+      <key>ru</key>
+      <value>Відкликати</value>
+    </title>
+    <title>
+      <key>uk</key>
+      <value>Відкликати</value>
+    </title>
+    <id>6</id>
+    <toolTip>
+      <key>ru</key>
+      <value>Відкликати вибране підключення: його токени перестають діяти з наступного запиту</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Відкликати вибране підключення: його токени перестають діяти з наступного запиту</value>
+    </toolTip>
+    <use>
+      <common>true</common>
+    </use>
+    <action xsi:type="form:FormCommandHandlerContainer">
+      <handler>
+        <name>ОтозватьПодключениеOAuth</name>
+      </handler>
+    </action>
+    <currentRowUse>DontUse</currentRowUse>
+  </formCommands>
+  <formCommands>
+    <name>ОбновитьПодключенияOAuth</name>
+    <title>
+      <key>ru</key>
+      <value>Оновити</value>
+    </title>
+    <title>
+      <key>uk</key>
+      <value>Оновити</value>
+    </title>
+    <id>7</id>
+    <toolTip>
+      <key>ru</key>
+      <value>Оновити список підключень OAuth</value>
+    </toolTip>
+    <toolTip>
+      <key>uk</key>
+      <value>Оновити список підключень OAuth</value>
+    </toolTip>
+    <use>
+      <common>true</common>
+    </use>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.Refresh</picture>
+    </picture>
+    <action xsi:type="form:FormCommandHandlerContainer">
+      <handler>
+        <name>ОбновитьПодключенияOAuth</name>
       </handler>
     </action>
     <currentRowUse>DontUse</currentRowUse>
