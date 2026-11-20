@@ -24,4 +24,4 @@
   - `cd tools/bsl-syntax && npm ci && node check.mjs ../../exts/mcp1c/src`
 - CI на кожен PR додатково запускає тести OneScript і BSL Language Server; якщо мережа середовища не пускає до NuGet, Maven і релізів GitHub, їх результат дивитися в CI.
 - Проєкт в EDT (робоча область користувача, проєкт `mcp1c`) має давати 0 проблем у діагностиці, зокрема строгої типізації. Без робочої області ту саму перевірку робить `tools/build_cfe.ps1` (EDT CLI validate у тимчасовій робочій області; Windows, потрібні EDT і платформа).
-- Перевірка розгорнутого сервера: `python tools/mcp_smoke_test.py --url <ендпоінт> --token <PAT>`.
+- Перевірка розгорнутого сервера: `python tools/mcp_smoke_test.py --url <ендпоінт> --token <PAT>`; OAuth — `MCP1C_OAUTH_CODES=<4 коди підключення> python tools/oauth_smoke_test.py --url <ендпоінт>`.
