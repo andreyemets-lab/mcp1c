@@ -132,16 +132,28 @@ class Client:
             url or self.url, data=data, method=method,
             headers={k: v for k, v in request_headers.items() if v is not None},
         )
-        for attempt in range(3):
+        waits = 0
+        for _ in range(60):
             try:
                 with urllib.request.urlopen(request, timeout=self.timeout, context=self.context) as answer:
                     status, raw_headers, raw = answer.status, answer.headers, answer.read()
             except urllib.error.HTTPError as error:
                 status, raw_headers, raw = error.code, error.headers, error.read()
-            # 429 - calls_per_minute of the profile: wait as the server asks and repeat.
-            retry_after = raw_headers.get("Retry-After") if status == 429 else None
-            if not (retry_after and retry_after.isdigit() and int(retry_after) <= 120 and attempt < 2):
+            if status != 429:
                 break
+            retry_after = raw_headers.get("Retry-After")
+            if not retry_after:
+                # 429 of the proxy's per-address limit (60 a minute with a burst of 20 in the nginx template):
+                # the request did not reach the server, repeat it a little later.
+                if not self.cache.get("proxy_limit"):
+                    print("    .. 429 without Retry-After (rate limit of the proxy): requests slow down")
+                    self.cache["proxy_limit"] = True
+                time.sleep(2)
+                continue
+            # 429 - calls_per_minute of the profile: wait as the server asks and repeat.
+            if not (retry_after.isdigit() and int(retry_after) <= 120 and waits < 2):
+                break
+            waits += 1
             print(f"    .. 429, waiting {retry_after} s (calls per minute of the profile)")
             time.sleep(int(retry_after) + 1)
         text = raw.decode("utf-8", errors="replace")
