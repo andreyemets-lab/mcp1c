@@ -650,8 +650,11 @@
 	Результат.Вставить("Адрес", Адрес);
 	Результат.Вставить("Инструкция", СтрШаблон("Код підключення: %1 (діє %2 хв, одноразовий)
 		|
-		|1. Додайте в AI-клієнті MCP-сервер з адресою %3. У claude.ai: «Налаштування» - «Конектори» - «Додати власний
-		|   конектор»; у Claude Code: claude mcp add --transport http 1c %3
+		|1. Додайте в AI-клієнті MCP-сервер з адресою %3:
+		|   - claude.ai: Customize - Connectors - Add custom connector (на Team і Enterprise конектор додає власник
+		|     в Organization settings - Connectors, користувач тисне Connect);
+		|   - ChatGPT: chatgpt.com/plugins - «+» - Add custom MCP server, автентифікація OAuth;
+		|   - Claude Code: claude mcp add --transport http 1c %3, потім у сесії /mcp - Authenticate.
 		|2. Коли відкриється сторінка підключення 1С, введіть цей код.
 		|3. Перевірте застосунок і адресу повернення на сторінці підтвердження й натисніть «Дозволити».",
 		Итог.Код, Минут, Адрес));
